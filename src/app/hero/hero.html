@@ -1,0 +1,96 @@
+<section class="hero-section">
+  <!-- Background with subtle texture -->
+  <div class="hero-background"></div>
+  
+  <!-- Caustic light patterns -->
+  <div class="caustics"></div>
+  
+  <!-- Floating Glassmorphism Cards -->
+  <div class="floating-card card-1">
+    <h3 class="card-title">50ml</h3>
+    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+    <span class="card-price">$26.90</span>
+  </div>
+  
+  <div class="floating-card card-2">
+    <h3 class="card-title">100ml</h3>
+    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore.</p>
+    <span class="card-price">$49.90</span>
+  </div>
+  
+  <div class="floating-card card-3">
+    <h3 class="card-title">200ml</h3>
+    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</p>
+    <span class="card-price">$89.90</span>
+  </div>
+  
+  <!-- Central Perfume Bottle -->
+  <div class="bottle-container">
+    <!-- Backlight glow -->
+    <div class="backlight"></div>
+    
+    <!-- Bottle -->
+    <div class="bottle">
+      <!-- Bottle cap -->
+      <div class="bottle-cap">
+        <div class="cap-top"></div>
+        <div class="cap-ring"></div>
+      </div>
+      
+      <!-- Bottle neck -->
+      <div class="bottle-neck"></div>
+      
+      <!-- Bottle body with faceted glass -->
+      <div class="bottle-body">
+        <!-- Faceted glass panels -->
+        <div class="facet facet-1"></div>
+        <div class="facet facet-2"></div>
+        <div class="facet facet-3"></div>
+        <div class="facet facet-4"></div>
+        <div class="facet facet-5"></div>
+        <div class="facet facet-6"></div>
+        
+        <!-- Golden liquid -->
+        <div class="liquid">
+          <div class="liquid-surface"></div>
+          <div class="liquid-swirl swirl-1"></div>
+          <div class="liquid-swirl swirl-2"></div>
+          <div class="liquid-swirl swirl-3"></div>
+          <div class="liquid-glow"></div>
+        </div>
+        
+        <!-- Glass reflections -->
+        <div class="reflection reflection-1"></div>
+        <div class="reflection reflection-2"></div>
+        <div class="reflection reflection-3"></div>
+      </div>
+      
+      <!-- Bottle base -->
+      <div class="bottle-base"></div>
+    </div>
+  </div>
+  
+  <!-- Size Selector -->
+  <div class="size-selector">
+    <span class="selector-label">Select Size:</span>
+    <button 
+      class="size-option" 
+      [class.active]="selectedSize === '50ml'"
+      (click)="selectSize('50ml')">
+      50ml
+    </button>
+    <span class="separator">|</span>
+    <button 
+      class="size-option" 
+      [class.active]="selectedSize === '100ml'"
+      (click)="selectSize('100ml')">
+      100ml
+    </button>
+  </div>
+  
+  <!-- CTA Button -->
+  <button class="cta-button">
+    <span class="button-text">SHOP NOW</span>
+    <div class="button-shimmer"></div>
+  </button>
+</section>

@@ -1,0 +1,111 @@
+/* src/app/shared/header/header.component.css */
+:host {
+  display: block;
+  width: 100%;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  border-radius: 12px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+
+  /* --- Glassmorphism Effect --- */
+  background: rgba(60, 60, 60, 0.4); /* Semi-transparent background */
+  -webkit-backdrop-filter: blur(15px); /* For Safari */
+  backdrop-filter: blur(15px); /* The frosted glass blur */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle edge highlight */
+}
+
+/* --- Gold Border Lines --- */
+.gold-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  opacity: 0.8;
+}
+
+.gold-line.top {
+  top: 0;
+}
+
+.gold-line.bottom {
+  bottom: 0;
+}
+
+/* --- Navigation Sections --- */
+.nav-left, .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  flex: 1; /* Assign equal space */
+}
+
+.nav-right {
+  justify-content: flex-end;
+}
+
+.nav-center {
+  flex: 1.5; /* Give center more space */
+  display: flex;
+  justify-content: center;
+}
+
+/* --- Links and Icons --- */
+.nav-link, .icon-link, .hamburger-icon {
+  color: #d1d1d1;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.icon-link, .hamburger-icon {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link:hover, .icon-link:hover {
+  color: #ffffff;
+}
+
+/* --- Logo Styling --- */
+.logo-wrapper {
+  position: relative;
+  display: inline-block;
+  padding: 0 25px; /* Space for the flourishes */
+}
+
+.logo-text {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  color: #e0e0e0;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+/* Decorative flourishes beside the logo */
+.logo-wrapper::before,
+.logo-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  background: #d4af37;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.logo-wrapper::before {
+  left: 0;
+}
+
+.logo-wrapper::after {
+  right: 0;
+}
