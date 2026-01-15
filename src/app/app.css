@@ -1,0 +1,144 @@
+/* Brand Band - Professional divider between sections */
+.brand-band {
+  position: relative;
+  width: 100%;
+  padding: 3rem 2rem;
+  background: linear-gradient(
+    180deg,
+    #2a2a2a 0%,
+    #252525 50%,
+    #1f1f1f 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 10;
+  margin: 0;
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.brand-band::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 50% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 70%),
+    linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.03) 50%, transparent 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.brand-band-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  z-index: 1;
+}
+
+.brand-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(212, 175, 55, 0.3) 20%,
+    rgba(212, 175, 55, 0.5) 50%,
+    rgba(212, 175, 55, 0.3) 80%,
+    transparent 100%
+  );
+  position: relative;
+}
+
+.brand-line::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: #d4af37;
+  border-radius: 50%;
+  box-shadow: 
+    0 0 10px rgba(212, 175, 55, 0.6),
+    0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.brand-name {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: #d4af37;
+  text-transform: uppercase;
+  text-shadow: 
+    0 0 20px rgba(212, 175, 55, 0.5),
+    0 0 40px rgba(212, 175, 55, 0.3);
+  position: relative;
+}
+
+.brand-name::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #d4af37 50%,
+    transparent 100%
+  );
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+}
+
+.brand-tagline {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.75rem, 1.5vw, 0.95rem);
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  color: #b0b0b0;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .brand-band {
+    padding: 2rem 1.5rem;
+  }
+  
+  .brand-band-content {
+    gap: 1.5rem;
+    flex-direction: column;
+  }
+  
+  .brand-line {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .brand-line::after {
+    width: 6px;
+    height: 6px;
+  }
+}

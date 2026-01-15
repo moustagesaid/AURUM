@@ -12,3 +12,31 @@ body {
 * {
   box-sizing: border-box;
 }
+
+app-root {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+app-hero,
+app-collection {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure seamless connection between sections */
+app-hero section,
+app-collection section {
+  margin: 0;
+  border: none;
+  outline: none;
+}
+
+/* Remove any default spacing */
+app-hero + .brand-band,
+.brand-band + app-collection {
+  margin: 0;
+  padding: 0;
+}

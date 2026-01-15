@@ -9,6 +9,8 @@
   justify-content: center;
   overflow: hidden;
   padding: 4rem 2rem;
+  margin: 0;
+  margin-bottom: 0;
 }
 
 .hero-background {
@@ -22,6 +24,10 @@
   background-position: center;
   background-repeat: no-repeat;
   z-index: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
 }
 
 /* Caustic light patterns */
