@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
@@ -15,16 +15,27 @@ export class Contact {
     email: '',
     message: ''
   };
-  showSuccessModal = false;
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
+    if (form.invalid) {
+      form.control.markAllAsTouched();
+      return;
+    }
+
     // Handle form submission
     console.log('Form submitted:', this.contactForm);
-    // You can add your form submission logic here
+<<<<<<< Updated upstream
+    // You can add your form submission logic here (e.g., API call)
+
     this.showSuccessModal = true;
   }
 
-  closeModal() {
+  closeModal(form?: NgForm) {
     this.showSuccessModal = false;
+    form?.resetForm();
+    this.contactForm = { name: '', email: '', message: '' };
+=======
+    // You can add your form submission logic here
+>>>>>>> Stashed changes
   }
 }
