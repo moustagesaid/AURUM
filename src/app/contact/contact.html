@@ -46,7 +46,7 @@
       <h1 class="section-title">GET IN TOUCH</h1>
       <p class="intro-text">We would love to hear from you. Please fill out the form below, and our team will be in touch shortly.</p>
       
-      <form (ngSubmit)="onSubmit()" class="contact-form">
+      <form #contactFormRef="ngForm" (ngSubmit)="onSubmit(contactFormRef)" class="contact-form">
         <div class="form-group">
           <label for="name" class="form-label">Your Name</label>
           <input 
@@ -68,6 +68,7 @@
             class="form-input" 
             [(ngModel)]="contactForm.email"
             required
+            email
           />
         </div>
         
@@ -83,7 +84,7 @@
           ></textarea>
         </div>
         
-        <button type="submit" class="submit-button">SEND MESSAGE</button>
+        <button type="submit" class="submit-button" [disabled]="contactFormRef.invalid">SEND MESSAGE</button>
       </form>
     </div>
   </div>
@@ -107,7 +108,7 @@
       <p id="success-description" class="success-text">
         Thank you for contacting us. Our team will be in touch shortly.
       </p>
-      <button class="close-button" type="button" (click)="closeModal()">CLOSE</button>
+      <button class="close-button" type="button" (click)="closeModal(contactFormRef)">CLOSE</button>
     </div>
   </div>
 </section>
