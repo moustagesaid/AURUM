@@ -1,1 +1,42 @@
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@400;500&display=swap');
+
+body {
+  /* This dark background helps the header stand out, like in the image */
+  background-color: #212121;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+app-root {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+app-hero,
+app-collection {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure seamless connection between sections */
+app-hero section,
+app-collection section {
+  margin: 0;
+  border: none;
+  outline: none;
+}
+
+/* Remove any default spacing */
+app-hero + .brand-band,
+.brand-band + app-collection {
+  margin: 0;
+  padding: 0;
+}

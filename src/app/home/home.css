@@ -81,7 +81,7 @@
   display: flex;
   align-items: center;
   white-space: nowrap;
-  animation: scroll 60s linear infinite;
+  animation: scroll 5s linear infinite;
   will-change: transform;
 }
 

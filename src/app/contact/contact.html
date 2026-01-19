@@ -1,0 +1,113 @@
+<section class="contact-section" [class.modal-open]="showSuccessModal">
+  <div class="contact-container" [class.is-dimmed]="showSuccessModal">
+    <!-- Side Panel with Contact Info -->
+    <div class="contact-info-panel">
+      <div class="info-item">
+        <div class="info-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </div>
+        <div class="info-text">
+          <p class="info-label">Email</p>
+          <p class="info-value">info@aurum.com</p>
+        </div>
+      </div>
+      
+      <div class="info-item">
+        <div class="info-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+        </div>
+        <div class="info-text">
+          <p class="info-label">Phone</p>
+          <p class="info-value">+1 (555) 123-4567</p>
+        </div>
+      </div>
+      
+      <div class="info-item">
+        <div class="info-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+        </div>
+        <div class="info-text">
+          <p class="info-label">Location</p>
+          <p class="info-value">Paris, France</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Contact Form Card -->
+    <div class="contact-form-card">
+      <h1 class="section-title">GET IN TOUCH</h1>
+      <p class="intro-text">We would love to hear from you. Please fill out the form below, and our team will be in touch shortly.</p>
+      
+      <form (ngSubmit)="onSubmit()" class="contact-form">
+        <div class="form-group">
+          <label for="name" class="form-label">Your Name</label>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            class="form-input" 
+            [(ngModel)]="contactForm.name"
+            required
+          />
+        </div>
+        
+        <div class="form-group">
+          <label for="email" class="form-label">Your Email</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            class="form-input" 
+            [(ngModel)]="contactForm.email"
+            required
+          />
+        </div>
+        
+        <div class="form-group">
+          <label for="message" class="form-label">Your Message</label>
+          <textarea 
+            id="message" 
+            name="message" 
+            class="form-textarea" 
+            rows="6"
+            [(ngModel)]="contactForm.message"
+            required
+          ></textarea>
+        </div>
+        
+        <button type="submit" class="submit-button">SEND MESSAGE</button>
+      </form>
+    </div>
+  </div>
+  
+  <div 
+    class="modal-overlay" 
+    *ngIf="showSuccessModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="success-title"
+    aria-describedby="success-description"
+  >
+    <div class="success-modal">
+      <div class="success-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="11"></circle>
+          <polyline points="7.5 12.5 10.5 15.5 16.5 9"></polyline>
+        </svg>
+      </div>
+      <h2 id="success-title" class="success-title">MESSAGE SENT</h2>
+      <p id="success-description" class="success-text">
+        Thank you for contacting us. Our team will be in touch shortly.
+      </p>
+      <button class="close-button" type="button" (click)="closeModal()">CLOSE</button>
+    </div>
+  </div>
+</section>
