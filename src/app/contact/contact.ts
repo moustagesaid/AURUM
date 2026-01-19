@@ -15,10 +15,16 @@ export class Contact {
     email: '',
     message: ''
   };
+  showSuccessModal = false;
 
   onSubmit() {
     // Handle form submission
     console.log('Form submitted:', this.contactForm);
     // You can add your form submission logic here
+    this.showSuccessModal = true;
+  }
+
+  closeModal() {
+    this.showSuccessModal = false;
   }
 }

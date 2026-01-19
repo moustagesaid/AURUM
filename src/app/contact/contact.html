@@ -1,5 +1,5 @@
-<section class="contact-section">
-  <div class="contact-container">
+<section class="contact-section" [class.modal-open]="showSuccessModal">
+  <div class="contact-container" [class.is-dimmed]="showSuccessModal">
     <!-- Side Panel with Contact Info -->
     <div class="contact-info-panel">
       <div class="info-item">
@@ -85,6 +85,29 @@
         
         <button type="submit" class="submit-button">SEND MESSAGE</button>
       </form>
+    </div>
+  </div>
+  
+  <div 
+    class="modal-overlay" 
+    *ngIf="showSuccessModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="success-title"
+    aria-describedby="success-description"
+  >
+    <div class="success-modal">
+      <div class="success-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="11"></circle>
+          <polyline points="7.5 12.5 10.5 15.5 16.5 9"></polyline>
+        </svg>
+      </div>
+      <h2 id="success-title" class="success-title">MESSAGE SENT</h2>
+      <p id="success-description" class="success-text">
+        Thank you for contacting us. Our team will be in touch shortly.
+      </p>
+      <button class="close-button" type="button" (click)="closeModal()">CLOSE</button>
     </div>
   </div>
 </section>
