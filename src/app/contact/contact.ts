@@ -16,6 +16,8 @@ export class Contact {
     message: ''
   };
 
+  showSuccessModal = false;
+
   onSubmit(form: NgForm) {
     if (form.invalid) {
       form.control.markAllAsTouched();
@@ -24,7 +26,6 @@ export class Contact {
 
     // Handle form submission
     console.log('Form submitted:', this.contactForm);
-<<<<<<< Updated upstream
     // You can add your form submission logic here (e.g., API call)
 
     this.showSuccessModal = true;
@@ -34,8 +35,5 @@ export class Contact {
     this.showSuccessModal = false;
     form?.resetForm();
     this.contactForm = { name: '', email: '', message: '' };
-=======
-    // You can add your form submission logic here
->>>>>>> Stashed changes
   }
 }
