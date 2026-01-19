@@ -17,7 +17,7 @@
 .products-container.men-bg {
   background-image:
     linear-gradient(rgba(43, 43, 45, 0.82), rgba(43, 43, 45, 0.92)),
-    url('/assets/bgmain.png');
+    url('/assets/bg man.png');
 }
 
 /* Category Selector */
