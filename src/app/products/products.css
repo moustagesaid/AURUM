@@ -1,0 +1,433 @@
+/* Products Container */
+.products-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #2B2B2D;
+  padding: 80px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background-image: none;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.products-container.men-bg {
+  background-image:
+    linear-gradient(rgba(43, 43, 45, 0.82), rgba(43, 43, 45, 0.92)),
+    url('/assets/bgmain.png');
+}
+
+/* Category Selector */
+.category-selector {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 60px;
+  border-bottom: 1px solid rgba(189, 189, 189, 0.2);
+  padding-bottom: 20px;
+}
+
+.category-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #BDBDBD;
+  background: none;
+  border: none;
+  padding: 12px 0;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.category-btn:hover {
+  color: #E5D2A8;
+}
+
+.category-btn.active {
+  color: #E5D2A8;
+}
+
+.category-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -21px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #C8A44F;
+}
+
+/* Products Section (Men/Women) */
+.products-section {
+  width: 100%;
+  max-width: 1400px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 40px;
+  justify-items: center;
+}
+
+.product-card {
+  width: 100%;
+  max-width: 320px;
+  background: rgba(90, 90, 92, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(200, 164, 79, 0.2);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(200, 164, 79, 0.2);
+  border-color: rgba(200, 164, 79, 0.4);
+}
+
+.product-image-wrapper {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  background: rgba(43, 43, 45, 0.5);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.product-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.product-info {
+  width: 100%;
+  text-align: center;
+}
+
+.product-name {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #E5D2A8;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin: 0 0 8px 0;
+}
+
+.product-subname {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  color: #BDBDBD;
+  margin: 0 0 16px 0;
+  letter-spacing: 0.05em;
+}
+
+.product-price {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #E5D2A8;
+  margin: 0 0 20px 0;
+}
+
+.add-to-cart-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #2B2B2D;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 10px 24px;
+  background: #C8A44F;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(200, 164, 79, 0.3);
+}
+
+.add-to-cart-btn:hover {
+  background: #E5D2A8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(200, 164, 79, 0.4);
+}
+
+.add-to-cart-btn:active {
+  transform: translateY(0);
+}
+
+/* Couples Banner Section */
+.couples-section {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.couples-banner {
+  background: linear-gradient(
+    135deg,
+    rgba(200, 164, 79, 0.1) 0%,
+    rgba(43, 43, 45, 0.95) 50%,
+    rgba(200, 164, 79, 0.1) 100%
+  );
+  border-radius: 20px;
+  border: 2px solid rgba(200, 164, 79, 0.3);
+  padding: 60px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.5),
+    inset 0 0 60px rgba(200, 164, 79, 0.05);
+}
+
+.couples-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(200, 164, 79, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(200, 164, 79, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.couples-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.couples-title {
+  font-family: 'Cinzel', serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #E5D2A8;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin: 0 0 16px 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.couples-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  color: #BDBDBD;
+  margin: 0 0 40px 0;
+  letter-spacing: 0.1em;
+}
+
+.couples-image-wrapper {
+  width: 100%;
+  max-width: 500px;
+  height: 400px;
+  margin: 0 auto 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(43, 43, 45, 0.6);
+  border-radius: 12px;
+  border: 1px solid rgba(200, 164, 79, 0.2);
+  overflow: hidden;
+}
+
+.couples-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.couples-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.couples-collection-name {
+  font-family: 'Cinzel', serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #E5D2A8;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin: 0;
+}
+
+.couples-price-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.couples-price {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #E5D2A8;
+}
+
+.couples-badge {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #2B2B2D;
+  background: #C8A44F;
+  padding: 8px 16px;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  box-shadow: 0 2px 8px rgba(200, 164, 79, 0.4);
+}
+
+.couples-add-to-cart-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2B2B2D;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 16px 48px;
+  background: #C8A44F;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(200, 164, 79, 0.3);
+  margin-top: 10px;
+}
+
+.couples-add-to-cart-btn:hover {
+  background: #E5D2A8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(200, 164, 79, 0.4);
+}
+
+.couples-add-to-cart-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .products-container {
+    padding: 60px 30px;
+  }
+
+  .category-selector {
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 30px;
+  }
+
+  .couples-banner {
+    padding: 40px 30px;
+  }
+
+  .couples-title {
+    font-size: 36px;
+  }
+
+  .couples-image-wrapper {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .products-container {
+    padding: 40px 20px;
+  }
+
+  .category-selector {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .category-btn.active::after {
+    bottom: -11px;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .couples-banner {
+    padding: 30px 20px;
+  }
+
+  .couples-title {
+    font-size: 28px;
+    letter-spacing: 0.15em;
+  }
+
+  .couples-subtitle {
+    font-size: 16px;
+  }
+
+  .couples-image-wrapper {
+    height: 250px;
+  }
+
+  .couples-collection-name {
+    font-size: 24px;
+  }
+
+  .couples-price {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-selector {
+    gap: 15px;
+  }
+
+  .category-btn {
+    font-size: 14px;
+  }
+
+  .product-card {
+    padding: 20px;
+  }
+
+  .product-image-wrapper {
+    height: 250px;
+  }
+
+  .couples-title {
+    font-size: 24px;
+  }
+
+  .couples-add-to-cart-btn {
+    padding: 14px 36px;
+    font-size: 14px;
+  }
+}
