@@ -33,7 +33,9 @@ export class Contact {
 
   closeModal(form?: NgForm) {
     this.showSuccessModal = false;
-    form?.resetForm();
+    if (form) {
+      form.resetForm();
+    }
     this.contactForm = { name: '', email: '', message: '' };
   }
 }
