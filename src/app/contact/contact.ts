@@ -5,7 +5,11 @@ export class Contact {
     message: ''
   };
 
+<<<<<<< HEAD
   showSuccessModal: boolean = false;
+=======
+  showSuccessModal = false;
+>>>>>>> said
 
   onSubmit(form: NgForm) {
     if (form.invalid) {
@@ -22,8 +26,11 @@ export class Contact {
 
   closeModal(form?: NgForm) {
     this.showSuccessModal = false;
-    form?.resetForm();
+    if (form) {
+      form.resetForm();
+    }
     this.contactForm = { name: '', email: '', message: '' };
+<<<<<<< HEAD
   }
 }
 =======
@@ -58,5 +65,7 @@ export class Contact {
 =======
     // You can add your form submission logic here
 >>>>>>> Stashed changes
+=======
+>>>>>>> said
   }
 }

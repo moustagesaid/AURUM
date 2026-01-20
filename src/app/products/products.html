@@ -1,0 +1,77 @@
+<div class="products-container" [class.men-bg]="selectedCategory === 'men'" [class.women-bg]="selectedCategory === 'women'">
+  <!-- Category Selector -->
+  <div class="category-selector">
+    <button 
+      class="category-btn" 
+      [class.active]="selectedCategory === 'women'"
+      (click)="selectCategory('women')"
+    >
+      FOR WOMEN
+    </button>
+    <button 
+      class="category-btn" 
+      [class.active]="selectedCategory === 'men'"
+      (click)="selectCategory('men')"
+    >
+      FOR MEN
+    </button>
+    <button 
+      class="category-btn" 
+      [class.active]="selectedCategory === 'couples'"
+      (click)="selectCategory('couples')"
+    >
+      FOR COUPLES
+    </button>
+  </div>
+
+  <!-- MEN & WOMEN Products Grid -->
+  <div *ngIf="selectedCategory === 'men' || selectedCategory === 'women'" class="products-section">
+    <div class="products-grid">
+      <div *ngFor="let product of filteredProducts" class="product-card">
+        <div class="product-image-wrapper">
+          <img [src]="product.image" [alt]="product.name" class="product-image" />
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">{{ product.name }}</h3>
+          <h4 class="product-subname">{{ product.subName }}</h4>
+          <p class="product-price">${{ product.price.toFixed(2) }}</p>
+          <button class="add-to-cart-btn" (click)="addToCart(product)">
+            ADD TO CART
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COUPLES Banner -->
+  <div *ngIf="selectedCategory === 'couples' && couplesProduct" class="couples-section">
+    <div class="couples-banner">
+      <div class="couples-content">
+        <h2 class="couples-title">FOR COUPLES</h2>
+        <p class="couples-subtitle">His & Hers Collection</p>
+        <div class="couples-image-wrapper">
+          <img 
+            [src]="couplesProduct.image" 
+            [alt]="couplesProduct.name" 
+            class="couples-image" 
+          />
+        </div>
+        <div class="couples-info">
+          <h3 class="couples-collection-name">{{ couplesProduct.name }}</h3>
+          <div class="couples-price-section">
+            <span class="couples-price">${{ couplesProduct.price.toFixed(2) }}</span>
+            <span class="couples-badge" *ngIf="couplesProduct.badge">
+              {{ couplesProduct.badge }}
+            </span>
+          </div>
+          <button 
+            class="couples-add-to-cart-btn" 
+            (click)="addToCart(couplesProduct)"
+          >
+            ADD TO CART
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -75,6 +75,21 @@
   color: #ffffff;
 }
 
+.nav-link.active-nav-link {
+  color: #E5D2A8;
+  position: relative;
+}
+
+.nav-link.active-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #C8A44F;
+}
+
 /* --- Logo Styling --- */
 .logo-wrapper {
   position: relative;
