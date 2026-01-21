@@ -1,4 +1,29 @@
 <app-hero />
+
+<section class="featured-fragrances">
+  <div class="ff-header">
+    <h1 class="ff-title">AURUM</h1>
+    <h2 class="ff-subtitle">FEATURED FRAGRANCES</h2>
+  </div>
+
+  <div class="ff-grid">
+    <article class="ff-card" *ngFor="let fragrance of featuredFragrances">
+      <div class="ff-card-glow"></div>
+      <div class="ff-card-border"></div>
+      <div class="ff-card-inner">
+        <div class="ff-image-wrap">
+          <img [src]="fragrance.image" [alt]="fragrance.name" loading="lazy" />
+        </div>
+        <div class="ff-content">
+          <h3>{{ fragrance.name }}</h3>
+          <p>{{ fragrance.description }}</p>
+          <a class="ff-button" [routerLink]="fragrance.route">VIEW DETAILS</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
 <div class="brand-band">
   <div class="scrolling-banner">
     <div class="scrolling-content">
