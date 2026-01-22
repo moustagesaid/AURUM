@@ -12,12 +12,12 @@
       <div class="ff-card-border"></div>
       <div class="ff-card-inner">
         <div class="ff-image-wrap">
-          <img [src]="fragrance.image" [alt]="fragrance.title" loading="lazy" />
+          <img [src]="fragrance.image" [alt]="fragrance.name" loading="lazy" />
         </div>
         <div class="ff-content">
-          <h3>{{ fragrance.title }}</h3>
+          <h3>{{ fragrance.name }}</h3>
           <p>{{ fragrance.description }}</p>
-          <a class="ff-button" [routerLink]="['/product', fragrance.id]">VIEW DETAILS</a>
+          <a class="ff-button" [routerLink]="fragrance.route">VIEW DETAILS</a>
         </div>
       </div>
     </article>

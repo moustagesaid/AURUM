@@ -1,0 +1,416 @@
+/* CSS Variables */
+:root {
+  --aurum-gold: #C8A44F;
+  --aurum-charcoal: #2B2B2D;
+  --aurum-dark-charcoal: #1a1a1a;
+  --sidebar-width: 280px;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--aurum-charcoal) 0%, var(--aurum-dark-charcoal) 100%);
+  display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+  width: var(--sidebar-width);
+  background: var(--aurum-dark-charcoal);
+  border-right: 1px solid rgba(200, 164, 79, 0.2);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar-header {
+  padding: 2rem 1.5rem 1rem;
+  border-bottom: 1px solid rgba(200, 164, 79, 0.1);
+}
+
+.sidebar-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  color: var(--aurum-gold);
+  margin: 0 0 0.25rem 0;
+  letter-spacing: 0.1em;
+}
+
+.sidebar-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  color: #BDBDBD;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Navigation */
+.sidebar-nav {
+  flex: 1;
+  padding: 1rem 0;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  color: #BDBDBD;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.nav-link:hover {
+  color: var(--aurum-gold);
+  background: rgba(200, 164, 79, 0.05);
+}
+
+.nav-link.active {
+  color: var(--aurum-gold);
+  background: linear-gradient(90deg, rgba(200, 164, 79, 0.1), transparent);
+  border-left-color: var(--aurum-gold);
+  box-shadow: inset 0 0 10px rgba(200, 164, 79, 0.1);
+}
+
+.nav-icon {
+  margin-right: 0.75rem;
+  font-size: 1.1rem;
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+  padding: 1.5rem;
+  border-top: 1px solid rgba(200, 164, 79, 0.1);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  background: var(--aurum-gold);
+  color: var(--aurum-charcoal);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-right: 0.75rem;
+}
+
+.user-details {
+  flex: 1;
+}
+
+.user-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  color: #E5D2A8;
+  font-weight: 600;
+  margin-bottom: 0.125rem;
+}
+
+.user-role {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.logout-btn {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(200, 164, 79, 0.3);
+  border-radius: 6px;
+  padding: 0.5rem;
+  color: #BDBDBD;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.logout-btn:hover {
+  border-color: var(--aurum-gold);
+  color: var(--aurum-gold);
+  background: rgba(200, 164, 79, 0.05);
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+/* Content Header */
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(200, 164, 79, 0.1);
+}
+
+.page-title {
+  font-family: 'Cinzel', serif;
+  font-size: 2.2rem;
+  color: #E5D2A8;
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+.last-updated {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  color: #888;
+  font-style: italic;
+}
+
+/* KPI Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.kpi-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(200, 164, 79, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.kpi-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(200, 164, 79, 0.6);
+  box-shadow: 0 15px 35px rgba(200, 164, 79, 0.2);
+}
+
+.kpi-icon {
+  font-size: 2.5rem;
+  margin-right: 1rem;
+  opacity: 0.9;
+}
+
+.kpi-content {
+  flex: 1;
+}
+
+.kpi-value {
+  font-family: 'Cinzel', serif;
+  font-size: 2.2rem;
+  color: var(--aurum-gold);
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.kpi-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  color: #BDBDBD;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+/* Recent Orders Card */
+.recent-orders-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01));
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(200, 164, 79, 0.25);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.card-header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(200, 164, 79, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  color: var(--aurum-gold);
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+.card-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  color: #888;
+  font-style: italic;
+}
+
+/* Orders Table */
+.orders-table-container {
+  overflow-x: auto;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.orders-table th {
+  background: rgba(200, 164, 79, 0.05);
+  color: var(--aurum-gold);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(200, 164, 79, 0.2);
+}
+
+.orders-table td {
+  padding: 1rem;
+  color: #E5D2A8;
+  border-bottom: 1px solid rgba(200, 164, 79, 0.1);
+  font-size: 0.9rem;
+}
+
+.order-row:hover {
+  background: rgba(200, 164, 79, 0.02);
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  color: var(--aurum-charcoal);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Coming Soon Card */
+.coming-soon-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01));
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(200, 164, 79, 0.25);
+  border-radius: 12px;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.coming-soon-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+.coming-soon-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  color: var(--aurum-gold);
+  margin: 0 0 1rem 0;
+  letter-spacing: 0.05em;
+}
+
+.coming-soon-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  color: #BDBDBD;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 240px;
+  }
+
+  .main-content {
+    margin-left: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    transform: translateX(-100%);
+    z-index: 1000;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+  }
+
+  .content-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 1rem 0.5rem;
+  }
+
+  .kpi-card {
+    padding: 1rem;
+  }
+
+  .kpi-value {
+    font-size: 1.8rem;
+  }
+
+  .card-header {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .orders-table th,
+  .orders-table td {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+}
