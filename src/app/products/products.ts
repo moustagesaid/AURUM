@@ -77,7 +77,7 @@ export class Products {
       name: 'AURUM',
       subName: 'AXIS',
       price: 129.99,
-      image: '/assets/man1.png',
+      image: '/assets/aurumaxis.png',
       category: 'men'
     },
     {
@@ -85,7 +85,7 @@ export class Products {
       name: 'AURUM',
       subName: 'VANT',
       price: 149.99,
-      image: '/assets/man2.png',
+      image: '/assets/aurumvant.png',
       category: 'men'
     },
     {
@@ -93,7 +93,7 @@ export class Products {
       name: 'AURUM',
       subName: 'CORE',
       price: 139.99,
-      image: '/assets/man3.png',
+      image: '/assets/aurumcore.png',
       category: 'men'
     },
     {
@@ -101,15 +101,7 @@ export class Products {
       name: 'AURUM',
       subName: ' LUXE',
       price: 159.99,
-      image: '/assets/man4.png',
-      category: 'men'
-    },
-    {
-      id: 8,
-      name: 'AURUM',
-      subName: ' LUXE',
-      price: 159.99,
-      image: '/assets/man5.png',
+      image: '/assets/aurumluxe.png',
       category: 'men'
     },
     // Couples Product
