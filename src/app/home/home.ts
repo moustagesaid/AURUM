@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Hero } from '../hero/hero';
-import { Collection } from '../collection/collection';
+import { OrderService, Order } from '../services/order.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [Hero, Collection, FormsModule, RouterModule],
+  imports: [CommonModule, Hero, FormsModule, RouterModule],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
 export class Home {
-  // New data arrays and objects
+  // Featured fragrances data
   featuredFragrances = [
     {
       id: 'aurum',
@@ -52,7 +53,9 @@ export class Home {
     comment: ''
   };
 
-  // New methods
+  constructor(private orderService: OrderService) {}
+
+  // Methods
   submitReview() {
     if (this.newReview.name && this.newReview.comment) {
       this.reviews.push({ ...this.newReview });

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
@@ -16,7 +17,7 @@ export class Contact {
     message: ''
   };
 
-  showSuccessModal = false;
+  showSuccessModal: boolean = false;
 
   onSubmit(form: NgForm) {
     if (form.invalid) {

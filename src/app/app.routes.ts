@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { About } from './about/about';
 import { Contact } from './contact/contact';
 import { Home } from './home/home';
 import { Login } from './login/login';
@@ -20,5 +21,13 @@ export const routes: Routes = [
   {
     path: 'products',
     component: Products
+  },
+  {
+    path: 'about',
+    component: About
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   }
 ];
