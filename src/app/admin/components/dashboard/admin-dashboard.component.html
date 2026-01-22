@@ -1,0 +1,144 @@
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2 class="sidebar-title">AURUM</h2>
+      <span class="sidebar-subtitle">Admin Panel</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a
+        href="#"
+        class="nav-link"
+        [class.active]="activeSection === 'overview'"
+        (click)="setActiveSection('overview')">
+        <span class="nav-icon">📊</span>
+        Overview
+      </a>
+
+      <a
+        href="#"
+        class="nav-link"
+        [class.active]="activeSection === 'products'"
+        (click)="setActiveSection('products')">
+        <span class="nav-icon">📦</span>
+        Products
+      </a>
+
+      <a
+        href="#"
+        class="nav-link"
+        [class.active]="activeSection === 'orders'"
+        (click)="setActiveSection('orders')">
+        <span class="nav-icon">📋</span>
+        Orders
+      </a>
+
+      <a
+        href="#"
+        class="nav-link"
+        [class.active]="activeSection === 'reviews'"
+        (click)="setActiveSection('reviews')">
+        <span class="nav-icon">⭐</span>
+        Reviews
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-info">
+        <div class="user-avatar">{{ currentUser?.name?.charAt(0) }}</div>
+        <div class="user-details">
+          <div class="user-name">{{ currentUser?.name }}</div>
+          <div class="user-role">Administrator</div>
+        </div>
+      </div>
+      <button class="logout-btn" (click)="logout()">
+        <span>🚪</span> Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="content-header">
+      <h1 class="page-title">{{ activeSection | titlecase }}</h1>
+      <div class="header-actions">
+        <span class="last-updated">Last updated: {{ dashboardStats ? 'Just now' : 'Loading...' }}</span>
+      </div>
+    </header>
+
+    <!-- Overview Section -->
+    <div *ngIf="activeSection === 'overview'" class="content-section">
+      <!-- KPI Cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-icon">💰</div>
+          <div class="kpi-content">
+            <div class="kpi-value">${{ dashboardStats?.totalRevenue || 0 }}</div>
+            <div class="kpi-label">Total Revenue</div>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon">📦</div>
+          <div class="kpi-content">
+            <div class="kpi-value">{{ dashboardStats?.totalOrders || 0 }}</div>
+            <div class="kpi-label">Total Orders</div>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon">👥</div>
+          <div class="kpi-content">
+            <div class="kpi-value">{{ dashboardStats?.totalCustomers || 0 }}</div>
+            <div class="kpi-label">Total Customers</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Orders -->
+      <div class="recent-orders-card">
+        <div class="card-header">
+          <h3 class="card-title">Recent Orders</h3>
+          <span class="card-subtitle">Last 5 orders</span>
+        </div>
+
+        <div class="orders-table-container">
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of dashboardStats?.recentOrders" class="order-row">
+                <td>#{{ order.id }}</td>
+                <td>{{ order.customerName }}</td>
+                <td>${{ order.total }}</td>
+                <td>
+                  <span class="status-badge" [style.background-color]="getStatusColor(order.status)">
+                    {{ order.status }}
+                  </span>
+                </td>
+                <td>{{ order.date }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Placeholder for other sections -->
+    <div *ngIf="activeSection !== 'overview'" class="content-section">
+      <div class="coming-soon-card">
+        <div class="coming-soon-icon">{{ activeSection === 'products' ? '📦' : activeSection === 'orders' ? '📋' : '⭐' }}</div>
+        <h3 class="coming-soon-title">{{ activeSection | titlecase }} Management</h3>
+        <p class="coming-soon-text">This section is coming soon. The overview provides key insights for now.</p>
+      </div>
+    </div>
+  </main>
+</div>

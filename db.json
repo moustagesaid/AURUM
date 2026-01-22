@@ -1,0 +1,53 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "username": "admin",
+        "password": "admin123", 
+        "role": "admin",
+        "name": "Super Admin"
+      }
+    ],
+    "products": [
+      {
+        "id": 1,
+        "name": "AURUM",
+        "description": "An opulent blend of rich oud, golden amber, and rare spices.",
+        "price": 120,
+        "image": "assets/images/aurum-bottle.jpg",
+        "stock": 50
+      },
+      {
+        "id": 2,
+        "name": "NOCTURNE",
+        "description": "A mysterious fusion of dark florals, smooth vanilla, and warm musk.",
+        "price": 110,
+        "image": "assets/images/nocturne-bottle.jpg",
+        "stock": 35
+      }
+    ],
+    "orders": [
+      {
+        "id": 1,
+        "customerName": "Sophia L.",
+        "total": 120,
+        "status": "Pending",
+        "date": "2025-01-20"
+      },
+      {
+        "id": 2,
+        "customerName": "James C.",
+        "total": 230,
+        "status": "Shipped",
+        "date": "2025-01-18"
+      }
+    ],
+    "reviews": [
+       {
+        "id": 1,
+        "name": "Elena M.",
+        "rating": 5,
+        "comment": "The gold detail is exquisite. Perfect gift for myself! Highly recommend."
+      }
+    ]
+  }
