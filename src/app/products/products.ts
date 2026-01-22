@@ -28,7 +28,7 @@ export class Products {
       name: 'ROYAL',
       subName: 'Elegance',
       price: 129.99,
-      image: '/assets/products/women-royal.jpg',
+      image: '/assets/women1.png',
       category: 'women'
     },
     {
@@ -36,7 +36,7 @@ export class Products {
       name: 'NOCTURNE',
       subName: 'Mystique',
       price: 149.99,
-      image: '/assets/products/women-nocturne.jpg',
+      image: '/assets/women2.png',
       category: 'women'
     },
     {
@@ -44,7 +44,7 @@ export class Products {
       name: 'VELVET',
       subName: 'Rose',
       price: 139.99,
-      image: '/assets/products/women-velvet.jpg',
+      image: '/assets/women3.png',
       category: 'women'
     },
     {
@@ -52,7 +52,23 @@ export class Products {
       name: 'OPULENCE',
       subName: 'Blossom',
       price: 159.99,
-      image: '/assets/products/women-opulence.jpg',
+      image: '/assets/women4.png',
+      category: 'women'
+    },
+    {
+      id: 4,
+      name: 'OPULENCE',
+      subName: 'Blossom',
+      price: 159.99,
+      image: '/assets/women5.png',
+      category: 'women'
+    },
+    {
+      id: 4,
+      name: 'OPULENCE',
+      subName: 'Blossom',
+      price: 159.99,
+      image: '/assets/women6.png',
       category: 'women'
     },
     // Men's Products
@@ -61,7 +77,7 @@ export class Products {
       name: 'MAJESTIC',
       subName: 'Wood',
       price: 129.99,
-      image: '/assets/products/men-majestic.jpg',
+      image: '/assets/men',
       category: 'men'
     },
     {
