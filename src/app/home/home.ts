@@ -3,16 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Hero } from '../hero/hero';
-import { Collection } from '../collection/collection';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-<<<<<<< HEAD
-  imports: [CommonModule, FormsModule, RouterModule, Hero, Collection],
-=======
-  imports: [CommonModule, Hero, Collection, FormsModule, RouterModule],
->>>>>>> 4fdb9fbd5ab208dc1a35a84be4083c7824882a50
+  imports: [CommonModule, FormsModule, RouterModule, Hero],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })

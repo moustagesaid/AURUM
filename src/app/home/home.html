@@ -12,12 +12,12 @@
       <div class="ff-card-border"></div>
       <div class="ff-card-inner">
         <div class="ff-image-wrap">
-          <img [src]="fragrance.image" [alt]="fragrance.name" loading="lazy" />
+          <img [src]="fragrance.image" [alt]="fragrance.title" loading="lazy" />
         </div>
         <div class="ff-content">
-          <h3>{{ fragrance.name }}</h3>
+          <h3>{{ fragrance.title }}</h3>
           <p>{{ fragrance.description }}</p>
-          <a class="ff-button" [routerLink]="fragrance.route">VIEW DETAILS</a>
+          <a class="ff-button" [routerLink]="['/product', fragrance.id]">VIEW DETAILS</a>
         </div>
       </div>
     </article>
@@ -37,7 +37,6 @@
     </div>
   </div>
 </div>
-<app-collection />
 
 <!-- Section A: Featured Fragrances -->
 <section class="featured-fragrances" style="padding: 5rem 0; background: linear-gradient(135deg, #2B2B2D 0%, #1a1a1c 100%);">
