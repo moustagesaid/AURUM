@@ -74,32 +74,32 @@ export class Products {
     // Men's Products
     {
       id: 5,
-      name: 'MAJESTIC',
-      subName: 'Wood',
+      name: 'AURUM',
+      subName: 'AXIS',
       price: 129.99,
       image: '/assets/men',
       category: 'men'
     },
     {
       id: 6,
-      name: 'NOBLE',
-      subName: 'Leather',
+      name: 'AURUM',
+      subName: 'VANT',
       price: 149.99,
       image: '/assets/products/men-noble.jpg',
       category: 'men'
     },
     {
       id: 7,
-      name: 'EMPIRE',
-      subName: 'Spice',
+      name: 'AURUM',
+      subName: 'CORE',
       price: 139.99,
       image: '/assets/products/men-empire.jpg',
       category: 'men'
     },
     {
       id: 8,
-      name: 'REGAL',
-      subName: 'Tobacco',
+      name: 'AURUM',
+      subName: ' LUXE',
       price: 159.99,
       image: '/assets/products/men-regal.jpg',
       category: 'men'

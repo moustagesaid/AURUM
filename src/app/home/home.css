@@ -366,6 +366,7 @@
 .why-choose-us {
   padding: 5rem 0;
   background: linear-gradient(135deg, #2B2B2D 0%, #1a1a1c 100%);
+  background-image: url('/assets/background.png');
 }
 
 .features-grid {
