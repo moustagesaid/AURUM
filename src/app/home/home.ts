@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-<<<<<<< HEAD
 import { CommonModule } from '@angular/common';
-=======
 import { FormsModule } from '@angular/forms';
->>>>>>> b0480f1c874c66255037b7bc5846b2745125da05
 import { RouterModule } from '@angular/router';
 import { Hero } from '../hero/hero';
 import { Collection } from '../collection/collection';
@@ -11,32 +8,12 @@ import { Collection } from '../collection/collection';
 @Component({
   selector: 'app-home',
   standalone: true,
-<<<<<<< HEAD
-  imports: [CommonModule, RouterModule, Hero, Collection],
-=======
-  imports: [Hero, Collection, FormsModule, RouterModule],
->>>>>>> b0480f1c874c66255037b7bc5846b2745125da05
+  imports: [CommonModule, FormsModule, RouterModule, Hero, Collection],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
 export class Home {
-<<<<<<< HEAD
-  featuredFragrances = [
-    {
-      name: 'AUREUM',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing it fragrance',
-      image: 'assets/herosection.png',
-      route: ['/product', 'aurum']
-    },
-    {
-      name: 'NOCTURNE',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing it fragrance',
-      image: 'assets/bg%20man.png',
-      route: ['/product', 'nocturne']
-    }
-  ];
-=======
-  // New data arrays and objects
+  // Featured fragrances data
   featuredFragrances = [
     {
       id: 'aurum',
@@ -76,7 +53,7 @@ export class Home {
     comment: ''
   };
 
-  // New methods
+  // Methods
   submitReview() {
     if (this.newReview.name && this.newReview.comment) {
       this.reviews.push({ ...this.newReview });
@@ -87,5 +64,4 @@ export class Home {
   addToCart(product: any) {
     console.log('Added to cart:', product);
   }
->>>>>>> b0480f1c874c66255037b7bc5846b2745125da05
 }
