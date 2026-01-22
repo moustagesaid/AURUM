@@ -63,7 +63,7 @@
     <header class="content-header">
       <h1 class="page-title">{{ activeSection | titlecase }}</h1>
       <div class="header-actions">
-        <span class="last-updated">Last updated: {{ dashboardStats ? 'Just now' : 'Loading...' }}</span>
+        <span class="last-updated">Last updated: {{ !isLoading ? 'Just now' : 'Loading...' }}</span>
       </div>
     </header>
 
@@ -74,7 +74,7 @@
         <div class="kpi-card">
           <div class="kpi-icon">💰</div>
           <div class="kpi-content">
-            <div class="kpi-value">${{ dashboardStats?.totalRevenue || 0 }}</div>
+            <div class="kpi-value">${{ totalRevenue }}</div>
             <div class="kpi-label">Total Revenue</div>
           </div>
         </div>
@@ -82,7 +82,7 @@
         <div class="kpi-card">
           <div class="kpi-icon">📦</div>
           <div class="kpi-content">
-            <div class="kpi-value">{{ dashboardStats?.totalOrders || 0 }}</div>
+            <div class="kpi-value">{{ totalOrders }}</div>
             <div class="kpi-label">Total Orders</div>
           </div>
         </div>
@@ -90,7 +90,7 @@
         <div class="kpi-card">
           <div class="kpi-icon">👥</div>
           <div class="kpi-content">
-            <div class="kpi-value">{{ dashboardStats?.totalCustomers || 0 }}</div>
+            <div class="kpi-value">{{ totalCustomers }}</div>
             <div class="kpi-label">Total Customers</div>
           </div>
         </div>
@@ -115,7 +115,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let order of dashboardStats?.recentOrders" class="order-row">
+              <tr *ngFor="let order of recentOrders" class="order-row">
                 <td>#{{ order.id }}</td>
                 <td>{{ order.customerName }}</td>
                 <td>${{ order.total }}</td>

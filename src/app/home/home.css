@@ -6,6 +6,8 @@
     linear-gradient(180deg, #121218 0%, #0c0c0f 55%, #0a0a0c 100%);
   color: #f4f0e8;
   text-align: center;
+  background-image:
+    url('/assets/background.png');
 }
 
 .ff-header {

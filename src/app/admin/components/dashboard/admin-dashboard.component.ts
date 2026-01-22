@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, TitleCasePipe } from '@angular/common';
 import { Router } from '@angular/router';
-import { AdminService, DashboardStats } from '../../services/admin.service';
+import { OrderService, Order } from '../../../services/order.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -13,13 +13,16 @@ import { AuthService } from '../../services/auth.service';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  dashboardStats: DashboardStats | null = null;
+  totalRevenue: number = 0;
+  totalOrders: number = 0;
+  totalCustomers: number = 0;
+  recentOrders: Order[] = [];
   currentUser: any = null;
   isLoading: boolean = true;
   activeSection: string = 'overview';
 
   constructor(
-    private adminService: AdminService,
+    private orderService: OrderService,
     private authService: AuthService,
     private router: Router
   ) { }
@@ -30,9 +33,23 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   loadDashboardData(): void {
-    this.adminService.getDashboardStats().subscribe({
-      next: (stats) => {
-        this.dashboardStats = stats;
+    this.orderService.getAllOrders().subscribe({
+      next: (orders) => {
+        // Calculate total revenue
+        this.totalRevenue = orders.reduce((sum, order) => sum + order.total, 0);
+
+        // Calculate total orders
+        this.totalOrders = orders.length;
+
+        // Calculate total customers (unique customer names)
+        const uniqueCustomers = new Set(orders.map(order => order.customerName));
+        this.totalCustomers = uniqueCustomers.size;
+
+        // Get recent orders (last 5, sorted by date descending)
+        this.recentOrders = orders
+          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+          .slice(0, 5);
+
         this.isLoading = false;
       },
       error: (error) => {

@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 
 export interface User {
   id: number;
@@ -17,7 +18,10 @@ export class AuthService {
 
   private apiUrl = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) { }
 
   login(username: string, password: string): Observable<boolean> {
     return this.http.get<User[]>(`${this.apiUrl}/users?username=${username}&password=${password}&role=admin`)
@@ -32,7 +36,9 @@ export class AuthService {
               name: user.name,
               role: user.role
             };
-            localStorage.setItem('adminSession', JSON.stringify(sessionData));
+            if (isPlatformBrowser(this.platformId)) {
+              localStorage.setItem('adminSession', JSON.stringify(sessionData));
+            }
             console.log('Auth service - session stored:', sessionData);
             return true;
           }
@@ -43,15 +49,23 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('adminSession');
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem('adminSession');
+    }
   }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('adminSession');
+    if (isPlatformBrowser(this.platformId)) {
+      return !!localStorage.getItem('adminSession');
+    }
+    return false;
   }
 
   getCurrentUser(): any {
-    const session = localStorage.getItem('adminSession');
-    return session ? JSON.parse(session) : null;
+    if (isPlatformBrowser(this.platformId)) {
+      const session = localStorage.getItem('adminSession');
+      return session ? JSON.parse(session) : null;
+    }
+    return null;
   }
 }

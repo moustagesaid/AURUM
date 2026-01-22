@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Hero } from '../hero/hero';
-import { Collection } from '../collection/collection';
+import { OrderService, Order } from '../services/order.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, Hero, Collection, FormsModule, RouterModule],
+  imports: [CommonModule, Hero, FormsModule, RouterModule],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
@@ -52,6 +52,8 @@ export class Home {
     rating: 5,
     comment: ''
   };
+
+  constructor(private orderService: OrderService) {}
 
   // Methods
   submitReview() {
