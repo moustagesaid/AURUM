@@ -1,22 +1,22 @@
 <div class="products-container" [class.men-bg]="selectedCategory === 'men'" [class.women-bg]="selectedCategory === 'women'">
   <!-- Category Selector -->
   <div class="category-selector">
-    <button 
-      class="category-btn" 
+    <button
+      class="category-btn"
       [class.active]="selectedCategory === 'women'"
       (click)="selectCategory('women')"
     >
       FOR WOMEN
     </button>
-    <button 
-      class="category-btn" 
+    <button
+      class="category-btn"
       [class.active]="selectedCategory === 'men'"
       (click)="selectCategory('men')"
     >
       FOR MEN
     </button>
-    <button 
-      class="category-btn" 
+    <button
+      class="category-btn"
       [class.active]="selectedCategory === 'couples'"
       (click)="selectCategory('couples')"
     >
@@ -50,10 +50,10 @@
         <h2 class="couples-title">FOR COUPLES</h2>
         <p class="couples-subtitle">His & Hers Collection</p>
         <div class="couples-image-wrapper">
-          <img 
-            [src]="couplesProduct.image" 
-            [alt]="couplesProduct.name" 
-            class="couples-image" 
+          <img
+            [src]="couplesProduct.image"
+            [alt]="couplesProduct.name"
+            class="couples-image"
           />
         </div>
         <div class="couples-info">
@@ -64,8 +64,8 @@
               {{ couplesProduct.badge }}
             </span>
           </div>
-          <button 
-            class="couples-add-to-cart-btn" 
+          <button
+            class="couples-add-to-cart-btn"
             (click)="addToCart(couplesProduct)"
           >
             ADD TO CART
