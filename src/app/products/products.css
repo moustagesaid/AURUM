@@ -101,6 +101,50 @@
   border-color: rgba(200, 164, 79, 0.4);
 }
 
+/* Animation classes for GSAP */
+.product-card {
+  will-change: transform, opacity;
+}
+
+.category-btn {
+  will-change: transform;
+  transition: all 0.3s ease;
+}
+
+.couples-section {
+  will-change: transform, opacity;
+}
+
+.products-section {
+  will-change: transform, opacity;
+}
+
+.category-selector {
+  will-change: transform, opacity;
+}
+
+/* Enhanced hover effects with GSAP */
+.add-to-cart-btn {
+  will-change: transform;
+  position: relative;
+  overflow: hidden;
+}
+
+.add-to-cart-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.add-to-cart-btn:hover::before {
+  left: 100%;
+}
+
 .product-image-wrapper {
   width: 100%;
   height: 300px;

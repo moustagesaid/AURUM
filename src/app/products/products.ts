@@ -77,7 +77,7 @@ export class Products {
       name: 'AURUM',
       subName: 'AXIS',
       price: 129.99,
-      image: '/assets/men',
+      image: '/assets/man1.png',
       category: 'men'
     },
     {
@@ -85,7 +85,7 @@ export class Products {
       name: 'AURUM',
       subName: 'VANT',
       price: 149.99,
-      image: '/assets/products/men-noble.jpg',
+      image: '/assets/man2.png',
       category: 'men'
     },
     {
@@ -93,7 +93,7 @@ export class Products {
       name: 'AURUM',
       subName: 'CORE',
       price: 139.99,
-      image: '/assets/products/men-empire.jpg',
+      image: '/assets/man3.png',
       category: 'men'
     },
     {
@@ -101,7 +101,15 @@ export class Products {
       name: 'AURUM',
       subName: ' LUXE',
       price: 159.99,
-      image: '/assets/products/men-regal.jpg',
+      image: '/assets/man4.png',
+      category: 'men'
+    },
+    {
+      id: 8,
+      name: 'AURUM',
+      subName: ' LUXE',
+      price: 159.99,
+      image: '/assets/man5.png',
       category: 'men'
     },
     // Couples Product
@@ -116,9 +124,6 @@ export class Products {
     }
   ];
 
-  selectCategory(category: 'men' | 'women' | 'couples'): void {
-    this.selectedCategory = category;
-  }
 
   get filteredProducts(): Product[] {
     return this.products.filter(product => product.category === this.selectedCategory);
@@ -131,5 +136,9 @@ export class Products {
   addToCart(product: Product): void {
     console.log('Added to cart:', product);
     // Add cart functionality here
+  }
+
+  selectCategory(category: 'men' | 'women' | 'couples'): void {
+    this.selectedCategory = category;
   }
 }
