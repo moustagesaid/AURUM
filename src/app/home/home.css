@@ -1040,6 +1040,7 @@
 }
 
 
+
 /* Customer Reviews Section */
 .customer-reviews {
   padding: 5rem 0;
@@ -1362,6 +1363,7 @@
     font-size: 2rem;
   }
 
+
   .footer-columns {
     grid-template-columns: 1fr;
     text-align: left;
@@ -1412,6 +1414,7 @@
     min-height: 70vh;
   }
 
+
   .content-wrapper {
     padding: 2rem 1rem;
     gap: 2rem;
@@ -1434,6 +1437,7 @@
   .play-icon span {
     font-size: 1.5rem;
   }
+
 
   .play-text {
     font-size: 1rem;
