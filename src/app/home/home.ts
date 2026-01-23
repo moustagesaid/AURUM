@@ -93,6 +93,7 @@ export class Home {
     comment: ''
   };
 
+
   constructor(private orderService: OrderService) {}
 
   // Methods

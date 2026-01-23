@@ -136,7 +136,39 @@
   font-family: var(--theme-font-sans);
   font-size: 14px;
   color: rgba(245, 245, 245, 0.7);
-  margin: 0 0 12px 0;
+  margin: 0 0 8px 0;
+}
+
+/* Size Selector */
+.size-selector {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.size-btn {
+  background: transparent;
+  border: 1px solid #bf9e60;
+  color: var(--theme-text-light);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: var(--theme-font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.size-btn:hover {
+  background: rgba(191, 158, 96, 0.1);
+}
+
+.size-btn.active {
+  background: var(--theme-gold-gradient);
+  color: var(--theme-bg-dark);
+  border-color: #bf9e60;
 }
 
 .item-controls {

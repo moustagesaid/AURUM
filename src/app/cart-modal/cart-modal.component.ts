@@ -54,6 +54,10 @@ export class CartModalComponent implements OnInit, OnDestroy {
     this.cartService.updateQuantity(productId, quantity);
   }
 
+  updateSize(productId: number, size: '50ml' | '100ml'): void {
+    this.cartService.updateSize(productId, size);
+  }
+
   proceedToCheckout(): void {
     this.close();
     this.router.navigate(['/checkout']);
