@@ -13,12 +13,31 @@
   position: relative;
   width: 100%;
   box-sizing: border-box;
+  animation: headerSlideIn 1s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* --- Glassmorphism Effect --- */
   background: rgba(60, 60, 60, 0.4); /* Semi-transparent background */
   -webkit-backdrop-filter: blur(15px); /* For Safari */
   backdrop-filter: blur(15px); /* The frosted glass blur */
   border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle edge highlight */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-container:hover {
+  background: rgba(60, 60, 60, 0.6);
+  border-color: rgba(212, 175, 55, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes headerSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* --- Gold Border Lines --- */
@@ -40,15 +59,37 @@
 }
 
 /* --- Navigation Sections --- */
-.nav-left, .nav-right {
+.nav-left, .nav-right, .nav-center {
   display: flex;
   align-items: center;
   gap: 25px;
   flex: 1; /* Assign equal space */
+  animation: navFadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+.nav-left {
+  animation-delay: 0.2s;
+}
+
+.nav-center {
+  animation-delay: 0.4s;
 }
 
 .nav-right {
   justify-content: flex-end;
+  animation-delay: 0.6s;
+}
+
+@keyframes navFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .nav-center {
@@ -58,26 +99,64 @@
 }
 
 /* --- Links and Icons --- */
-.nav-link, .icon-link, .hamburger-icon {
+.nav-link, .icon-link, .hamburger-icon, .logo-link {
   color: #d1d1d1;
   text-decoration: none;
   font-size: 16px;
   font-family: 'Montserrat', sans-serif;
-  transition: color 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
 .icon-link, .hamburger-icon {
   display: flex;
   align-items: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.nav-link:hover, .icon-link:hover {
+.icon-link:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.icon-link:active {
+  transform: scale(0.95);
+}
+
+.nav-link:hover, .icon-link:hover, .logo-link:hover {
   color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.nav-link:active, .icon-link:active, .logo-link:active {
+  transform: translateY(0) scale(0.98);
+  transition-duration: 0.1s;
+}
+
+/* Navigation link ripple effect */
+.nav-link::before, .icon-link::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: width 0.6s, height 0.6s;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.nav-link:hover::before, .icon-link:hover::before {
+  width: 300%;
+  height: 300%;
 }
 
 .nav-link.active-nav-link {
   color: #E5D2A8;
   position: relative;
+  transform: translateY(-1px);
 }
 
 .nav-link.active-nav-link::after {
@@ -87,14 +166,37 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: #C8A44F;
+  background: linear-gradient(90deg, #C8A44F, #E5D2A8, #C8A44F);
+  border-radius: 1px;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 /* --- Logo Styling --- */
-.logo-wrapper {
+.logo-wrapper, .logo-link {
   position: relative;
   display: inline-block;
   padding: 0 25px; /* Space for the flourishes */
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-link:hover .logo-text {
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+}
+
+.logo-link:active {
+  transform: scale(0.98);
+  transition-duration: 0.1s;
 }
 
 .logo-text {
@@ -103,6 +205,9 @@
   color: #e0e0e0;
   letter-spacing: 3px;
   font-weight: 700;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 2;
 }
 
 /* Decorative flourishes beside the logo */
@@ -115,6 +220,8 @@
   height: 8px;
   background: #d4af37;
   transform: translateY(-50%) rotate(45deg);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
 }
 
 .logo-wrapper::before {
@@ -123,4 +230,31 @@
 
 .logo-wrapper::after {
   right: 0;
+}
+
+.logo-link:hover::before,
+.logo-link:hover::after {
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+  transform: translateY(-50%) rotate(45deg) scale(1.2);
+}
+
+/* Logo glow effect */
+.logo-link::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: all 0.6s ease;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.logo-link:hover::after {
+  width: 150px;
+  height: 60px;
 }
