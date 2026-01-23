@@ -1,0 +1,223 @@
+<!-- Success Message -->
+<div class="success-overlay" *ngIf="orderPlaced">
+  <div class="success-modal">
+    <div class="success-icon">✓</div>
+    <h2>Order Placed Successfully!</h2>
+    <p>Your order has been placed and will be delivered via Cash on Delivery.</p>
+    <p>You will receive a confirmation email shortly.</p>
+    <button class="continue-shopping-btn" (click)="continueShopping()">
+      Continue Shopping
+    </button>
+  </div>
+</div>
+
+<div class="checkout-wrapper" *ngIf="!orderPlaced">
+  <!-- Stepper -->
+  <div class="checkout-stepper">
+    <div class="step active">
+      <div class="step-number">1</div>
+      <div class="step-text">SHIPPING Details</div>
+    </div>
+    <div class="step-connector"></div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-text">CONFIRM Order</div>
+    </div>
+  </div>
+
+  <!-- Main Checkout Layout -->
+  <div class="checkout-main">
+    <!-- Left Column: Shipping Form -->
+    <div class="checkout-left">
+      <div class="shipping-section">
+        <h2 class="section-title">Shipping Address</h2>
+
+        <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()" class="shipping-form">
+          <!-- Name Fields -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name *</label>
+              <input
+                type="text"
+                id="firstName"
+                formControlName="firstName"
+                class="form-input"
+                [class.error]="checkoutForm.get('firstName')?.invalid && checkoutForm.get('firstName')?.touched">
+              <div class="error-message" *ngIf="getFieldError('firstName')">
+                {{ getFieldError('firstName') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="lastName">Last Name *</label>
+              <input
+                type="text"
+                id="lastName"
+                formControlName="lastName"
+                class="form-input"
+                [class.error]="checkoutForm.get('lastName')?.invalid && checkoutForm.get('lastName')?.touched">
+              <div class="error-message" *ngIf="getFieldError('lastName')">
+                {{ getFieldError('lastName') }}
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input
+                type="email"
+                id="email"
+                formControlName="email"
+                class="form-input"
+                [class.error]="checkoutForm.get('email')?.invalid && checkoutForm.get('email')?.touched">
+              <div class="error-message" *ngIf="getFieldError('email')">
+                {{ getFieldError('email') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input
+                type="tel"
+                id="phone"
+                formControlName="phone"
+                class="form-input"
+                [class.error]="checkoutForm.get('phone')?.invalid && checkoutForm.get('phone')?.touched">
+              <div class="error-message" *ngIf="getFieldError('phone')">
+                {{ getFieldError('phone') }}
+              </div>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="form-group">
+            <label for="address">Street Address *</label>
+            <input
+              type="text"
+              id="address"
+              formControlName="address"
+              class="form-input"
+              placeholder="House number, street name"
+              [class.error]="checkoutForm.get('address')?.invalid && checkoutForm.get('address')?.touched">
+            <div class="error-message" *ngIf="getFieldError('address')">
+              {{ getFieldError('address') }}
+            </div>
+          </div>
+
+          <!-- City and Postal Code -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="city">City *</label>
+              <input
+                type="text"
+                id="city"
+                formControlName="city"
+                class="form-input"
+                [class.error]="checkoutForm.get('city')?.invalid && checkoutForm.get('city')?.touched">
+              <div class="error-message" *ngIf="getFieldError('city')">
+                {{ getFieldError('city') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="postalCode">Postal Code *</label>
+              <input
+                type="text"
+                id="postalCode"
+                formControlName="postalCode"
+                class="form-input"
+                [class.error]="checkoutForm.get('postalCode')?.invalid && checkoutForm.get('postalCode')?.touched">
+              <div class="error-message" *ngIf="getFieldError('postalCode')">
+                {{ getFieldError('postalCode') }}
+              </div>
+            </div>
+          </div>
+
+          <!-- Country -->
+          <div class="form-group">
+            <label for="country">Country *</label>
+            <select
+              id="country"
+              formControlName="country"
+              class="form-input"
+              [class.error]="checkoutForm.get('country')?.invalid && checkoutForm.get('country')?.touched">
+              <option value="India">India</option>
+              <option value="United States">United States</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Canada">Canada</option>
+              <option value="Australia">Australia</option>
+            </select>
+            <div class="error-message" *ngIf="getFieldError('country')">
+              {{ getFieldError('country') }}
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            class="place-order-btn"
+            [disabled]="checkoutForm.invalid">
+            PLACE ORDER (COD)
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right Column: Order Summary -->
+    <div class="checkout-right">
+      <div class="order-summary-card">
+        <h3 class="summary-title">Order Summary</h3>
+
+        <!-- Order Items -->
+        <div class="order-items">
+          <div class="order-item" *ngFor="let item of cartItems">
+            <div class="item-image">
+              <img [src]="item.image" [alt]="item.name" loading="lazy">
+            </div>
+            <div class="item-details">
+              <h4 class="item-name">{{ item.name }}</h4>
+              <p class="item-subtitle" *ngIf="item.subName">{{ item.subName }}</p>
+              <div class="item-meta">
+                <span class="item-size">{{ item.selectedSize }}</span>
+                <span class="item-quantity">Qty: {{ item.quantity }}</span>
+              </div>
+            </div>
+            <div class="item-price">
+              ${{ (item.price * item.quantity).toFixed(2) }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Totals -->
+        <div class="order-totals">
+          <div class="total-row">
+            <span class="total-label">Items ({{ getTotalItems() }})</span>
+            <span class="total-amount">${{ totalPrice.toFixed(2) }}</span>
+          </div>
+          <div class="total-row">
+            <span class="total-label">Shipping</span>
+            <span class="total-amount">Free</span>
+          </div>
+          <div class="total-row total-final">
+            <span class="total-label">Total</span>
+            <span class="total-amount">${{ totalPrice.toFixed(2) }}</span>
+          </div>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="payment-method">
+          <h4 class="payment-title">Payment Method</h4>
+          <div class="payment-info">
+            <div class="payment-icon">💰</div>
+            <div class="payment-details">
+              <div class="payment-type">Cash on Delivery</div>
+              <div class="payment-desc">Pay when you receive your order</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
