@@ -1,0 +1,57 @@
+<div class="cart-modal-backdrop" *ngIf="isOpen" (click)="onBackdropClick($event)">
+  <div class="cart-modal-container">
+    <!-- Header -->
+    <div class="cart-modal-header">
+      <h2 class="cart-modal-title">ORDER SUMMARY</h2>
+      <button class="close-button" (click)="close()" aria-label="Close cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Cart Items -->
+    <div class="cart-items-container">
+      <div class="cart-item" *ngFor="let item of cartItems">
+        <div class="item-image">
+          <img [src]="item.image" [alt]="item.name" loading="lazy">
+        </div>
+        <div class="item-details">
+          <h3 class="item-name">{{ item.name }}</h3>
+          <p class="item-subtitle" *ngIf="item.subName">{{ item.subName }}</p>
+          <div class="item-controls">
+            <div class="quantity-controls">
+              <button class="quantity-btn" (click)="updateQuantity(item.id, item.quantity - 1)">-</button>
+              <span class="quantity">{{ item.quantity }}</span>
+              <button class="quantity-btn" (click)="updateQuantity(item.id, item.quantity + 1)">+</button>
+            </div>
+            <span class="item-price">${{ (item.price * item.quantity).toFixed(2) }}</span>
+          </div>
+        </div>
+        <button class="remove-btn" (click)="removeItem(item.id)" aria-label="Remove item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="3,6 5,6 21,6"></polyline>
+            <path d="m19,6v14a2,2 0 0,1-2,2H7a2,2 0 0,1-2-2V6m3,0V4a2,2 0 0,1,2-2h4a2,2 0 0,1,2,2v2"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Empty Cart Message -->
+    <div class="empty-cart" *ngIf="cartItems.length === 0">
+      <p>Your cart is empty</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="cart-modal-footer" *ngIf="cartItems.length > 0">
+      <div class="total-section">
+        <span class="total-label">SUBTOTAL</span>
+        <span class="total-amount">${{ totalPrice.toFixed(2) }}</span>
+      </div>
+      <button class="checkout-btn" (click)="proceedToCheckout()">
+        CONFIRM
+      </button>
+    </div>
+  </div>
+</div>

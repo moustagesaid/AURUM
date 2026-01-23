@@ -7,9 +7,5 @@ import { Component } from '@angular/core';
   standalone: true
 })
 export class Hero {
-  selectedSize = '50ml';
-  
-  selectSize(size: string) {
-    this.selectedSize = size;
-  }
+
 }

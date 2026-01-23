@@ -71,22 +71,7 @@
   </div>
   
   <!-- Size Selector -->
-  <div class="size-selector">
-    <span class="selector-label">Select Size:</span>
-    <button 
-      class="size-option" 
-      [class.active]="selectedSize === '50ml'"
-      (click)="selectSize('50ml')">
-      50ml
-    </button>
-    <span class="separator">|</span>
-    <button 
-      class="size-option" 
-      [class.active]="selectedSize === '100ml'"
-      (click)="selectSize('100ml')">
-      100ml
-    </button>
-  </div>
+  <div class="size-selector">Select Size: 50ml | 100ml</div>
   
   <!-- CTA Button -->
   <button class="cta-button">

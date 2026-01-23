@@ -1,10 +1,21 @@
 /* src/styles.css */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@400;500&display=swap');
 
+/* Dark & Gold Luxury Theme Variables */
+:root {
+  --theme-gold-gradient: linear-gradient(135deg, #bf9e60 0%, #e3c689 100%);
+  --theme-bg-dark: #1a1a1d;
+  --theme-text-light: #f5f5f5;
+  --theme-font-serif: 'Cinzel', serif;
+  --theme-font-sans: 'Montserrat', sans-serif;
+  --theme-glow: 0 0 20px rgba(191, 158, 96, 0.3), 0 0 40px rgba(191, 158, 96, 0.1);
+}
+
 body {
   /* This dark background helps the header stand out, like in the image */
-  background-color: #212121;
-  font-family: 'Montserrat', sans-serif;
+  background-color: var(--theme-bg-dark);
+  font-family: var(--theme-font-sans);
+  color: var(--theme-text-light);
   margin: 0;
   padding: 0;
 }
