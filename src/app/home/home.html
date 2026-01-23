@@ -14,17 +14,62 @@
   </div>
 </div>
 
-<!-- Section A: Featured Fragrances -->
-<section class="featured-fragrances" style="padding: 5rem 0; background: linear-gradient(135deg, #2B2B2D 0%, #1a1a1c 100%);">
+<!-- Section A: Signature Collection -->
+<section class="signature-collection">
   <div class="container">
-    <h2 class="section-title">Signature Collection</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem;">
-      <div class="glass-card" *ngFor="let fragrance of featuredFragrances">
-        <img [src]="fragrance.image" [alt]="fragrance.title" style="width: 100%; height: 300px; object-fit: cover; border-radius: 10px; margin-bottom: 1.5rem;">
-        <h3 style="color: #C8A44F; font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 1rem; text-align: center;">{{ fragrance.title }}</h3>
-        <p style="color: #BDBDBD; line-height: 1.6; margin-bottom: 2rem; text-align: center;">{{ fragrance.description }}</p>
-        <div style="text-align: center;">
-          <button class="btn-gold-outline" [routerLink]="['/product', fragrance.id]">VIEW DETAILS</button>
+    <div class="section-header">
+      <h2 class="section-title">SIGNATURE COLLECTION</h2>
+      <div class="title-accent"></div>
+    </div>
+
+    <div class="collection-grid">
+      <div class="fragrance-card" *ngFor="let fragrance of signatureCollection; let i = index"
+           [style.animation-delay.ms]="i * 200">
+        <div class="card-glass">
+          <!-- Left Side: Bottle Image -->
+          <div class="bottle-section">
+            <div class="bottle-container">
+              <img [src]="fragrance.image" [alt]="fragrance.name" class="bottle-image">
+              <div class="bottle-glow"></div>
+            </div>
+          </div>
+
+          <!-- Right Side: Details & Pyramid -->
+          <div class="details-section">
+            <div class="fragrance-header">
+              <h3 class="fragrance-name">{{ fragrance.name }}</h3>
+              <p class="fragrance-tagline">{{ fragrance.tagline }}</p>
+            </div>
+
+            <!-- Olfactory Pyramid -->
+            <div class="olfactory-pyramid">
+              <div class="pyramid-connector"></div>
+              <div class="notes-list">
+                <div class="note-item"
+                     *ngFor="let note of fragrance.notes; let j = index"
+                     [attr.data-note-type]="note.type.toLowerCase()"
+                     [style.animation-delay.ms]="(i * 200) + (j * 100)">
+                  <div class="note-icon">
+                    <span class="icon-emoji">{{ note.icon }}</span>
+                  </div>
+                  <div class="note-details">
+                    <div class="note-name">{{ note.name }}</div>
+                    <div class="note-type">{{ note.type }}</div>
+                  </div>
+                  <div class="note-description">
+                    {{ note.description }}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-actions">
+              <button class="view-details-btn" [routerLink]="['/products']">
+                <span class="btn-text">VIEW DETAILS</span>
+                <span class="btn-arrow">→</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

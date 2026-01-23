@@ -13,19 +13,59 @@ import { OrderService, Order } from '../services/order.service';
   styleUrl: './home.css'
 })
 export class Home {
-  // Featured fragrances data
-  featuredFragrances = [
+  // Signature Collection with Olfactory Pyramid
+  signatureCollection = [
     {
       id: 'aurum',
-      title: 'AURUM',
-      description: 'A majestic blend of rare oudh and saffron, embodying the essence of pure luxury and timeless elegance.',
-      image: 'assets/aurum-fragrance.jpg'
+      name: 'AURUM',
+      tagline: 'A majestic blend of rare oudh and saffron, embodying the essence of pure luxury and timeless elegance.',
+      image: '/assets/aurumaxis.png',
+      notes: [
+        {
+          name: 'Saffron',
+          type: 'Top',
+          icon: '🌸',
+          description: 'Rare Persian saffron threads, harvested at dawn for their golden essence.'
+        },
+        {
+          name: 'Oudh',
+          type: 'Heart',
+          icon: '🌿',
+          description: 'Precious agarwood essence, aged for decades in sacred forests.'
+        },
+        {
+          name: 'Amber',
+          type: 'Base',
+          icon: '💎',
+          description: 'Fossilised tree resin, warmed by ancient sunlight and time.'
+        }
+      ]
     },
     {
       id: 'nocturne',
-      title: 'NOCTURNE',
-      description: 'An intoxicating midnight symphony of dark amber, vanilla, and exotic spices that unfolds like a secret.',
-      image: 'assets/nocturne-fragrance.jpg'
+      name: 'NOCTURNE',
+      tagline: 'An intoxicating midnight symphony of dark amber, vanilla, and exotic spices that unfolds like a secret.',
+      image: '/assets/aurumvant.png',
+      notes: [
+        {
+          name: 'Bergamot',
+          type: 'Top',
+          icon: '🍊',
+          description: 'Italian bergamot essence, bright and citrus-fresh from Calabrian groves.'
+        },
+        {
+          name: 'Jasmine',
+          type: 'Heart',
+          icon: '🌸',
+          description: 'Night-blooming jasmine sambac, picked at midnight for maximum potency.'
+        },
+        {
+          name: 'Vanilla',
+          type: 'Base',
+          icon: '🌰',
+          description: 'Bourbon vanilla pods from Madagascar, cured for two years in darkness.'
+        }
+      ]
     }
   ];
 
