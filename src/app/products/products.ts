@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CartService } from '../services/cart.service';
 
 export interface Product {
   id: number;
@@ -20,6 +21,8 @@ export interface Product {
 })
 export class Products {
   selectedCategory: 'men' | 'women' | 'couples' = 'women';
+
+  constructor(private cartService: CartService) {}
 
   products: Product[] = [
     // Women's Products
@@ -126,8 +129,7 @@ export class Products {
   }
 
   addToCart(product: Product): void {
-    console.log('Added to cart:', product);
-    // Add cart functionality here
+    this.cartService.addToCart(product);
   }
 
   selectCategory(category: 'men' | 'women' | 'couples'): void {
