@@ -6,10 +6,12 @@ export interface CartItem {
   name: string;
   subName?: string;
   price: number;
+  basePrice: number; // Store original 100ml price
   image: string;
   category: 'men' | 'women' | 'couples';
   badge?: string;
   quantity: number;
+  selectedSize: '50ml' | '100ml';
 }
 
 @Injectable({
@@ -26,8 +28,31 @@ export class CartService {
   totalPrice$ = this.totalPriceSubject.asObservable();
 
   constructor() {
+    // Migrate existing cart items to new format if needed
+    this.migrateCartItems();
     // Calculate initial values
     this.updateTotals();
+  }
+
+  private migrateCartItems(): void {
+    const currentItems = this.cartItemsSubject.value;
+    const migratedItems = currentItems.map(item => {
+      // If item doesn't have selectedSize or basePrice, add them
+      if (!item.selectedSize || !item.basePrice) {
+        return {
+          ...item,
+          selectedSize: item.selectedSize || '100ml',
+          basePrice: item.basePrice || item.price,
+          price: item.price // Keep existing price
+        } as CartItem;
+      }
+      return item;
+    });
+
+    if (migratedItems.length !== currentItems.length ||
+        migratedItems.some((item, index) => item !== currentItems[index])) {
+      this.cartItemsSubject.next(migratedItems);
+    }
   }
 
   addToCart(product: any): void {
@@ -43,12 +68,16 @@ export class CartService {
         id: product.id,
         name: product.name,
         subName: product.subName,
-        price: product.price,
+        price: product.price, // This will be calculated based on size
+        basePrice: product.price, // Store original 100ml price
         image: product.image,
         category: product.category,
         badge: product.badge,
-        quantity: 1
+        quantity: 1,
+        selectedSize: '100ml' // Default size
       };
+      // Calculate initial price based on size (100ml = full price, 50ml = half price)
+      newItem.price = this.calculatePrice(newItem.basePrice, newItem.selectedSize);
       currentItems.push(newItem);
     }
 
@@ -78,9 +107,25 @@ export class CartService {
     }
   }
 
+  updateSize(productId: number, size: '50ml' | '100ml'): void {
+    const currentItems = this.cartItemsSubject.value;
+    const itemIndex = currentItems.findIndex(item => item.id === productId);
+
+    if (itemIndex > -1) {
+      currentItems[itemIndex].selectedSize = size;
+      currentItems[itemIndex].price = this.calculatePrice(currentItems[itemIndex].basePrice, size);
+      this.cartItemsSubject.next([...currentItems]);
+      this.updateTotals();
+    }
+  }
+
   clearCart(): void {
     this.cartItemsSubject.next([]);
     this.updateTotals();
+  }
+
+  private calculatePrice(basePrice: number, size: '50ml' | '100ml'): number {
+    return size === '50ml' ? basePrice * 0.5 : basePrice;
   }
 
   private updateTotals(): void {
