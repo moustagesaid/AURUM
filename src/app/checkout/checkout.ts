@@ -1,35 +1,122 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CartService, CartItem } from '../services/cart.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  template: `
-    <div class="checkout-container">
-      <h1>Checkout</h1>
-      <p>Checkout functionality will be implemented here.</p>
-    </div>
-  `,
-  styles: [`
-    .checkout-container {
-      padding: 60px 20px;
-      text-align: center;
-      background: var(--theme-bg-dark);
-      color: var(--theme-text-light);
-      min-height: 100vh;
-    }
-
-    h1 {
-      font-family: var(--theme-font-serif);
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
-
-    p {
-      font-family: var(--theme-font-sans);
-      font-size: 18px;
-    }
-  `]
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './checkout.component.html',
+  styleUrls: ['./checkout.component.css']
 })
-export class Checkout {
+export class Checkout implements OnInit, OnDestroy {
+  checkoutForm: FormGroup;
+  cartItems: CartItem[] = [];
+  totalPrice: number = 0;
+  private subscriptions: Subscription = new Subscription();
+  orderPlaced: boolean = false;
 
+  constructor(
+    private fb: FormBuilder,
+    private cartService: CartService,
+    private router: Router
+  ) {
+    this.checkoutForm = this.fb.group({
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
+      lastName: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.pattern(/^[\+]?[1-9][\d]{0,15}$/)]],
+      address: ['', [Validators.required, Validators.minLength(10)]],
+      city: ['', [Validators.required, Validators.minLength(2)]],
+      postalCode: ['', [Validators.required, Validators.pattern(/^[A-Za-z0-9\s\-]+$/)]],
+      country: ['India', [Validators.required]]
+    });
+  }
+
+  ngOnInit(): void {
+    this.subscriptions.add(
+      this.cartService.cartItems$.subscribe(items => {
+        this.cartItems = items;
+      })
+    );
+
+    this.subscriptions.add(
+      this.cartService.totalPrice$.subscribe(price => {
+        this.totalPrice = price;
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
+
+  onSubmit(): void {
+    if (this.checkoutForm.valid) {
+      this.submitOrder();
+    } else {
+      // Mark all fields as touched to show validation errors
+      this.checkoutForm.markAllAsTouched();
+    }
+  }
+
+  private submitOrder(): void {
+    // Here you would typically send the order to your backend
+    const orderData = {
+      customer: this.checkoutForm.value,
+      items: this.cartItems,
+      total: this.totalPrice,
+      paymentMethod: 'COD',
+      orderDate: new Date().toISOString()
+    };
+
+    console.log('Order placed:', orderData);
+
+    // Clear the cart
+    this.cartService.clearCart();
+
+    // Show success state
+    this.orderPlaced = true;
+
+    // Optionally navigate to a thank you page after a delay
+    // setTimeout(() => {
+    //   this.router.navigate(['/thank-you']);
+    // }, 3000);
+  }
+
+  getTotalItems(): number {
+    return this.cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  }
+
+  continueShopping(): void {
+    this.router.navigate(['/']);
+  }
+
+  // Helper methods for form validation
+  getFieldError(fieldName: string): string {
+    const field = this.checkoutForm.get(fieldName);
+    if (field?.errors && field.touched) {
+      if (field.errors['required']) {
+        return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} is required`;
+      }
+      if (field.errors['email']) {
+        return 'Please enter a valid email address';
+      }
+      if (field.errors['minlength']) {
+        return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} must be at least ${field.errors['minlength'].requiredLength} characters`;
+      }
+      if (field.errors['pattern']) {
+        if (fieldName === 'phone') {
+          return 'Please enter a valid phone number';
+        }
+        if (fieldName === 'postalCode') {
+          return 'Please enter a valid postal code';
+        }
+      }
+    }
+    return '';
+  }
 }
