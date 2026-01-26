@@ -20,7 +20,10 @@
     <div class="packaging-content">
       <!-- Left Column: Glass Frame -->
       <div class="packaging-frame">
-        <div class="image-placeholder"></div>
+        <div class="image-placeholder">
+          <img src="assets/Wpackage.png" alt="Women's Luxury Packaging" class="package-image w-package">
+          <img src="assets/Mpackage.png" alt="Men's Luxury Packaging" class="package-image m-package">
+        </div>
       </div>
 
       <!-- Right Column: Text Content -->
@@ -38,25 +41,32 @@
 <!-- Section B: Why Choose Us -->
 <section class="why-choose-us">
   <!-- Video Background -->
-  <video class="background-video" autoplay muted loop playsinline>
+  <video
+    class="background-video"
+    muted
+    loop
+    playsinline
+    [class.video-active]="isVideoPlaying"
+    (ended)="onVideoEnded()"
+    #videoPlayer>
     <source src="assets/ad.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
   <!-- Video Overlay -->
-  <div class="video-overlay"></div>
+  <div class="video-overlay" [class.overlay-active]="isVideoPlaying"></div>
 
   <div class="container">
     <div class="content-wrapper">
-      <div class="text-content">
+      <div class="text-content" [class.text-hidden]="isVideoPlaying">
         <h2 class="section-heading">Why Choose Aurum</h2>
         <p class="section-description">
           Gold does not tarnish. It does not fade. It remains eternal. That is the promise of AURUM. In a world of fleeting trends, we return to the elemental obsession with quality. Our scents are crafted for those who understand that true luxury is timeless. Distinct, pure, and undeniable—this is the gold standard of fragrance.
         </p>
       </div>
       <div class="visual-content">
-        <div class="video-play-indicator">
-          <div class="play-icon">
+        <div class="video-play-indicator" [class.indicator-hidden]="isVideoPlaying">
+          <div class="play-icon" (click)="playVideo()">
             <span>▶</span>
           </div>
           <p class="play-text">Experience Luxury</p>
