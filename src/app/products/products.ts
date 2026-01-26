@@ -77,6 +77,38 @@ export class Products {
     },
     // Men's Products
     {
+      id: 8,
+      name: 'AURUM',
+      subName: 'Back-end',
+      price: 159.99,
+      image: '/assets/f3.png',
+      category: 'men'
+    },
+    {
+      id: 8,
+      name: 'AURUM',
+      subName: 'Front-end',
+      price: 159.99,
+      image: '/assets/f2.png',
+      category: 'men'
+    },
+    {
+      id: 8,
+      name: 'AURUM',
+      subName: 'Foundation',
+      price: 159.99,
+      image: '/assets/f1.png',
+      category: 'men'
+    },
+    {
+      id: 8,
+      name: 'AURUM',
+      subName: 'Celebration',
+      price: 159.99,
+      image: '/assets/f4.png',
+      category: 'men'
+    },
+    {
       id: 5,
       name: 'AURUM',
       subName: 'AXIS',
@@ -133,6 +165,7 @@ export class Products {
       image: '/assets/AURUM Cuprum.png',
       category: 'men'
     },
+    
     // Couples Product
     {
       id: 9,
