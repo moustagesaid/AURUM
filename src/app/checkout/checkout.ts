@@ -17,7 +17,6 @@ export class Checkout implements OnInit, OnDestroy {
   cartItems: CartItem[] = [];
   totalPrice: number = 0;
   private subscriptions: Subscription = new Subscription();
-  orderPlaced: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -32,7 +31,7 @@ export class Checkout implements OnInit, OnDestroy {
       address: ['', [Validators.required, Validators.minLength(10)]],
       city: ['', [Validators.required, Validators.minLength(2)]],
       postalCode: ['', [Validators.required, Validators.pattern(/^[A-Za-z0-9\s\-]+$/)]],
-      country: ['India', [Validators.required]]
+      country: ['Morocco', [Validators.required]]
     });
   }
 
@@ -78,21 +77,14 @@ export class Checkout implements OnInit, OnDestroy {
     // Clear the cart
     this.cartService.clearCart();
 
-    // Show success state
-    this.orderPlaced = true;
-
-    // Optionally navigate to a thank you page after a delay
-    // setTimeout(() => {
-    //   this.router.navigate(['/thank-you']);
-    // }, 3000);
+    // Navigate to order confirmation page with order details
+    this.router.navigate(['/order-confirmed'], {
+      state: { orderDetails: orderData }
+    });
   }
 
   getTotalItems(): number {
     return this.cartItems.reduce((sum, item) => sum + item.quantity, 0);
-  }
-
-  continueShopping(): void {
-    this.router.navigate(['/']);
   }
 
   // Helper methods for form validation

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../services/cart.service';
+import { ToastService } from '../services/toast.service';
+import { ProductSliderComponent } from '../product-slider/product-slider.component';
 
 export interface Product {
   id: number;
@@ -15,14 +17,14 @@ export interface Product {
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ProductSliderComponent],
   templateUrl: './products.html',
   styleUrl: './products.css'
 })
 export class Products {
   selectedCategory: 'men' | 'women' | 'couples' = 'women';
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private toastService: ToastService) {}
 
   products: Product[] = [
     // Women's Products
@@ -130,6 +132,7 @@ export class Products {
 
   addToCart(product: Product): void {
     this.cartService.addToCart(product);
+    this.toastService.show(`${product.name}${product.subName ? ' ' + product.subName : ''} added to cart successfully!`);
   }
 
   selectCategory(category: 'men' | 'women' | 'couples'): void {

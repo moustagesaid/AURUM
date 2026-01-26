@@ -1,0 +1,40 @@
+<!-- Products Slider -->
+<div class="slider-wrapper">
+  <!-- Navigation Header -->
+  <div class="slider-header">
+    <button
+      class="nav-btn nav-prev"
+      (click)="previous()"
+      [disabled]="currentIndex === 0">
+      ‹
+    </button>
+    <h2 class="section-title">{{ sectionTitle }}</h2>
+    <button
+      class="nav-btn nav-next"
+      (click)="next()"
+      [disabled]="currentIndex >= products.length - 3">
+      ›
+    </button>
+  </div>
+
+  <!-- Products Grid -->
+  <div class="slider-viewport">
+    <div class="products-slider" [style.transform]="transformStyle">
+      <div
+        *ngFor="let product of products"
+        class="product-card">
+        <div class="product-image-wrapper">
+          <img [src]="product.image" [alt]="product.name" class="product-image" />
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">{{ product.name }}</h3>
+          <h4 class="product-subname">{{ product.subName }}</h4>
+          <p class="product-price">${{ product.price.toFixed(2) }}</p>
+          <button class="add-to-cart-btn" (click)="addToCart(product)">
+            ADD TO CART
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
