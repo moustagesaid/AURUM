@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../services/cart.service';
+import { trigger, state, style, transition, animate, query, stagger } from '@angular/animations';
 
 export interface Product {
   id: number;
@@ -17,53 +18,108 @@ export interface Product {
   standalone: true,
   imports: [CommonModule],
   templateUrl: './products.html',
-  styleUrl: './products.css'
+  styleUrl: './products.css',
+  animations: [
+    trigger('categoryTransition', [
+      transition('* => *', [
+        query(':enter', [
+          style({ opacity: 0, transform: 'translateX(100%)' }),
+          stagger(100, [
+            animate('600ms ease-out', style({ opacity: 1, transform: 'translateX(0)' }))
+          ])
+        ], { optional: true }),
+        query(':leave', [
+          stagger(100, [
+            animate('400ms ease-in', style({ opacity: 0, transform: 'translateX(-100%)' }))
+          ])
+        ], { optional: true })
+      ])
+    ]),
+    trigger('productSlide', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateX(50px)' }),
+        animate('500ms ease-out', style({ opacity: 1, transform: 'translateX(0)' }))
+      ]),
+      transition(':leave', [
+        animate('300ms ease-in', style({ opacity: 0, transform: 'translateX(-50px)' }))
+      ])
+    ])
+  ]
 })
-export class Products {
+export class Products implements OnInit, OnDestroy {
   selectedCategory: 'men' | 'women' | 'couples' = 'women';
+  private autoCycleInterval: any;
+  private readonly CYCLE_INTERVAL = 8000; // 8 seconds per category
 
   constructor(private cartService: CartService) {}
+
+  ngOnInit() {
+    this.startAutoCycle();
+  }
+
+  ngOnDestroy() {
+    this.stopAutoCycle();
+  }
+
+  private startAutoCycle() {
+    this.autoCycleInterval = setInterval(() => {
+      this.cycleToNextCategory();
+    }, this.CYCLE_INTERVAL);
+  }
+
+  private stopAutoCycle() {
+    if (this.autoCycleInterval) {
+      clearInterval(this.autoCycleInterval);
+    }
+  }
+
+  private cycleToNextCategory() {
+    const categories: ('men' | 'women' | 'couples')[] = ['women', 'men', 'couples'];
+    const currentIndex = categories.indexOf(this.selectedCategory);
+    const nextIndex = (currentIndex + 1) % categories.length;
+    this.selectedCategory = categories[nextIndex];
+  }
 
   products: Product[] = [
     // Women's Products
     {
       id: 1,
-      name: 'ROYAL',
-      subName: 'Elegance',
+      name: 'AURUM',
+      subName: 'MIRA',
       price: 129.99,
-      image: '/assets/women1.png',
+      image: '/assets/mira.png',
       category: 'women'
     },
     {
       id: 2,
-      name: 'NOCTURNE',
-      subName: 'Mystique',
+      name: 'AURUM',
+      subName: 'LYRA',
       price: 149.99,
-      image: '/assets/women2.png',
+      image: '/assets/lyra.png',
       category: 'women'
     },
     {
       id: 3,
-      name: 'VELVET',
-      subName: 'Rose',
+      name: 'AURUM',
+      subName: 'MODA',
       price: 139.99,
-      image: '/assets/women3.png',
+      image: '/assets/moda.png',
       category: 'women'
     },
     {
       id: 4,
-      name: 'OPULENCE',
-      subName: 'Blossom',
+      name: 'AURUM',
+      subName: 'NOVA',
       price: 159.99,
-      image: '/assets/women4.png',
+      image: '/assets/nova.png',
       category: 'women'
     },
     {
       id: 4,
-      name: 'OPULENCE',
-      subName: 'Blossom',
+      name: 'AURUM',
+      subName: 'SOLIS',
       price: 159.99,
-      image: '/assets/women5.png',
+      image: '/assets/Solis.png',
       category: 'women'
     },
     {
@@ -133,6 +189,21 @@ export class Products {
   }
 
   selectCategory(category: 'men' | 'women' | 'couples'): void {
+    this.stopAutoCycle();
     this.selectedCategory = category;
+    // Restart auto-cycle after 15 seconds of user inactivity
+    setTimeout(() => {
+      this.startAutoCycle();
+    }, 15000);
+  }
+
+  trackByProductId(index: number, product: Product): number {
+    return product.id;
+  }
+
+  getProgressPercentage(): number {
+    const categories: ('men' | 'women' | 'couples')[] = ['women', 'men', 'couples'];
+    const currentIndex = categories.indexOf(this.selectedCategory);
+    return ((currentIndex + 1) / categories.length) * 100;
   }
 }
