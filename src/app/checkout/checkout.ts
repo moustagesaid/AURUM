@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartService, CartItem } from '../services/cart.service';
+import { OrderDataService } from '../services/order-data.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -21,6 +22,7 @@ export class Checkout implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private cartService: CartService,
+    private orderDataService: OrderDataService,
     private router: Router
   ) {
     this.checkoutForm = this.fb.group({
@@ -63,24 +65,29 @@ export class Checkout implements OnInit, OnDestroy {
   }
 
   private submitOrder(): void {
-    // Here you would typically send the order to your backend
+    // Generate order ID
+    const orderId = this.orderDataService.generateOrderId();
+
+    // Create order data
     const orderData = {
-      customer: this.checkoutForm.value,
+      customerDetails: this.checkoutForm.value,
       items: this.cartItems,
       total: this.totalPrice,
-      paymentMethod: 'COD',
-      orderDate: new Date().toISOString()
+      orderId: orderId,
+      orderDate: new Date().toISOString(),
+      paymentMethod: 'COD'
     };
 
     console.log('Order placed:', orderData);
 
+    // Save order data to service
+    this.orderDataService.setLastOrder(orderData);
+
     // Clear the cart
     this.cartService.clearCart();
 
-    // Navigate to order confirmation page with order details
-    this.router.navigate(['/order-confirmed'], {
-      state: { orderDetails: orderData }
-    });
+    // Navigate to order confirmation page
+    this.router.navigate(['/order-confirmed']);
   }
 
   getTotalItems(): number {
