@@ -19,7 +19,7 @@
 
     <!-- Thank You Message -->
     <p class="thank-you-message">
-      THANK YOU{{ orderDetails ? ', ' + getCustomerName() : '' }}!
+      THANK YOU{{ orderDetails?.customerDetails ? ', ' + getCustomerName() : '' }}!
     </p>
 
     <p class="confirmation-message">

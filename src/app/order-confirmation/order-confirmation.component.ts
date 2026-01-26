@@ -1,14 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
-interface OrderDetails {
-  orderId: string;
-  customer: any;
-  items: any[];
-  total: number;
-  orderDate: string;
-}
+import { OrderDataService, LastOrder } from '../services/order-data.service';
 
 @Component({
   selector: 'app-order-confirmation',
@@ -18,33 +11,29 @@ interface OrderDetails {
   styleUrls: ['./order-confirmation.component.css']
 })
 export class OrderConfirmationComponent implements OnInit {
-  orderDetails: OrderDetails | null = null;
+  orderDetails: LastOrder | null = null;
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private orderDataService: OrderDataService
   ) {}
 
   ngOnInit(): void {
-    // Get order details from router state
-    const navigation = this.router.getCurrentNavigation();
-    if (navigation?.extras?.state?.['orderDetails']) {
-      this.orderDetails = navigation.extras.state['orderDetails'];
-      // Generate a random order ID if not provided
-      if (this.orderDetails && !this.orderDetails.orderId) {
-        this.orderDetails.orderId = this.generateOrderId();
-      }
-    } else {
-      // Fallback for direct navigation - create dummy data for testing
+    // Get order details from OrderDataService
+    this.orderDetails = this.orderDataService.getLastOrder();
+
+    // Fallback for direct navigation - create dummy data for testing
+    if (!this.orderDetails) {
       this.orderDetails = {
-        orderId: this.generateOrderId(),
-        customer: { firstName: 'John', lastName: 'Doe' },
+        orderId: this.orderDataService.generateOrderId(),
+        customerDetails: { firstName: 'John', lastName: 'Doe', email: '', phone: '', address: '', city: '', postalCode: '', country: '' },
         items: [
           {
             id: 1,
             name: 'AURUM AXIS',
             subName: 'Eau de Parfum',
             price: 129.99,
+            basePrice: 129.99,
             image: '/assets/aurumaxis.png',
             category: 'men',
             selectedSize: '100ml',
@@ -55,6 +44,7 @@ export class OrderConfirmationComponent implements OnInit {
             name: 'AURUM VANT',
             subName: 'Eau de Toilette',
             price: 89.99,
+            basePrice: 89.99,
             image: '/assets/aurumvant.png',
             category: 'women',
             selectedSize: '50ml',
@@ -62,15 +52,12 @@ export class OrderConfirmationComponent implements OnInit {
           }
         ],
         total: 349.97, // 2 * 129.99 + 1 * 89.99
-        orderDate: new Date().toISOString()
+        orderDate: new Date().toISOString(),
+        paymentMethod: 'COD'
       };
     }
   }
 
-  private generateOrderId(): string {
-    const randomNum = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-    return `AUR-${new Date().getFullYear()}-${randomNum}`;
-  }
 
 
   continueShopping(): void {
@@ -87,7 +74,7 @@ export class OrderConfirmationComponent implements OnInit {
   }
 
   getCustomerName(): string {
-    if (!this.orderDetails || !this.orderDetails.customer) return 'VALUED CUSTOMER';
-    return `${this.orderDetails.customer.firstName.toUpperCase()} ${this.orderDetails.customer.lastName.toUpperCase()}`;
+    if (!this.orderDetails || !this.orderDetails.customerDetails) return 'VALUED CUSTOMER';
+    return `${this.orderDetails.customerDetails.firstName.toUpperCase()} ${this.orderDetails.customerDetails.lastName.toUpperCase()}`;
   }
 }
