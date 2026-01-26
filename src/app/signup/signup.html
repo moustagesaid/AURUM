@@ -1,0 +1,97 @@
+<section class="signup-page">
+  <!-- Centered Signup Form -->
+  <div class="form-section">
+    <div class="signup-card">
+      <div class="card-header">
+        <h1 class="card-title">CREATE ACCOUNT</h1>
+        <p class="card-subtitle">Join the AURUM family</p>
+      </div>
+
+      <form class="signup-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="fullName">Full Name</label>
+          <input
+            id="fullName"
+            class="form-input"
+            type="text"
+            formControlName="fullName"
+            autocomplete="name"
+            placeholder="Enter your full name"
+            [attr.aria-invalid]="fullName?.touched && fullName?.invalid"
+          />
+          <div class="input-glow"></div>
+          <div class="error-message" *ngIf="fullName?.touched && fullName?.invalid">
+            <span *ngIf="fullName?.errors?.['required']">Full name is required.</span>
+            <span *ngIf="fullName?.errors?.['minlength']">Name must be at least 2 characters.</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address</label>
+          <input
+            id="email"
+            class="form-input"
+            type="email"
+            formControlName="email"
+            autocomplete="email"
+            placeholder="Enter your email"
+            [attr.aria-invalid]="email?.touched && email?.invalid"
+          />
+          <div class="input-glow"></div>
+          <div class="error-message" *ngIf="email?.touched && email?.invalid">
+            <span *ngIf="email?.errors?.['required']">Email is required.</span>
+            <span *ngIf="email?.errors?.['email']">Enter a valid email.</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <input
+            id="password"
+            class="form-input"
+            type="password"
+            formControlName="password"
+            autocomplete="new-password"
+            placeholder="Create a password"
+            [attr.aria-invalid]="password?.touched && password?.invalid"
+          />
+          <div class="input-glow"></div>
+          <div class="error-message" *ngIf="password?.touched && password?.invalid">
+            <span *ngIf="password?.errors?.['required']">Password is required.</span>
+            <span *ngIf="password?.errors?.['minlength']">Password must be at least 8 characters.</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="confirmPassword">Confirm Password</label>
+          <input
+            id="confirmPassword"
+            class="form-input"
+            type="password"
+            formControlName="confirmPassword"
+            autocomplete="new-password"
+            placeholder="Confirm your password"
+            [attr.aria-invalid]="confirmPassword?.touched && confirmPassword?.invalid"
+          />
+          <div class="input-glow"></div>
+          <div class="error-message" *ngIf="confirmPassword?.touched && confirmPassword?.invalid">
+            <span *ngIf="confirmPassword?.errors?.['required']">Please confirm your password.</span>
+            <span *ngIf="confirmPassword?.errors?.['mismatch']">Passwords do not match.</span>
+          </div>
+        </div>
+
+        <button class="signup-btn" type="submit" [disabled]="form.invalid">
+          <span class="btn-text">SIGN UP</span>
+          <div class="btn-glow"></div>
+        </button>
+
+        <div class="form-footer">
+          <div class="form-divider">
+            <span class="divider-text">Already have an account?</span>
+            <a class="form-link primary" [routerLink]="['/login']">Log In</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

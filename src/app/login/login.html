@@ -1,54 +1,62 @@
 <section class="login-page">
-  <div class="login-card" role="region" aria-label="Login">
-    <header class="login-header">
-      <div class="brand">AURUM</div>
-      <div class="subtitle">Welcome back</div>
-    </header>
+  <!-- Centered Login Form -->
+  <div class="form-section">
+    <div class="login-card">
+      <div class="card-header">
+        <h1 class="card-title">WELCOME BACK</h1>
+        <p class="card-subtitle">Sign in to your account</p>
+      </div>
 
-    <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-      <div class="field">
-        <label class="label" for="email">Email</label>
-        <input
-          id="email"
-          class="input"
-          type="email"
-          formControlName="email"
-          autocomplete="email"
-          placeholder="you@aurum.com"
-          [attr.aria-invalid]="email.touched && email.invalid"
-        />
-        <div class="hint error" *ngIf="email.touched && email.invalid">
-          <span *ngIf="email.errors?.['required']">Email is required.</span>
-          <span *ngIf="email.errors?.['email']">Enter a valid email.</span>
+      <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address</label>
+          <input
+            id="email"
+            class="form-input"
+            type="email"
+            formControlName="email"
+            autocomplete="email"
+            placeholder="Enter your email"
+            [attr.aria-invalid]="email.touched && email.invalid"
+          />
+          <div class="input-glow"></div>
+          <div class="error-message" *ngIf="email.touched && email.invalid">
+            <span *ngIf="email.errors?.['required']">Email is required.</span>
+            <span *ngIf="email.errors?.['email']">Enter a valid email.</span>
+          </div>
         </div>
-      </div>
 
-      <div class="field">
-        <label class="label" for="password">Password</label>
-        <input
-          id="password"
-          class="input"
-          type="password"
-          formControlName="password"
-          autocomplete="current-password"
-          placeholder="••••••••"
-          [attr.aria-invalid]="password.touched && password.invalid"
-        />
-        <div class="hint error" *ngIf="password.touched && password.invalid">
-          <span *ngIf="password.errors?.['required']">Password is required.</span>
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <input
+            id="password"
+            class="form-input"
+            type="password"
+            formControlName="password"
+            autocomplete="current-password"
+            placeholder="Enter your password"
+            [attr.aria-invalid]="password.touched && password.invalid"
+          />
+          <div class="input-glow"></div>
+          <div class="error-message" *ngIf="password.touched && password.invalid">
+            <span *ngIf="password.errors?.['required']">Password is required.</span>
+          </div>
         </div>
-      </div>
 
-      <button class="submit" type="submit" [disabled]="form.invalid">
-        Log In
-        <span class="shimmer" aria-hidden="true"></span>
-      </button>
+        <button class="login-btn" type="submit" [disabled]="form.invalid">
+          <span class="btn-text">LOG IN</span>
+          <div class="btn-glow"></div>
+        </button>
 
-      <div class="footer">
-        <span class="footer-text">Don’t have an account?</span>
-        <a class="footer-link" routerLink="/register">Create one</a>
-      </div>
-    </form>
+        <div class="form-footer">
+          <a class="form-link" [routerLink]="['/forgot-password']">Forgot Password?</a>
+          <div class="form-divider">
+            <span class="divider-text">Don't have an account?</span>
+            <a class="form-link primary" [routerLink]="['/signup']">Create one</a>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </section>
 
