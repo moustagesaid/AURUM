@@ -14,63 +14,22 @@
   </div>
 </div>
 
-<!-- Section A: Signature Collection -->
-<section class="signature-collection">
+<!-- Section A: Aurum Signature Packaging -->
+<section class="aurum-signature-packaging">
   <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">SIGNATURE COLLECTION</h2>
-      <div class="title-accent"></div>
-    </div>
+    <div class="packaging-content">
+      <!-- Left Column: Glass Frame -->
+      <div class="packaging-frame">
+        <div class="image-placeholder"></div>
+      </div>
 
-    <div class="collection-grid">
-      <div class="fragrance-card" *ngFor="let fragrance of signatureCollection; let i = index"
-           [style.animation-delay.ms]="i * 200">
-        <div class="card-glass">
-          <!-- Left Side: Bottle Image -->
-          <div class="bottle-section">
-            <div class="bottle-container">
-              <img [src]="fragrance.image" [alt]="fragrance.name" class="bottle-image">
-              <div class="bottle-glow"></div>
-            </div>
-          </div>
-
-          <!-- Right Side: Details & Pyramid -->
-          <div class="details-section">
-            <div class="fragrance-header">
-              <h3 class="fragrance-name">{{ fragrance.name }}</h3>
-              <p class="fragrance-tagline">{{ fragrance.tagline }}</p>
-            </div>
-
-            <!-- Olfactory Pyramid -->
-            <div class="olfactory-pyramid">
-              <div class="pyramid-connector"></div>
-              <div class="notes-list">
-                <div class="note-item"
-                     *ngFor="let note of fragrance.notes; let j = index"
-                     [attr.data-note-type]="note.type.toLowerCase()"
-                     [style.animation-delay.ms]="(i * 200) + (j * 100)">
-                  <div class="note-icon">
-                    <span class="icon-emoji">{{ note.icon }}</span>
-                  </div>
-                  <div class="note-details">
-                    <div class="note-name">{{ note.name }}</div>
-                    <div class="note-type">{{ note.type }}</div>
-                  </div>
-                  <div class="note-description">
-                    {{ note.description }}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="card-actions">
-              <button class="view-details-btn" [routerLink]="['/products']">
-                <span class="btn-text">VIEW DETAILS</span>
-                <span class="btn-arrow">→</span>
-              </button>
-            </div>
-          </div>
-        </div>
+      <!-- Right Column: Text Content -->
+      <div class="packaging-details">
+        <h2 class="packaging-title">THE AURUM SIGNATURE PACKAGING</h2>
+        <p class="packaging-description">
+          Every bottle is wrapped in hand-pressed silk paper and sealed with 24k gold wax. An unforgettable unboxing experience.
+        </p>
+        <button class="packaging-btn">DISCOVER OUR GIFTING SERVICE</button>
       </div>
     </div>
   </div>

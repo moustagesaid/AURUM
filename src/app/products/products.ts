@@ -1,12 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../services/cart.service';
-<<<<<<< HEAD
-import { ToastService } from '../services/toast.service';
-import { ProductSliderComponent } from '../product-slider/product-slider.component';
-=======
-import { trigger, state, style, transition, animate, query, stagger } from '@angular/animations';
->>>>>>> 46fa8902fe2d15d74845763da46df3dd9aae9b1b
 
 export interface Product {
   id: number;
@@ -21,69 +15,14 @@ export interface Product {
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, ProductSliderComponent],
+  imports: [CommonModule],
   templateUrl: './products.html',
-  styleUrl: './products.css',
-  animations: [
-    trigger('categoryTransition', [
-      transition('* => *', [
-        query(':enter', [
-          style({ opacity: 0, transform: 'translateX(100%)' }),
-          stagger(100, [
-            animate('600ms ease-out', style({ opacity: 1, transform: 'translateX(0)' }))
-          ])
-        ], { optional: true }),
-        query(':leave', [
-          stagger(100, [
-            animate('400ms ease-in', style({ opacity: 0, transform: 'translateX(-100%)' }))
-          ])
-        ], { optional: true })
-      ])
-    ]),
-    trigger('productSlide', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateX(50px)' }),
-        animate('500ms ease-out', style({ opacity: 1, transform: 'translateX(0)' }))
-      ]),
-      transition(':leave', [
-        animate('300ms ease-in', style({ opacity: 0, transform: 'translateX(-50px)' }))
-      ])
-    ])
-  ]
+  styleUrl: './products.css'
 })
-export class Products implements OnInit, OnDestroy {
+export class Products {
   selectedCategory: 'men' | 'women' | 'couples' = 'women';
-  private autoCycleInterval: any;
-  private readonly CYCLE_INTERVAL = 8000; // 8 seconds per category
 
-  constructor(private cartService: CartService, private toastService: ToastService) {}
-
-  ngOnInit() {
-    this.startAutoCycle();
-  }
-
-  ngOnDestroy() {
-    this.stopAutoCycle();
-  }
-
-  private startAutoCycle() {
-    this.autoCycleInterval = setInterval(() => {
-      this.cycleToNextCategory();
-    }, this.CYCLE_INTERVAL);
-  }
-
-  private stopAutoCycle() {
-    if (this.autoCycleInterval) {
-      clearInterval(this.autoCycleInterval);
-    }
-  }
-
-  private cycleToNextCategory() {
-    const categories: ('men' | 'women' | 'couples')[] = ['women', 'men', 'couples'];
-    const currentIndex = categories.indexOf(this.selectedCategory);
-    const nextIndex = (currentIndex + 1) % categories.length;
-    this.selectedCategory = categories[nextIndex];
-  }
+  constructor(private cartService: CartService) {}
 
   products: Product[] = [
     // Women's Products
@@ -191,25 +130,9 @@ export class Products implements OnInit, OnDestroy {
 
   addToCart(product: Product): void {
     this.cartService.addToCart(product);
-    this.toastService.show(`${product.name}${product.subName ? ' ' + product.subName : ''} added to cart successfully!`);
   }
 
   selectCategory(category: 'men' | 'women' | 'couples'): void {
-    this.stopAutoCycle();
     this.selectedCategory = category;
-    // Restart auto-cycle after 15 seconds of user inactivity
-    setTimeout(() => {
-      this.startAutoCycle();
-    }, 15000);
-  }
-
-  trackByProductId(index: number, product: Product): number {
-    return product.id;
-  }
-
-  getProgressPercentage(): number {
-    const categories: ('men' | 'women' | 'couples')[] = ['women', 'men', 'couples'];
-    const currentIndex = categories.indexOf(this.selectedCategory);
-    return ((currentIndex + 1) / categories.length) * 100;
   }
 }
