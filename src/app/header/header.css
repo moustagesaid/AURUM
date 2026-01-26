@@ -100,13 +100,21 @@
 
 /* --- Links and Icons --- */
 .nav-link, .icon-link, .hamburger-icon, .logo-link {
-  color: #d1d1d1;
   text-decoration: none;
   font-size: 16px;
   font-family: 'Montserrat', sans-serif;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+}
+
+/* Golden Pill Navigation Links */
+.nav-link {
+  color: #f5f5f5; /* White/off-white text */
+  background: transparent; /* Transparent background */
+  padding: 8px 24px; /* Breathing room */
+  border-radius: 50px; /* Fully rounded pill shape */
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth and liquid */
+  display: inline-block;
 }
 
 .icon-link, .hamburger-icon {
@@ -123,18 +131,32 @@
   transform: scale(0.95);
 }
 
-.nav-link:hover, .icon-link:hover, .logo-link:hover {
-  color: #ffffff;
-  transform: translateY(-2px);
+/* Gold Header Icons */
+.nav-right .icon-link:first-child,
+.nav-right .icon-link:nth-child(2) {
+  color: #bf9e60; /* Gold color for search and user icons */
 }
 
-.nav-link:active, .icon-link:active, .logo-link:active {
-  transform: translateY(0) scale(0.98);
+.nav-right .icon-link:first-child:hover,
+.nav-right .icon-link:nth-child(2):hover {
+  color: #e3c689; /* Lighter gold on hover */
+}
+
+/* Golden Pill Hover Effect */
+.nav-link:hover {
+  background: linear-gradient(90deg, #bf9e60, #e3c689); /* Gold gradient */
+  color: #1a1a1d; /* Dark grey/black text for contrast */
+  box-shadow: 0 0 15px rgba(191, 158, 96, 0.4); /* Subtle glow */
+  transform: scale(1.05); /* Slight scale for tactile feel */
+}
+
+.nav-link:active {
+  transform: scale(0.95);
   transition-duration: 0.1s;
 }
 
-/* Navigation link ripple effect */
-.nav-link::before, .icon-link::before {
+/* Icon link ripple effect (kept for icons only) */
+.icon-link::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -148,27 +170,17 @@
   z-index: -1;
 }
 
-.nav-link:hover::before, .icon-link:hover::before {
+.icon-link:hover::before {
   width: 300%;
   height: 300%;
 }
 
+/* Active Link - Golden Pill Style */
 .nav-link.active-nav-link {
-  color: #E5D2A8;
-  position: relative;
-  transform: translateY(-1px);
-}
-
-.nav-link.active-nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #C8A44F, #E5D2A8, #C8A44F);
-  border-radius: 1px;
-  animation: shimmer 2s ease-in-out infinite;
+  background: linear-gradient(90deg, #bf9e60, #e3c689); /* Gold gradient */
+  color: #1a1a1d; /* Dark grey/black text for contrast */
+  box-shadow: 0 0 15px rgba(191, 158, 96, 0.4); /* Subtle glow */
+  transform: scale(1.05); /* Slight scale for tactile feel */
 }
 
 @keyframes shimmer {
@@ -189,9 +201,15 @@
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Liquid Fill Animation - Hover State */
 .logo-link:hover .logo-text {
-  color: #ffffff;
-  text-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+  background-size: 100% 100%; /* Fill from bottom to top */
+
+  /* Scent Glow - Fragrance Diffusion Effect */
+  filter: drop-shadow(0 0 10px rgba(191, 158, 96, 0.6));
+
+  /* Remove text stroke on hover to show filled liquid */
+  -webkit-text-stroke: 0px transparent;
 }
 
 .logo-link:active {
@@ -202,12 +220,26 @@
 .logo-text {
   font-family: 'Cinzel', serif;
   font-size: 28px;
-  color: #e0e0e0;
   letter-spacing: 3px;
   font-weight: 700;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   z-index: 2;
+
+  /* Glass Outline - Default State */
+  color: transparent;
+  -webkit-text-stroke: 1px #bf9e60; /* Gold border mimicking bottle shape */
+
+  /* Liquid Fill Setup */
+  background-image: linear-gradient(to top, #bf9e60 0%, #e3c689 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-size: 100% 0%; /* Empty initially */
+  background-position: bottom;
+  background-repeat: no-repeat;
+
+  /* Transition for the liquid fill */
+  transition: background-size 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Decorative flourishes beside the logo */
@@ -266,10 +298,12 @@
   align-items: center;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #bf9e60; /* Gold color for cart icon */
 }
 
 .cart-icon-container:hover {
   transform: scale(1.1);
+  color: #e3c689; /* Lighter gold on hover */
 }
 
 .cart-icon-container:active {
