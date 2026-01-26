@@ -22,20 +22,66 @@
     >
       FOR COUPLES
     </button>
+
+    <!-- Auto-cycle Progress Indicator -->
+    <div class="progress-indicator">
+      <div class="progress-bar" [style.width.%]="getProgressPercentage()"></div>
+    </div>
   </div>
 
+<<<<<<< HEAD
   <!-- MEN & WOMEN Products Slider -->
   <div *ngIf="selectedCategory === 'men' || selectedCategory === 'women'" class="products-section">
     <app-product-slider
       [products]="filteredProducts"
       [sectionTitle]="selectedCategory === 'women' ? 'FOR WOMEN' : 'FOR MEN'">
     </app-product-slider>
+=======
+  <!-- MEN & WOMEN Products Grid -->
+  <div *ngIf="selectedCategory === 'men' || selectedCategory === 'women'" class="products-section" @categoryTransition>
+    <div class="products-scroll-container">
+      <div class="products-grid">
+        <!-- First set of products -->
+        <div *ngFor="let product of filteredProducts; trackBy: trackByProductId"
+             class="product-card"
+             @productSlide>
+          <div class="product-image-wrapper">
+            <img [src]="product.image" [alt]="product.name" class="product-image" />
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">{{ product.name }}</h3>
+            <h4 class="product-subname">{{ product.subName }}</h4>
+            <p class="product-price">${{ product.price.toFixed(2) }}</p>
+            <button class="add-to-cart-btn" (click)="addToCart(product)">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+        <!-- Duplicate set for seamless infinite scroll -->
+        <div *ngFor="let product of filteredProducts; trackBy: trackByProductId"
+             class="product-card"
+             @productSlide>
+          <div class="product-image-wrapper">
+            <img [src]="product.image" [alt]="product.name" class="product-image" />
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">{{ product.name }}</h3>
+            <h4 class="product-subname">{{ product.subName }}</h4>
+            <p class="product-price">${{ product.price.toFixed(2) }}</p>
+            <button class="add-to-cart-btn" (click)="addToCart(product)">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+>>>>>>> 46fa8902fe2d15d74845763da46df3dd9aae9b1b
   </div>
 
   <!-- COUPLES Banner -->
-  <div *ngIf="selectedCategory === 'couples' && couplesProduct" class="couples-section">
+  <div *ngIf="selectedCategory === 'couples' && couplesProduct" class="couples-section" @categoryTransition>
     <div class="couples-banner">
-      <div class="couples-content">
+      <div class="couples-content" @productSlide>
         <h2 class="couples-title">FOR COUPLES</h2>
         <p class="couples-subtitle">His & Hers Collection</p>
         <div class="couples-image-wrapper">
