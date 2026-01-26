@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -13,6 +13,11 @@ import { OrderService, Order } from '../services/order.service';
   styleUrl: './home.css'
 })
 export class Home {
+  // Video play state
+  isVideoPlaying = false;
+
+  @ViewChild('videoPlayer', { static: false }) videoPlayer!: ElementRef<HTMLVideoElement>;
+
   // Signature Collection with Olfactory Pyramid
   signatureCollection = [
     {
@@ -95,6 +100,18 @@ export class Home {
 
 
   constructor(private orderService: OrderService) {}
+
+  // Video play methods
+  playVideo() {
+    this.isVideoPlaying = true;
+    if (this.videoPlayer) {
+      this.videoPlayer.nativeElement.play();
+    }
+  }
+
+  onVideoEnded() {
+    this.isVideoPlaying = false;
+  }
 
   // Methods
   submitReview() {
