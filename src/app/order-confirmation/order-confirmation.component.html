@@ -1,0 +1,96 @@
+<div class="confirmation-container">
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <!-- Gold Checkmark Icon -->
+    <div class="checkmark-icon">
+      <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 6L9 17L4 12" stroke="url(#goldGradient)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <defs>
+          <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#bf9e60"/>
+            <stop offset="100%" style="stop-color:#e3c689"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <!-- Main Heading -->
+    <h1 class="confirmation-title">ORDER CONFIRMED</h1>
+
+    <!-- Thank You Message -->
+    <p class="thank-you-message">
+      THANK YOU{{ orderDetails ? ', ' + getCustomerName() : '' }}!
+    </p>
+
+    <p class="confirmation-message">
+      Your order has been confirmed and will be delivered via Cash on Delivery.
+    </p>
+  </div>
+
+  <!-- Order Details Section -->
+  <div class="order-details-section">
+    <!-- Order ID and Delivery Info -->
+    <div class="order-info">
+      <div class="info-item">
+        <span class="info-label">Order ID:</span>
+        <span class="info-value">{{ orderDetails?.orderId || 'AUR-2024-XXXX' }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Estimated Delivery:</span>
+        <span class="info-value">{{ getEstimatedDelivery() }}</span>
+      </div>
+    </div>
+
+    <!-- Complete Product List -->
+    <div class="product-list" *ngIf="orderDetails?.items?.length">
+      <div class="product-item" *ngFor="let item of orderDetails!.items">
+        <div class="product-image">
+          <img [src]="item.image" [alt]="item.name" loading="lazy">
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">{{ item.name }}</h3>
+          <p class="product-details" *ngIf="item.subName">{{ item.subName }}</p>
+          <div class="product-meta">
+            <span class="product-size">{{ item.selectedSize }}</span>
+            <span class="product-quantity">Qty: {{ item.quantity }}</span>
+          </div>
+          <div class="product-price">
+            ${{ (item.price * item.quantity).toFixed(2) }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="order-summary">
+      <div class="summary-item">
+        <span class="summary-label">Subtotal (Items)</span>
+        <span class="summary-value">${{ orderDetails?.total?.toFixed(2) || '0.00' }}</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Shipping</span>
+        <span class="summary-value">Free</span>
+      </div>
+      <div class="summary-item total">
+        <span class="summary-label">Total Amount</span>
+        <span class="summary-value">${{ orderDetails?.total?.toFixed(2) || '0.00' }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <button class="track-order-btn" (click)="trackOrder()">
+      TRACK ORDER
+    </button>
+    <button class="continue-shopping-btn" (click)="continueShopping()">
+      CONTINUE SHOPPING
+    </button>
+  </div>
+
+  <!-- Additional Info -->
+  <div class="additional-info">
+    <p>A confirmation email has been sent to your email address.</p>
+    <p>For any questions, please contact our customer service.</p>
+  </div>
+</div>

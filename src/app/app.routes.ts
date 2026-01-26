@@ -5,6 +5,7 @@ import { Home } from './home/home';
 import { Login } from './login/login';
 import { Products } from './products/products';
 import { Checkout } from './checkout/checkout';
+import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 
 export const routes: Routes = [
   {
@@ -30,6 +31,10 @@ export const routes: Routes = [
   {
     path: 'checkout',
     component: Checkout
+  },
+  {
+    path: 'order-confirmed',
+    component: OrderConfirmationComponent
   },
   {
     path: 'admin',
