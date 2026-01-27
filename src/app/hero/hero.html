@@ -1,7 +1,4 @@
-<section class="hero-section">
-  <!-- Background with subtle texture -->
-  <div class="hero-background"></div>
-  
+<section class="hero-section" [ngStyle]="{ 'background-image': currentBackgroundImage }">
   <!-- Caustic light patterns -->
   <div class="caustics"></div>
   
@@ -18,11 +15,7 @@
     <span class="card-price">$49.90</span>
   </div>
   
-  <div class="floating-card card-3">
-    <h3 class="card-title">200ml</h3>
-    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</p>
-    <span class="card-price">$89.90</span>
-  </div>
+  
   
   <!-- Central Perfume Bottle -->
   <div class="bottle-container">
@@ -73,9 +66,29 @@
   <!-- Size Selector -->
   <div class="size-selector">Select Size: 50ml | 100ml</div>
   
-  <!-- CTA Button -->
-  <button class="cta-button" [routerLink]="['/products']">
-    <span class="button-text">SHOP NOW</span>
-    <div class="button-shimmer"></div>
-  </button>
+  <!-- Bottom actions row (same line) -->
+  <div class="hero-bottom-actions">
+    <button
+      class="gender-btn btn-women"
+      type="button"
+      (mouseenter)="setBackground('women')"
+      (mouseleave)="setBackground('default')"
+    >
+      FOR WOMEN
+    </button>
+
+    <button class="cta-button" [routerLink]="['/products']">
+      <span class="button-text">SHOP NOW</span>
+      <div class="button-shimmer"></div>
+    </button>
+
+    <button
+      class="gender-btn btn-men"
+      type="button"
+      (mouseenter)="setBackground('men')"
+      (mouseleave)="setBackground('default')"
+    >
+      FOR MEN
+    </button>
+  </div>
 </section>
