@@ -21,6 +21,7 @@
   position: relative;
   overflow: hidden;
   padding: 2rem 1rem;
+  background-image: url("/assets/loginbg.png");
 }
 
 /* Centered Form Section */
