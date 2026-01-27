@@ -596,11 +596,6 @@
   transition: opacity 1s ease, filter 1s ease;
 }
 
-.background-video.video-active {
-  opacity: 1;
-  filter: brightness(1) contrast(1.2);
-}
-
 .video-overlay {
   position: absolute;
   top: 0;

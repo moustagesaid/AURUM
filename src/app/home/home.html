@@ -32,7 +32,7 @@
         <p class="packaging-description">
           Every bottle is wrapped in hand-pressed silk paper and sealed with 24k gold wax. An unforgettable unboxing experience.
         </p>
-        <button class="packaging-btn">DISCOVER OUR GIFTING SERVICE</button>
+        <button class="packaging-btn" [routerLink]="['/products']">DISCOVER OUR GIFTING SERVICE</button>
       </div>
     </div>
   </div>
@@ -41,32 +41,25 @@
 <!-- Section B: Why Choose Us -->
 <section class="why-choose-us">
   <!-- Video Background -->
-  <video
-    class="background-video"
-    muted
-    loop
-    playsinline
-    [class.video-active]="isVideoPlaying"
-    (ended)="onVideoEnded()"
-    #videoPlayer>
+  <video class="background-video" [class.video-active]="videoActive" (ended)="onVideoEnd()" #videoPlayer muted playsinline>
     <source src="assets/ad.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
   <!-- Video Overlay -->
-  <div class="video-overlay" [class.overlay-active]="isVideoPlaying"></div>
+  <div class="video-overlay" [class.overlay-active]="!videoActive"></div>
 
   <div class="container">
     <div class="content-wrapper">
-      <div class="text-content" [class.text-hidden]="isVideoPlaying">
+      <div class="text-content" [class.text-hidden]="textHidden">
         <h2 class="section-heading">Why Choose Aurum</h2>
         <p class="section-description">
           Gold does not tarnish. It does not fade. It remains eternal. That is the promise of AURUM. In a world of fleeting trends, we return to the elemental obsession with quality. Our scents are crafted for those who understand that true luxury is timeless. Distinct, pure, and undeniable—this is the gold standard of fragrance.
         </p>
       </div>
       <div class="visual-content">
-        <div class="video-play-indicator" [class.indicator-hidden]="isVideoPlaying">
-          <div class="play-icon" (click)="playVideo()">
+        <div class="video-play-indicator" [class.indicator-hidden]="indicatorHidden">
+          <div class="play-icon" (click)="onPlayButtonClick()">
             <span>▶</span>
           </div>
           <p class="play-text">Experience Luxury</p>

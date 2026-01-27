@@ -13,8 +13,10 @@ import { OrderService, Order } from '../services/order.service';
   styleUrl: './home.css'
 })
 export class Home {
-  // Video play state
-  isVideoPlaying = false;
+  // Video state management
+  videoActive = false;
+  textHidden = false;
+  indicatorHidden = false;
 
   @ViewChild('videoPlayer', { static: false }) videoPlayer!: ElementRef<HTMLVideoElement>;
 
@@ -101,16 +103,20 @@ export class Home {
 
   constructor(private orderService: OrderService) {}
 
-  // Video play methods
-  playVideo() {
-    this.isVideoPlaying = true;
+  // Video control methods
+  onPlayButtonClick() {
     if (this.videoPlayer) {
       this.videoPlayer.nativeElement.play();
+      this.videoActive = true;
+      this.textHidden = true;
+      this.indicatorHidden = true;
     }
   }
 
-  onVideoEnded() {
-    this.isVideoPlaying = false;
+  onVideoEnd() {
+    this.videoActive = false;
+    this.textHidden = false;
+    this.indicatorHidden = false;
   }
 
   // Methods
