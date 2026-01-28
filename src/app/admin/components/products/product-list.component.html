@@ -1,0 +1,100 @@
+<div class="product-management">
+  <!-- Header -->
+  <div class="section-header">
+    <div class="header-content">
+      <h1 class="page-title">Product Vault</h1>
+      <p class="page-subtitle">Manage your luxury fragrance collection</p>
+    </div>
+    <button class="add-product-btn">
+      <span class="btn-icon">+</span>
+      <span>Add New Fragrance</span>
+    </button>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters-section">
+    <div class="filter-group">
+      <input 
+        type="text" 
+        placeholder="Search fragrances..." 
+        class="search-input"
+        [(ngModel)]="searchTerm"
+        (input)="onSearchChange()"
+      >
+    </div>
+    
+    <div class="filter-group">
+      <select class="filter-select" [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
+        <option *ngFor="let category of categories" [value]="category">
+          {{ category === 'all' ? 'All Categories' : category }}
+        </option>
+      </select>
+    </div>
+    
+    <div class="filter-group">
+      <select class="filter-select" [(ngModel)]="selectedStatus" (change)="onStatusChange()">
+        <option *ngFor="let status of statuses" [value]="status">
+          {{ status === 'all' ? 'All Status' : getStatusText(status) }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Products Table -->
+  <div class="products-table-container">
+    <table class="products-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Status</th>
+          <th>Date Added</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of filteredProducts" class="product-row">
+          <td class="product-cell">
+            <div class="product-info">
+              <img [src]="product.image" [alt]="product.name" class="product-image">
+              <div class="product-details">
+                <div class="product-name">{{ product.name }}</div>
+                <div class="product-id">ID: {{ product.id }}</div>
+              </div>
+            </div>
+          </td>
+          <td class="category-cell">{{ product.category }}</td>
+          <td class="price-cell">${{ product.price }}</td>
+          <td class="stock-cell">
+            <span [class]="{ 'low-stock': product.stock < 20, 'good-stock': product.stock >= 20 }">
+              {{ product.stock }} units
+            </span>
+          </td>
+          <td class="status-cell">
+            <span class="status-badge" [class]="getStatusClass(product.status)">
+              {{ getStatusText(product.status) }}
+            </span>
+          </td>
+          <td class="date-cell">{{ product.dateAdded }}</td>
+          <td class="actions-cell">
+            <button class="action-btn edit-btn" (click)="editProduct(product)" title="Edit">
+              <span>✏️</span>
+            </button>
+            <button class="action-btn delete-btn" (click)="deleteProduct(product)" title="Delete">
+              <span>🗑️</span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="filteredProducts.length === 0" class="empty-state">
+    <div class="empty-icon">📦</div>
+    <h3>No Products Found</h3>
+    <p>Try adjusting your filters or add a new fragrance to the collection.</p>
+  </div>
+</div>

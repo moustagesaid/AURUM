@@ -24,6 +24,12 @@
       "price": 110,
       "image": "assets/images/nocturne-bottle.jpg",
       "stock": 35
+    },
+    {
+      "name": "Moustage",
+      "price": 123,
+      "image": "said",
+      "id": 3
     }
   ],
   "orders": [
