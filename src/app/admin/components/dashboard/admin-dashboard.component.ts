@@ -165,7 +165,15 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
           {
             label: 'Revenue',
             data,
-            borderColor: '#C8A44F',
+            borderColor: (context: any) => {
+              const chart = context.chart;
+              const { ctx } = chart;
+              const gradient = ctx.createLinearGradient(0, 0, chart.width, 0);
+              gradient.addColorStop(0, 'rgba(200, 164, 79, 0.3)');
+              gradient.addColorStop(0.5, '#C8A44F');
+              gradient.addColorStop(1, 'rgba(200, 164, 79, 0.9)');
+              return gradient;
+            },
             backgroundColor: (context: any) => {
               const chart = context.chart;
               const { ctx } = chart;
@@ -176,7 +184,11 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
             },
             tension: 0.35,
             fill: true,
-            borderWidth: 2
+            borderWidth: 2,
+            pointRadius: 3,
+            pointBackgroundColor: '#C8A44F',
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: '#ffffff'
           }
         ]
       },
@@ -191,6 +203,9 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
             },
             grid: {
               display: false
+            },
+            border: {
+              display: false
             }
           },
           y: {
@@ -199,7 +214,10 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
               font: { family: 'Montserrat, sans-serif', size: 11 }
             },
             grid: {
-              color: 'rgba(255,255,255,0.03)'
+              display: false
+            },
+            border: {
+              display: false
             }
           }
         },

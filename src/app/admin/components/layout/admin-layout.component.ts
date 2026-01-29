@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 })
 export class AdminLayoutComponent {
   isSidebarCollapsed = false;
+  isMobileSidebarOpen = false;
   activeSection = 'dashboard';
   currentUser = {
     name: 'Admin',
@@ -27,6 +28,7 @@ export class AdminLayoutComponent {
 
   toggleSidebar() {
     this.isSidebarCollapsed = !this.isSidebarCollapsed;
+    this.isMobileSidebarOpen = !this.isMobileSidebarOpen;
   }
 
   setActiveSection(sectionId: string) {

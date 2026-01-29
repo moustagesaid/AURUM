@@ -82,8 +82,42 @@ export class ProductListComponent implements OnInit {
   categories = ['all', 'Premium', 'Luxury', 'Classic', 'Signature', 'Limited'];
   statuses = ['all', 'active', 'inactive', 'draft'];
 
+  isCreationStudioOpen = false;
+  draftProduct: Product = {
+    id: 0,
+    name: '',
+    price: 0,
+    image: '',
+    category: '',
+    stock: 0,
+    status: 'draft',
+    dateAdded: ''
+  };
+
   ngOnInit(): void {
     this.filterProducts();
+  }
+
+  openCreationStudio(): void {
+    this.resetDraft();
+    this.isCreationStudioOpen = true;
+  }
+
+  closeCreationStudio(): void {
+    this.isCreationStudioOpen = false;
+  }
+
+  private resetDraft(): void {
+    this.draftProduct = {
+      id: 0,
+      name: '',
+      price: 0,
+      image: '',
+      category: '',
+      stock: 0,
+      status: 'draft',
+      dateAdded: ''
+    };
   }
 
   filterProducts(): void {
@@ -117,6 +151,32 @@ export class ProductListComponent implements OnInit {
       this.products = this.products.filter(p => p.id !== product.id);
       this.filterProducts();
     }
+  }
+
+  submitCreation(): void {
+    if (
+      !this.draftProduct.name ||
+      !this.draftProduct.image ||
+      !this.draftProduct.category ||
+      this.draftProduct.price <= 0
+    ) {
+      return;
+    }
+
+    const nextId = this.products.length
+      ? Math.max(...this.products.map((p) => p.id)) + 1
+      : 1;
+
+    const created: Product = {
+      ...this.draftProduct,
+      id: nextId,
+      status: 'active',
+      dateAdded: new Date().toISOString().slice(0, 10)
+    };
+
+    this.products = [created, ...this.products];
+    this.filterProducts();
+    this.isCreationStudioOpen = false;
   }
 
   getStatusClass(status: string): string {

@@ -310,13 +310,37 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 1.2rem;
+  font-size: 0;
 }
 
 .sidebar-toggle:hover {
   border-color: var(--gold-primary);
   color: var(--gold-primary);
   background: var(--glass-bg);
+}
+
+.sidebar-toggle .burger-line {
+  width: 18px;
+  height: 2px;
+  background: var(--gold-primary);
+  border-radius: 999px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.sidebar-toggle .burger-line:nth-child(2) {
+  width: 14px;
+}
+
+.sidebar-toggle.is-open .burger-line:nth-child(1) {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.sidebar-toggle.is-open .burger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.sidebar-toggle.is-open .burger-line:nth-child(3) {
+  transform: translateY(-4px) rotate(-45deg);
 }
 
 .search-container {

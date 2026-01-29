@@ -5,7 +5,7 @@
       <h1 class="page-title">Product Vault</h1>
       <p class="page-subtitle">Manage your luxury fragrance collection</p>
     </div>
-    <button class="add-product-btn">
+    <button class="add-product-btn" type="button" (click)="openCreationStudio()">
       <span class="btn-icon">+</span>
       <span>Add New Fragrance</span>
     </button>
@@ -96,5 +96,93 @@
     <div class="empty-icon">📦</div>
     <h3>No Products Found</h3>
     <p>Try adjusting your filters or add a new fragrance to the collection.</p>
+  </div>
+
+  <!-- Creation Studio Modal -->
+  <div class="creation-overlay" *ngIf="isCreationStudioOpen">
+    <div class="creation-modal">
+      <header class="creation-header">
+        <div>
+          <h2 class="creation-title">Creation Studio</h2>
+          <p class="creation-subtitle">Compose a new signature for the AURUM vault</p>
+        </div>
+        <button class="creation-close" type="button" (click)="closeCreationStudio()">
+          ✕
+        </button>
+      </header>
+
+      <form class="creation-form" (ngSubmit)="submitCreation()">
+        <div class="creation-grid">
+          <label class="floating-label">
+            <input
+              type="text"
+              name="name"
+              [(ngModel)]="draftProduct.name"
+              required
+              placeholder=" "
+            />
+            <span class="label-text">Fragrance Name</span>
+          </label>
+
+          <label class="floating-label">
+            <input
+              type="number"
+              name="price"
+              [(ngModel)]="draftProduct.price"
+              min="0"
+              step="0.01"
+              required
+              placeholder=" "
+            />
+            <span class="label-text">Price (USD)</span>
+          </label>
+        </div>
+
+        <div class="creation-grid">
+          <label class="floating-label">
+            <input
+              type="text"
+              name="category"
+              [(ngModel)]="draftProduct.category"
+              required
+              placeholder=" "
+            />
+            <span class="label-text">Collection Category</span>
+          </label>
+
+          <label class="floating-label">
+            <input
+              type="number"
+              name="stock"
+              [(ngModel)]="draftProduct.stock"
+              min="0"
+              required
+              placeholder=" "
+            />
+            <span class="label-text">Initial Stock</span>
+          </label>
+        </div>
+
+        <label class="floating-label full-width">
+          <input
+            type="text"
+            name="image"
+            [(ngModel)]="draftProduct.image"
+            required
+            placeholder=" "
+          />
+          <span class="label-text">Bottle Artwork URL</span>
+        </label>
+
+        <div class="creation-footer">
+          <button type="button" class="secondary-btn" (click)="closeCreationStudio()">
+            Cancel
+          </button>
+          <button type="submit" class="primary-btn">
+            Save to Vault
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

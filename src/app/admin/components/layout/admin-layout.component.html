@@ -1,6 +1,10 @@
 <div class="admin-layout">
   <!-- Luxury Sidebar -->
-  <aside class="sidebar" [class.collapsed]="isSidebarCollapsed">
+  <aside
+    class="sidebar"
+    [class.collapsed]="isSidebarCollapsed"
+    [class.mobile-open]="isMobileSidebarOpen"
+  >
     <!-- Logo -->
     <div class="sidebar-header">
       <div class="logo-container">
@@ -54,8 +58,15 @@
     <!-- Top Bar -->
     <header class="top-bar">
       <div class="top-bar-left">
-        <button class="sidebar-toggle" (click)="toggleSidebar()">
-          <span>☰</span>
+        <button
+          class="sidebar-toggle"
+          [class.is-open]="isMobileSidebarOpen"
+          (click)="toggleSidebar()"
+          aria-label="Toggle navigation"
+        >
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
         </button>
         <div class="search-container">
           <input type="text" placeholder="Search..." class="search-input">
