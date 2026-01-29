@@ -14,30 +14,28 @@
   </div>
 </div>
 
-<!-- Section A: Aurum Signature Packaging -->
-<section class="aurum-signature-packaging">
-  <div class="container">
-    <div class="packaging-content">
-      <!-- Left Column: Glass Frame -->
-      <div class="packaging-frame">
-        <div class="image-placeholder">
-          <img src="assets/Wpackage.png" alt="Women's Luxury Packaging" class="package-image w-package">
-          <img src="assets/Mpackage.png" alt="Men's Luxury Packaging" class="package-image m-package">
-        </div>
-      </div>
-
-      <!-- Right Column: Text Content -->
-      <div class="packaging-details">
-        <h2 class="packaging-title">THE AURUM SIGNATURE PACKAGING</h2>
-        <p class="packaging-description">
-          Every bottle is wrapped in hand-pressed silk paper and sealed with 24k gold wax. An unforgettable unboxing experience.
-        </p>
-        <button class="packaging-btn" [routerLink]="['/products']">DISCOVER OUR GIFTING SERVICE</button>
-      </div>
+<!-- Section A: The Art of the Gift – Gifting Service -->
+<section class="aurum-signature-packaging gifting-section">
+  <div class="gifting-gradient-overlay" aria-hidden="true"></div>
+  <div class="gifting-inner">
+    <div class="content-card">
+      <p class="gifting-label">GIFTING SERVICE</p>
+      <h2 class="gifting-title">
+        <span class="gifting-title-line">The Art of</span>
+        <span class="gifting-title-accent">the Gift</span>
+      </h2>
+      <div class="gifting-title-underline" aria-hidden="true"></div>
+      <p class="gifting-subtitle">The AURUM Signature Packaging</p>
+      <p class="gifting-body">
+        Every bottle is wrapped in hand-pressed silk paper and sealed with 24k gold wax. An unforgettable unboxing experience.
+      </p>
+      <a [routerLink]="['/products']" class="btn-outline">
+        <span>Discover Our Gifting Service</span>
+        <span class="btn-arrow" aria-hidden="true">→</span>
+      </a>
     </div>
   </div>
 </section>
-
 <!-- Section B: Why Choose Us -->
 <section class="why-choose-us">
   <!-- Video Background -->
@@ -137,17 +135,17 @@
         <div class="footer-column">
           <h4>Shop</h4>
           <ul>
-            <li><a [routerLink]="['/collection']">All Fragrances</a></li>
-            <li><a [routerLink]="['/collection', 'aurum']">Aurum</a></li>
-            <li><a [routerLink]="['/collection', 'nocturne']">Nocturne</a></li>
-            <li><a [routerLink]="['/gift-sets']">Gift Sets</a></li>
+            <li><a [routerLink]="['/products']">All Fragrances</a></li>
+            <li><a [routerLink]="['/products']">For Women</a></li>
+            <li><a [routerLink]="['/products']">For Men</a></li>
+            <li><a [routerLink]="['/products']">Our Packs</a></li>
           </ul>
         </div>
 
         <div class="footer-column">
           <h4>About Us</h4>
           <ul>
-            <li><a [routerLink]="['/story']">Our Story</a></li>
+            <li><a [routerLink]="['/about']">Our Story</a></li>
             <li><a [routerLink]="['/craftsmanship']">Craftsmanship</a></li>
             <li><a [routerLink]="['/ingredients']">Rare Ingredients</a></li>
             <li><a [routerLink]="['/sustainability']">Sustainability</a></li>
