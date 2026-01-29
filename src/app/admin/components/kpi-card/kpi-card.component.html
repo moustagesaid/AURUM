@@ -1,0 +1,38 @@
+<div class="kpi-card">
+  <div class="kpi-card-inner-glow"></div>
+  
+  <div class="kpi-card-content">
+    <div class="kpi-card-main">
+      <p class="kpi-card-title">{{ title() }}</p>
+      <h3 class="kpi-card-value">
+        @if (isCurrency() && typeof value() === 'number') {
+          {{ value() | currency:'USD':'symbol':'1.0-0' }}
+        } @else {
+          <span class="kpi-value-main">{{ getMainValue() }}</span>
+          @if (hasSubValue()) {
+            <span class="kpi-value-sub"> {{ getSubValue() }}</span>
+          }
+        }
+      </h3>
+      @if (subtitle()) {
+        <p class="kpi-card-subtitle">{{ subtitle() }}</p>
+      }
+    </div>
+    
+    <div class="kpi-card-icon">
+      <span class="material-icons-outlined">{{ icon() }}</span>
+    </div>
+  </div>
+
+  @if (trend() !== 0) {
+    <div class="kpi-card-trend">
+      <span [class]="trend() >= 0 ? 'trend-positive' : 'trend-negative'" class="trend-badge">
+        <span class="material-icons-outlined trend-icon">
+          {{ trend() >= 0 ? 'trending_up' : 'trending_down' }}
+        </span>
+        {{ Math.abs(trend()) }}%
+      </span>
+      <span class="trend-label">vs last month</span>
+    </div>
+  }
+</div>

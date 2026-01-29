@@ -1,6 +1,17 @@
-<section class="hero-section" [ngStyle]="{ 'background-image': currentBackgroundImage }">
+<section class="hero-section">
+  <!-- Background layer (scaled on load via GSAP) -->
+  <div class="hero-bg" [ngStyle]="{ 'background-image': currentBackgroundImage }" aria-hidden="true"></div>
   <!-- Caustic light patterns -->
   <div class="caustics"></div>
+
+  <!-- Hero title: AURUM – split-text reveal via GSAP -->
+  <div class="hero-title-wrap mask-text">
+    <h1 class="hero-title" aria-label="AURUM">
+      @for (letter of heroTitleLetters; track letter + $index) {
+        <span class="hero-title-letter" [attr.data-index]="$index">{{ letter }}</span>
+      }
+    </h1>
+  </div>
   
   <!-- Floating Glassmorphism Cards -->
   <div class="floating-card card-1">

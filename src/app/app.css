@@ -1,3 +1,26 @@
+/* Route container – cross-fade transition */
+.route-container {
+  position: relative;
+  opacity: 1;
+}
+
+/* Mask text – for split-text / letter reveal (overflow hidden on wrapper) */
+.mask-text {
+  overflow: hidden;
+  display: inline-block;
+}
+
+.mask-text .hero-title-letter {
+  will-change: transform;
+}
+
+/* Reusable gold button hover (use with [@hoverGold]="hoverState" + mouseenter/leave) */
+.btn-hover-gold {
+  transition: background-color 0.28s cubic-bezier(0.25, 0.8, 0.25, 1),
+    color 0.28s cubic-bezier(0.25, 0.8, 0.25, 1),
+    letter-spacing 0.28s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
 /* Brand Band - Professional Scrolling Banner */
 .brand-band {
   position: relative;

@@ -1,9 +1,11 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Hero } from '../hero/hero';
 import { OrderService, Order } from '../services/order.service';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 @Component({
   selector: 'app-home',
@@ -12,13 +14,16 @@ import { OrderService, Order } from '../services/order.service';
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
-export class Home {
+export class Home implements AfterViewInit, OnDestroy {
   // Video state management
   videoActive = false;
   textHidden = false;
   indicatorHidden = false;
 
   @ViewChild('videoPlayer', { static: false }) videoPlayer!: ElementRef<HTMLVideoElement>;
+
+  private scrollTriggers: ScrollTrigger[] = [];
+  private heroTl: gsap.core.Timeline | null = null;
 
   // Signature Collection with Olfactory Pyramid
   signatureCollection = [
@@ -101,7 +106,120 @@ export class Home {
   };
 
 
-  constructor(private orderService: OrderService) {}
+  constructor(
+    private orderService: OrderService,
+    private elementRef: ElementRef<HTMLElement>
+  ) {}
+
+  ngAfterViewInit(): void {
+    this.initHeroEntrance();
+    this.initGlassCardsScrollTrigger();
+    this.initParallax();
+    this.initBackgroundTransition();
+  }
+
+  ngOnDestroy(): void {
+    this.scrollTriggers.forEach(st => st.kill());
+    this.scrollTriggers = [];
+    this.heroTl?.kill();
+  }
+
+  /** Hero: background scale 1.2 -> 1, title letters slide up (stagger), buttons from sides */
+  private initHeroEntrance(): void {
+    const host = this.elementRef.nativeElement;
+    const heroSection = host.querySelector('app-hero');
+    if (!heroSection) return;
+
+    const bg = heroSection.querySelector('.hero-bg') as HTMLElement;
+    const letters = heroSection.querySelectorAll('.hero-title-letter');
+    const btnWomen = heroSection.querySelector('.btn-women') as HTMLElement;
+    const btnMen = heroSection.querySelector('.btn-men') as HTMLElement;
+    const ctaBtn = heroSection.querySelector('.cta-button') as HTMLElement;
+
+    const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+    if (bg) {
+      gsap.set(bg, { scale: 1.2 });
+      tl.to(bg, { scale: 1, duration: 3, ease: 'power2.out' }, 0);
+    }
+
+    if (letters.length) {
+      gsap.set(letters, { yPercent: 100 });
+      tl.to(letters, {
+        yPercent: 0,
+        duration: 0.8,
+        stagger: 0.05,
+        ease: 'power2.out',
+      }, 0.4);
+    }
+
+    if (btnWomen) {
+      gsap.set(btnWomen, { x: -80, opacity: 0 });
+      tl.to(btnWomen, { x: 0, opacity: 1, duration: 0.9, ease: 'power2.out' }, 0.6);
+    }
+    if (btnMen) {
+      gsap.set(btnMen, { x: 80, opacity: 0 });
+      tl.to(btnMen, { x: 0, opacity: 1, duration: 0.9, ease: 'power2.out' }, 0.6);
+    }
+    if (ctaBtn) {
+      gsap.set(ctaBtn, { y: 30, opacity: 0 });
+      tl.to(ctaBtn, { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }, 0.7);
+    }
+
+    this.heroTl = tl;
+  }
+
+  /** Glass cards (gifting + reviews): float up (y: 100 -> 0) with opacity on scroll */
+  private initGlassCardsScrollTrigger(): void {
+    const host = this.elementRef.nativeElement;
+    const cards = host.querySelectorAll('.content-card, .glass-card');
+    cards.forEach((el, i) => {
+      const card = el as HTMLElement;
+      gsap.set(card, { y: 100, opacity: 0 });
+      const st = ScrollTrigger.create({
+        trigger: card,
+        start: 'top 85%',
+        end: 'top 50%',
+        scroller: window,
+        onEnter: () => {
+          gsap.to(card, {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: 'power2.out',
+            overwrite: true,
+          });
+        },
+      });
+      this.scrollTriggers.push(st);
+    });
+  }
+
+  /** Parallax: gifting section background moves slower than scroll for depth */
+  private initParallax(): void {
+    const host = this.elementRef.nativeElement;
+    const giftingSection = host.querySelector('.gifting-section') as HTMLElement;
+    if (!giftingSection) return;
+
+    const st = ScrollTrigger.create({
+      trigger: giftingSection,
+      start: 'top bottom',
+      end: 'bottom top',
+      scroller: window,
+      scrub: 0.5,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const offset = (progress - 0.5) * 80;
+        giftingSection.style.backgroundPosition = `center ${offset}px`;
+      },
+    });
+    this.scrollTriggers.push(st);
+  }
+
+  /** Placeholder for smooth background color transition (dark <-> light sections) */
+  private initBackgroundTransition(): void {
+    // Sections use their own backgrounds; add a body/wrapper transition here if needed
+  }
 
   // Video control methods
   onPlayButtonClick() {

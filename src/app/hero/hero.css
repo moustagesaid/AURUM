@@ -2,10 +2,7 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background-color: #2a2a2a; /* Dark charcoal gray */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: #2a2a2a;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +13,40 @@
   margin-bottom: 0;
 }
 
-/* Background is now bound via [ngStyle] on .hero-section */
+/* Background layer – scaled on load via GSAP (1.2 -> 1) */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+/* Hero title – split-text mask for letter reveal */
+.hero-title-wrap {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.hero-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  color: #f8f5ef;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.02em;
+}
+
+.hero-title-letter {
+  display: inline-block;
+  /* Initial state for GSAP: y offset so letters slide up from behind mask */
+}
 
 /* Bottom actions row: FOR WOMEN | SHOP NOW | FOR MEN */
 .hero-bottom-actions {

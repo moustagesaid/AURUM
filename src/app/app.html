@@ -1,3 +1,5 @@
 <app-header />
 <app-toast />
-<router-outlet />
+<div class="route-container" [@routeCrossFade]="routeAnimationKey">
+  <router-outlet />
+</div>

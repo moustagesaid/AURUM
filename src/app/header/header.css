@@ -15,8 +15,8 @@
   box-sizing: border-box;
   animation: headerSlideIn 1s cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* --- Glassmorphism Effect --- */
-  background: rgba(60, 60, 60, 0.4); /* Semi-transparent background */
+  /* --- Glassmorphism Effect - Theme Aware --- */
+  background: var(--header-bg); /* Theme-aware background */
   -webkit-backdrop-filter: blur(15px); /* For Safari */
   backdrop-filter: blur(15px); /* The frosted glass blur */
   border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle edge highlight */
@@ -24,9 +24,9 @@
 }
 
 .navbar-container:hover {
-  background: rgba(60, 60, 60, 0.6);
-  border-color: rgba(212, 175, 55, 0.2);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  background: var(--header-bg);
+  border-color: var(--accent-gold);
+  box-shadow: var(--shadow-card);
 }
 
 @keyframes headerSlideIn {
@@ -109,12 +109,31 @@
 
 /* Golden Pill Navigation Links */
 .nav-link {
-  color: #f5f5f5; /* White/off-white text */
+  color: var(--text-color); /* Theme-aware text color */
   background: transparent; /* Transparent background */
   padding: 8px 24px; /* Breathing room */
   border-radius: 50px; /* Fully rounded pill shape */
   transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth and liquid */
   display: inline-block;
+}
+
+/* Gold line draws left to right on hover */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-light));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.nav-link:hover::after,
+.nav-link.active-nav-link::after {
+  transform: scaleX(1);
 }
 
 .icon-link, .hamburger-icon {
@@ -134,18 +153,18 @@
 /* Gold Header Icons */
 .nav-right .icon-link:first-child,
 .nav-right .icon-link:nth-child(2) {
-  color: #bf9e60; /* Gold color for search and user icons */
+  color: var(--accent-gold); /* Theme-aware gold color for search and user icons */
 }
 
 .nav-right .icon-link:first-child:hover,
 .nav-right .icon-link:nth-child(2):hover {
-  color: #e3c689; /* Lighter gold on hover */
+  color: var(--accent-gold-light); /* Theme-aware lighter gold on hover */
 }
 
 /* Golden Pill Hover Effect */
 .nav-link:hover {
-  background: linear-gradient(90deg, #bf9e60, #e3c689); /* Gold gradient */
-  color: #1a1a1d; /* Dark grey/black text for contrast */
+  background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-light)); /* Theme-aware gold gradient */
+  color: var(--bg-color); /* Theme-aware text color for contrast */
   box-shadow: 0 0 15px rgba(191, 158, 96, 0.4); /* Subtle glow */
   transform: scale(1.05); /* Slight scale for tactile feel */
 }
@@ -177,8 +196,8 @@
 
 /* Active Link - Golden Pill Style */
 .nav-link.active-nav-link {
-  background: linear-gradient(90deg, #bf9e60, #e3c689); /* Gold gradient */
-  color: #1a1a1d; /* Dark grey/black text for contrast */
+  background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-light)); /* Theme-aware gold gradient */
+  color: var(--bg-color); /* Theme-aware text color for contrast */
   box-shadow: 0 0 15px rgba(191, 158, 96, 0.4); /* Subtle glow */
   transform: scale(1.05); /* Slight scale for tactile feel */
 }
@@ -298,12 +317,12 @@
   align-items: center;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  color: #bf9e60; /* Gold color for cart icon */
+  color: var(--accent-gold); /* Theme-aware gold color for cart icon */
 }
 
 .cart-icon-container:hover {
   transform: scale(1.1);
-  color: #e3c689; /* Lighter gold on hover */
+  color: var(--accent-gold-light); /* Theme-aware lighter gold on hover */
 }
 
 .cart-icon-container:active {

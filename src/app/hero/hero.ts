@@ -10,6 +10,9 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink, NgStyle]
 })
 export class Hero {
+  /** Letters for split-text title reveal (GSAP in parent) */
+  readonly heroTitleLetters: string[] = 'AURUM'.split('');
+
   // Background images (use existing assets; swap as needed)
   readonly defaultBg = 'url("assets/herosection.png")';
   readonly menBg = 'url("assets/menhome.png")';
