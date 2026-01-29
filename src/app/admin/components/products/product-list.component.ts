@@ -76,11 +76,16 @@ export class ProductListComponent implements OnInit {
 
   filteredProducts: Product[] = [...this.products];
   searchTerm = '';
+  categoryFilter = '';
   selectedCategory = 'all';
   selectedStatus = 'all';
 
   categories = ['all', 'Premium', 'Luxury', 'Classic', 'Signature', 'Limited'];
   statuses = ['all', 'active', 'inactive', 'draft'];
+
+  get lowStockCount(): number {
+    return this.products.filter(p => p.stock < 20).length;
+  }
 
   isCreationStudioOpen = false;
   draftProduct: Product = {
@@ -123,11 +128,24 @@ export class ProductListComponent implements OnInit {
   filterProducts(): void {
     this.filteredProducts = this.products.filter(product => {
       const matchesSearch = product.name.toLowerCase().includes(this.searchTerm.toLowerCase());
+      const matchesCategoryFilter = !this.categoryFilter ||
+        product.category.toLowerCase().includes(this.categoryFilter.toLowerCase());
       const matchesCategory = this.selectedCategory === 'all' || product.category === this.selectedCategory;
       const matchesStatus = this.selectedStatus === 'all' || product.status === this.selectedStatus;
-      
-      return matchesSearch && matchesCategory && matchesStatus;
+      return matchesSearch && matchesCategoryFilter && matchesCategory && matchesStatus;
     });
+  }
+
+  getStockClass(stock: number): string {
+    if (stock <= 0) return 'stock-out';
+    if (stock < 20) return 'stock-low';
+    return 'stock-ok';
+  }
+
+  getStockLabel(stock: number): string {
+    if (stock <= 0) return 'Out of Stock';
+    if (stock < 20) return 'Low Stock';
+    return 'In Stock';
   }
 
   onSearchChange(): void {

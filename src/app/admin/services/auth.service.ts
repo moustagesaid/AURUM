@@ -1,6 +1,7 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { isPlatformBrowser } from '@angular/common';
 
 export interface User {
@@ -11,12 +12,17 @@ export interface User {
   name: string;
 }
 
+interface DbJson {
+  users: User[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:3000';
+  /** Credentials are validated against users in assets/data/db.json */
+  private dbUrl = 'assets/data/db.json';
 
   constructor(
     private http: HttpClient,
@@ -24,28 +30,28 @@ export class AuthService {
   ) { }
 
   login(username: string, password: string): Observable<boolean> {
-    return this.http.get<User[]>(`${this.apiUrl}/users?username=${username}&password=${password}&role=admin`)
-      .pipe(
-        map(users => {
-          console.log('Auth service - users found:', users);
-          if (users && users.length > 0) {
-            const user = users[0];
-            const sessionData = {
-              id: user.id,
-              username: user.username,
-              name: user.name,
-              role: user.role
-            };
-            if (isPlatformBrowser(this.platformId)) {
-              localStorage.setItem('adminSession', JSON.stringify(sessionData));
-            }
-            console.log('Auth service - session stored:', sessionData);
-            return true;
+    return this.http.get<DbJson>(this.dbUrl).pipe(
+      map(db => {
+        const users = db?.users ?? [];
+        const user = users.find(
+          u => u.role === 'admin' && u.username === username && u.password === password
+        );
+        if (user) {
+          const sessionData = {
+            id: user.id,
+            username: user.username,
+            name: user.name,
+            role: user.role
+          };
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem('adminSession', JSON.stringify(sessionData));
           }
-          console.log('Auth service - no users found');
-          return false;
-        })
-      );
+          return true;
+        }
+        return false;
+      }),
+      catchError(() => of(false))
+    );
   }
 
   logout(): void {

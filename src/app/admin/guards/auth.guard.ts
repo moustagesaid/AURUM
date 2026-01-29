@@ -13,22 +13,17 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   canActivate(): boolean {
-    // Only access localStorage in browser environment
-    if (isPlatformBrowser(this.platformId)) {
-      const adminSession = localStorage.getItem('adminSession');
-      console.log('AuthGuard - checking session:', adminSession);
-
-      if (adminSession) {
-        console.log('AuthGuard - session found, allowing access');
-        return true;
-      } else {
-        console.log('AuthGuard - no session found, redirecting to login');
-        this.router.navigate(['/admin/login']);
-        return false;
-      }
+    // Only allow access in the browser when we have a valid session
+    if (!isPlatformBrowser(this.platformId)) {
+      return false; // Block during SSR; client will run guard again after hydration
     }
 
-    // During SSR, allow access (will be checked client-side)
-    return true;
+    const adminSession = localStorage.getItem('adminSession');
+    if (adminSession) {
+      return true;
+    }
+
+    this.router.navigate(['/admin/login']);
+    return false;
   }
 }

@@ -1,6 +1,6 @@
 <section class="hero-section">
   <!-- Background layer (scaled on load via GSAP) -->
-  <div class="hero-bg" [ngStyle]="{ 'background-image': currentBackgroundImage }" aria-hidden="true"></div>
+  <div class="hero-bg" [ngStyle]="{ 'background-image': currentBackgroundImage() }" aria-hidden="true"></div>
   <!-- Caustic light patterns -->
   <div class="caustics"></div>
 
@@ -73,33 +73,32 @@
       <div class="bottle-base"></div>
     </div>
   </div>
-  
-  <!-- Size Selector -->
-  <div class="size-selector">Select Size: 50ml | 100ml</div>
-  
+
   <!-- Bottom actions row (same line) -->
   <div class="hero-bottom-actions">
-    <button
+    <a
       class="gender-btn btn-women"
-      type="button"
+      [routerLink]="['/products']"
+      [queryParams]="{ category: 'women' }"
       (mouseenter)="setBackground('women')"
       (mouseleave)="setBackground('default')"
     >
       FOR WOMEN
-    </button>
+    </a>
 
     <button class="cta-button" [routerLink]="['/products']">
       <span class="button-text">SHOP NOW</span>
       <div class="button-shimmer"></div>
     </button>
 
-    <button
+    <a
       class="gender-btn btn-men"
-      type="button"
+      [routerLink]="['/products']"
+      [queryParams]="{ category: 'men' }"
       (mouseenter)="setBackground('men')"
       (mouseleave)="setBackground('default')"
     >
       FOR MEN
-    </button>
+    </a>
   </div>
 </section>

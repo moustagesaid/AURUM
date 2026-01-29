@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal, computed } from '@angular/core';
 import { NgStyle } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-hero',
@@ -10,19 +11,29 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink, NgStyle]
 })
 export class Hero {
+  private themeService = inject(ThemeService);
+
   /** Letters for split-text title reveal (GSAP in parent) */
   readonly heroTitleLetters: string[] = 'AURUM'.split('');
 
   // Background images (use existing assets; swap as needed)
   readonly defaultBg = 'url("assets/herosection.png")';
+  readonly lightBg = 'url("assets/lighthero.png")';
   readonly menBg = 'url("assets/menhome.png")';
   readonly womenBg = 'url("assets/bgwomenhero.jpg")';
 
-  currentBackgroundImage = this.defaultBg;
+  /** Which hero variant is active (default uses theme to pick dark/light bg) */
+  private section = signal<'default' | 'men' | 'women'>('default');
+
+  /** Hero background image: theme-aware in default, men/women on hover */
+  currentBackgroundImage = computed(() => {
+    const s = this.section();
+    if (s === 'men') return this.menBg;
+    if (s === 'women') return this.womenBg;
+    return this.themeService.currentTheme() === 'light' ? this.lightBg : this.defaultBg;
+  });
 
   setBackground(type: 'men' | 'women' | 'default') {
-    if (type === 'men') this.currentBackgroundImage = this.menBg;
-    else if (type === 'women') this.currentBackgroundImage = this.womenBg;
-    else this.currentBackgroundImage = this.defaultBg;
+    this.section.set(type);
   }
 }

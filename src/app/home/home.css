@@ -286,10 +286,10 @@
 }
 
 .scrolling-content {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   white-space: nowrap;
-  animation: scroll 5s linear infinite;
+  animation: scroll 30s linear infinite;
   will-change: transform;
 }
 
@@ -340,7 +340,7 @@
   font-style: italic;
 }
 
-/* Scrolling Animation */
+/* Scrolling Animation: right to left, continuous, no stop (duplicate content = seamless loop) */
 @keyframes scroll {
   0% {
     transform: translateX(0);

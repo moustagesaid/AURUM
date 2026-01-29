@@ -115,6 +115,7 @@
   border-radius: 50px; /* Fully rounded pill shape */
   transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth and liquid */
   display: inline-block;
+  white-space: nowrap;
 }
 
 /* Gold line draws left to right on hover */
@@ -150,15 +151,17 @@
   transform: scale(0.95);
 }
 
-/* Gold Header Icons */
-.nav-right .icon-link:first-child,
-.nav-right .icon-link:nth-child(2) {
-  color: var(--accent-gold); /* Theme-aware gold color for search and user icons */
+/* Gold Header Icons – search and user icon links */
+.nav-right a.icon-link {
+  color: var(--accent-gold);
 }
 
-.nav-right .icon-link:first-child:hover,
-.nav-right .icon-link:nth-child(2):hover {
-  color: var(--accent-gold-light); /* Theme-aware lighter gold on hover */
+.nav-right a.icon-link svg {
+  stroke: currentColor;
+}
+
+.nav-right a.icon-link:hover {
+  color: var(--accent-gold-light);
 }
 
 /* Golden Pill Hover Effect */

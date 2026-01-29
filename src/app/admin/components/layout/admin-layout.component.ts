@@ -1,29 +1,29 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule, RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-admin-layout',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, RouterLink, RouterLinkActive],
   templateUrl: './admin-layout.component.html',
   styleUrl: './admin-layout.component.css'
 })
 export class AdminLayoutComponent {
   isSidebarCollapsed = false;
   isMobileSidebarOpen = false;
-  activeSection = 'dashboard';
   currentUser = {
-    name: 'Admin',
-    role: 'Master Curator'
+    name: 'Alexander V.',
+    role: 'Admin'
   };
 
   navigationItems = [
-    { id: 'dashboard', icon: '◆', title: 'Dashboard' },
-    { id: 'products', icon: '⚗', title: 'Product Vault' },
-    { id: 'orders', icon: '📦', title: 'Orders' },
-    { id: 'customers', icon: '👤', title: 'Customers' },
-    { id: 'analytics', icon: '📈', title: 'Analytics' }
+    { path: '/admin/dashboard', exact: true, icon: '◆', title: 'Dashboard' },
+    { path: '/admin/products', exact: true, icon: '⚗', title: 'Products' },
+    { path: '/admin/orders', exact: true, icon: '📦', title: 'Orders' },
+    { path: '/admin/customers', exact: true, icon: '👤', title: 'Customers' },
+    { path: '/admin/analytics', exact: true, icon: '📈', title: 'Analytics' }
   ];
 
   toggleSidebar() {
@@ -31,12 +31,10 @@ export class AdminLayoutComponent {
     this.isMobileSidebarOpen = !this.isMobileSidebarOpen;
   }
 
-  setActiveSection(sectionId: string) {
-    this.activeSection = sectionId;
-  }
+  constructor(private auth: AuthService, private router: Router) {}
 
   logout() {
-    // Handle logout logic
-    console.log('Logout clicked');
+    this.auth.logout();
+    this.router.navigate(['/admin/login']);
   }
 }

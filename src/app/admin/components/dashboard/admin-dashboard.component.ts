@@ -34,7 +34,6 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   recentOrders: Order[] = [];
   currentUser: any = null;
   isLoading: boolean = true;
-  activeSection: string = 'overview';
 
   // Product Vault (add product)
   newProduct = {
@@ -230,15 +229,6 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
     };
 
     this.salesChart = new Chart(ctx, config);
-  }
-
-  logout(): void {
-    this.authService.logout();
-    this.router.navigate(['/admin/login']);
-  }
-
-  setActiveSection(section: string): void {
-    this.activeSection = section;
   }
 
   getStatusColor(status: string): string {

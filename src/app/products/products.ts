@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../services/cart.service';
 import { ToastService } from '../services/toast.service';
 
@@ -20,10 +21,23 @@ export interface Product {
   templateUrl: './products.html',
   styleUrl: './products.css'
 })
-export class Products {
+export class Products implements OnInit {
   selectedCategory: 'men' | 'women' | 'couples' = 'women';
 
-  constructor(private cartService: CartService, private toastService: ToastService) {}
+  constructor(
+    private cartService: CartService,
+    private toastService: ToastService,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      const category = params['category'];
+      if (category === 'men' || category === 'women' || category === 'couples') {
+        this.selectedCategory = category;
+      }
+    });
+  }
 
   products: Product[] = [
     // Women's Products

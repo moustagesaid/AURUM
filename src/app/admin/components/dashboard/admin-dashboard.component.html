@@ -1,75 +1,9 @@
 <div class="dashboard-container">
-  <!-- Luxury Sidebar (icon-only) -->
-  <aside class="sidebar">
-    <div class="sidebar-logo">
-      <span class="logo-mark">A</span>
-    </div>
-
-    <nav class="sidebar-nav">
-      <button
-        type="button"
-        class="nav-icon-button"
-        [class.active]="activeSection === 'overview'"
-        (click)="setActiveSection('overview')"
-        title="Overview"
-      >
-        <span class="nav-icon">◆</span>
-      </button>
-
-      <button
-        type="button"
-        class="nav-icon-button"
-        [class.active]="activeSection === 'analytics'"
-        (click)="setActiveSection('analytics')"
-        title="Analytics"
-      >
-        <span class="nav-icon">📈</span>
-      </button>
-
-      <button
-        type="button"
-        class="nav-icon-button"
-        [class.active]="activeSection === 'products'"
-        (click)="setActiveSection('products')"
-        title="Product Vault"
-      >
-        <span class="nav-icon">⚗</span>
-      </button>
-
-      <button
-        type="button"
-        class="nav-icon-button"
-        [class.active]="activeSection === 'orders'"
-        (click)="setActiveSection('orders')"
-        title="Orders"
-      >
-        <span class="nav-icon">📦</span>
-      </button>
-
-      <button
-        type="button"
-        class="nav-icon-button"
-        [class.active]="activeSection === 'customers'"
-        (click)="setActiveSection('customers')"
-        title="Customers"
-      >
-        <span class="nav-icon">👤</span>
-      </button>
-    </nav>
-
-    <div class="sidebar-footer">
-      <button class="nav-icon-button logout" type="button" (click)="logout()" title="Logout">
-        <span class="nav-icon">⟵</span>
-      </button>
-    </div>
-  </aside>
-
-  <!-- Main Content -->
   <main class="main-content">
     <header class="content-header">
       <div>
         <h1 class="page-title">Command Center</h1>
-        <p class="page-subtitle">AURUM Back Office · Curating excellence behind every drop</p>
+        <p class="page-subtitle">Manage high-value transactions and shipments.</p>
       </div>
       <div class="header-meta">
         <span class="last-updated">Last updated: {{ !isLoading ? 'Just now' : 'Loading...' }}</span>
