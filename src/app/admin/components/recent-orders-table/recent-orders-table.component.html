@@ -1,0 +1,41 @@
+<div class="orders-table-container">
+  <div class="orders-table-header">
+    <h3 class="orders-table-title">Recent Orders</h3>
+    <button class="orders-table-view-all">View All</button>
+  </div>
+  
+  <div class="orders-table-wrapper">
+    <table class="orders-table">
+      <thead>
+        <tr class="orders-table-header-row">
+          <th class="orders-table-th">ORDER ID</th>
+          <th class="orders-table-th">PRODUCT</th>
+          <th class="orders-table-th">CUSTOMER</th>
+          <th class="orders-table-th">DATE</th>
+          <th class="orders-table-th">STATUS</th>
+          <th class="orders-table-th">AMOUNT</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (order of orders(); track order.id) {
+          <tr class="orders-table-row">
+            <td class="orders-table-td orders-table-td-bold">{{ order.id }}</td>
+            <td class="orders-table-td">{{ order.product }}</td>
+            <td class="orders-table-td">{{ order.customer }}</td>
+            <td class="orders-table-td orders-table-td-date">
+              {{ order.date | date:'MMM d, y' }}
+            </td>
+            <td class="orders-table-td">
+              <span [class]="getStatusClass(order.status)" class="status-badge">
+                {{ order.status }}
+              </span>
+            </td>
+            <td class="orders-table-td orders-table-td-bold">
+              {{ order.amount | currency:'USD':'symbol':'1.2-2' }}
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -3,11 +3,12 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../services/cart.service';
 import { CartModalComponent } from '../cart-modal/cart-modal.component';
+import { ThemeToggleComponent } from '../theme-toggle.component';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive, CommonModule, CartModalComponent],
+  imports: [RouterLink, RouterLinkActive, CommonModule, CartModalComponent, ThemeToggleComponent],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
