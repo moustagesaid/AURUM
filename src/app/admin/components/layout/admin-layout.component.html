@@ -1,0 +1,80 @@
+<div class="admin-layout">
+  <!-- Luxury Sidebar -->
+  <aside class="sidebar" [class.collapsed]="isSidebarCollapsed">
+    <!-- Logo -->
+    <div class="sidebar-header">
+      <div class="logo-container">
+        <span class="logo-mark">A</span>
+        <span class="logo-text" *ngIf="!isSidebarCollapsed">AURUM</span>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sidebar-nav">
+      <button
+        *ngFor="let item of navigationItems"
+        type="button"
+        class="nav-item"
+        [class.active]="activeSection === item.id"
+        (click)="setActiveSection(item.id)"
+        [title]="item.title"
+      >
+        <span class="nav-icon">{{ item.icon }}</span>
+        <span class="nav-label" *ngIf="!isSidebarCollapsed">{{ item.title }}</span>
+      </button>
+    </nav>
+
+    <!-- User Profile -->
+    <div class="sidebar-footer" *ngIf="!isSidebarCollapsed">
+      <div class="user-profile">
+        <div class="user-avatar">
+          <span>{{ currentUser.name.charAt(0) }}</span>
+        </div>
+        <div class="user-details">
+          <div class="user-name">{{ currentUser.name }}</div>
+          <div class="user-role">{{ currentUser.role }}</div>
+        </div>
+      </div>
+      <button class="logout-btn" (click)="logout()">
+        <span class="logout-icon">⟵</span>
+        <span>Logout</span>
+      </button>
+    </div>
+
+    <!-- Collapsed Footer -->
+    <div class="sidebar-footer-collapsed" *ngIf="isSidebarCollapsed">
+      <button class="logout-btn-collapsed" (click)="logout" title="Logout">
+        <span>⟵</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="main-content" [class.expanded]="isSidebarCollapsed">
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <div class="top-bar-left">
+        <button class="sidebar-toggle" (click)="toggleSidebar()">
+          <span>☰</span>
+        </button>
+        <div class="search-container">
+          <input type="text" placeholder="Search..." class="search-input">
+          <span class="search-icon">🔍</span>
+        </div>
+      </div>
+      
+      <div class="top-bar-right">
+        <div class="admin-profile">
+          <div class="admin-avatar">
+            <span>{{ currentUser.name.charAt(0) }}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content Area -->
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

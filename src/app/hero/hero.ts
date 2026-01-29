@@ -12,8 +12,8 @@ import { RouterLink } from '@angular/router';
 export class Hero {
   // Background images (use existing assets; swap as needed)
   readonly defaultBg = 'url("assets/herosection.png")';
-  readonly menBg = 'url("assets/bgSaid.png")';
-  readonly womenBg = 'url("assets/bgwomennew.png")';
+  readonly menBg = 'url("assets/menhome.png")';
+  readonly womenBg = 'url("assets/bgwomenhero.jpg")';
 
   currentBackgroundImage = this.defaultBg;
 

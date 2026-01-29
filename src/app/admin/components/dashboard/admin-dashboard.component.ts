@@ -1,20 +1,19 @@
-import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild, NgZone } from '@angular/core';
-import { CommonModule, TitleCasePipe } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild, NgZone, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { OrderService, Order } from '../../../services/order.service';
 import { AuthService } from '../../services/auth.service';
-import { PLATFORM_ID, isPlatformBrowser } from '@angular/common';
 import { gsap } from 'gsap';
-import { Chart, ChartConfiguration, registerables } from 'chart.js';
+import { Chart, ChartConfiguration, registerables, ScriptableContext } from 'chart.js';
 
 Chart.register(...registerables);
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [CommonModule, TitleCasePipe, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.css'
 })
@@ -47,7 +46,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   productSuccessMessage = '';
   productErrorMessage = '';
 
-  private salesChart: Chart | null = null;
+  private salesChart: any = null;
   private hasViewInit = false;
   private hasDataLoaded = false;
 
@@ -158,7 +157,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
     const labels = sorted.map(o => o.date);
     const data = sorted.map(o => o.total);
 
-    const config: ChartConfiguration<'line'> = {
+    const config: any = {
       type: 'line',
       data: {
         labels,
@@ -167,7 +166,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
             label: 'Revenue',
             data,
             borderColor: '#C8A44F',
-            backgroundColor: (context) => {
+            backgroundColor: (context: any) => {
               const chart = context.chart;
               const { ctx } = chart;
               const gradient = ctx.createLinearGradient(0, 0, 0, chart.height);

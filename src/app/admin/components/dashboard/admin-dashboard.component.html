@@ -35,6 +35,26 @@
       >
         <span class="nav-icon">⚗</span>
       </button>
+
+      <button
+        type="button"
+        class="nav-icon-button"
+        [class.active]="activeSection === 'orders'"
+        (click)="setActiveSection('orders')"
+        title="Orders"
+      >
+        <span class="nav-icon">📦</span>
+      </button>
+
+      <button
+        type="button"
+        class="nav-icon-button"
+        [class.active]="activeSection === 'customers'"
+        (click)="setActiveSection('customers')"
+        title="Customers"
+      >
+        <span class="nav-icon">👤</span>
+      </button>
     </nav>
 
     <div class="sidebar-footer">
@@ -48,55 +68,64 @@
   <main class="main-content">
     <header class="content-header">
       <div>
-        <h1 class="page-title">Dashboard Overview</h1>
-        <p class="page-subtitle">AURUM Back Office · Curating the experience behind every drop</p>
+        <h1 class="page-title">Command Center</h1>
+        <p class="page-subtitle">AURUM Back Office · Curating excellence behind every drop</p>
       </div>
       <div class="header-meta">
         <span class="last-updated">Last updated: {{ !isLoading ? 'Just now' : 'Loading...' }}</span>
       </div>
     </header>
 
-    <!-- Top: Analytics Grid -->
-    <section class="analytics-section">
-      <div class="analytics-grid">
-        <!-- Total Revenue -->
-        <article class="glass-card analytics-card">
-          <div class="analytics-icon">💎</div>
-          <div class="analytics-label">TOTAL REVENUE</div>
-          <div class="analytics-value revenue">
+    <!-- KPI Jewel Cards -->
+    <section class="kpi-section">
+      <div class="kpi-grid">
+        <!-- Revenue Jewel -->
+        <article class="jewel-card revenue-jewel">
+          <div class="jewel-header">
+            <div class="jewel-icon">💎</div>
+            <div class="jewel-label">TOTAL REVENUE</div>
+          </div>
+          <div class="jewel-value">
             ${{ displayRevenue | number : '1.0-0' }}
           </div>
-          <div class="analytics-subtext">Lifetime sales across all fragrances</div>
+          <div class="jewel-subtext">Lifetime luxury sales</div>
+          <div class="jewel-glow"></div>
         </article>
 
-        <!-- Total Orders -->
-        <article class="glass-card analytics-card">
-          <div class="analytics-icon">📦</div>
-          <div class="analytics-label">TOTAL ORDERS</div>
-          <div class="analytics-value">
+        <!-- Orders Jewel -->
+        <article class="jewel-card orders-jewel">
+          <div class="jewel-header">
+            <div class="jewel-icon">📦</div>
+            <div class="jewel-label">TOTAL ORDERS</div>
+          </div>
+          <div class="jewel-value">
             {{ displayOrders | number : '1.0-0' }}
           </div>
-          <div class="analytics-subtext">Completed and in-progress orders</div>
+          <div class="jewel-subtext">Premium transactions</div>
+          <div class="jewel-glow"></div>
         </article>
 
-        <!-- Conversion Rate -->
-        <article class="glass-card analytics-card">
-          <div class="analytics-icon">☾</div>
-          <div class="analytics-label">CONVERSION RATE</div>
-          <div class="analytics-value">
+        <!-- Conversion Jewel -->
+        <article class="jewel-card conversion-jewel">
+          <div class="jewel-header">
+            <div class="jewel-icon">☾</div>
+            <div class="jewel-label">CONVERSION RATE</div>
+          </div>
+          <div class="jewel-value">
             {{ displayConversionRate | number : '1.0-1' }}%
           </div>
-          <div class="analytics-subtext">Orders per unique customer profile</div>
+          <div class="jewel-subtext">Client acquisition rate</div>
+          <div class="jewel-glow"></div>
         </article>
       </div>
     </section>
 
-    <!-- Middle: Sales Analysis Chart -->
-    <section class="sales-section">
-      <article class="glass-card sales-card">
+    <!-- Performance Chart -->
+    <section class="performance-section">
+      <article class="glass-card performance-card">
         <div class="card-header">
-          <h2 class="card-title">Sales Trajectory</h2>
-          <span class="card-subtitle">Recent revenue performance</span>
+          <h2 class="card-title">Revenue Performance</h2>
+          <span class="card-subtitle">Golden trajectory analysis</span>
         </div>
         <div class="chart-wrapper">
           <canvas #salesChart></canvas>
@@ -110,7 +139,7 @@
       <article class="glass-card vault-card">
         <div class="card-header">
           <h2 class="card-title">Enroll New Fragrance</h2>
-          <span class="card-subtitle">Curate a new signature into the public collection</span>
+          <span class="card-subtitle">Curate excellence into the collection</span>
         </div>
 
         <form (ngSubmit)="onAddProduct()" #vaultForm="ngForm" class="vault-form">
@@ -181,14 +210,14 @@
       <!-- Recent Activity -->
       <article class="glass-card activity-card">
         <div class="card-header">
-          <h2 class="card-title">Recent Activity</h2>
-          <span class="card-subtitle">Last 5 customer orders</span>
+          <h2 class="card-title">Recent Transactions</h2>
+          <span class="card-subtitle">Latest premium orders</span>
         </div>
 
         <div class="activity-table">
           <div class="activity-header">
             <span>ID</span>
-            <span>Customer</span>
+            <span>Client</span>
             <span>Total</span>
             <span>Status</span>
             <span>Date</span>
@@ -205,8 +234,9 @@
               <span
                 class="status-pill"
                 [ngClass]="{
-                  'status-pending': order.status?.toLowerCase() === 'pending',
-                  'status-shipped': order.status?.toLowerCase() === 'shipped'
+                  'status-pending': order.status.toLowerCase() === 'pending',
+                  'status-shipped': order.status.toLowerCase() === 'shipped',
+                  'status-delivered': order.status.toLowerCase() === 'delivered'
                 }"
               >
                 {{ order.status }}
