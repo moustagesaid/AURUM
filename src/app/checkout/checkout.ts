@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { Router } from '@angular/router';
 import { CartService, CartItem } from '../services/cart.service';
 import { OrderDataService } from '../services/order-data.service';
+import { OrderHistoryService } from '../services/order-history.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -23,6 +24,7 @@ export class Checkout implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private cartService: CartService,
     private orderDataService: OrderDataService,
+    private orderHistoryService: OrderHistoryService,
     private router: Router
   ) {
     this.checkoutForm = this.fb.group({
@@ -82,6 +84,7 @@ export class Checkout implements OnInit, OnDestroy {
 
     // Save order data to service
     this.orderDataService.setLastOrder(orderData);
+    this.orderHistoryService.addOrder(orderData);
 
     // Clear the cart
     this.cartService.clearCart();

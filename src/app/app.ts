@@ -4,6 +4,7 @@ import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { ToastComponent } from "./toast/toast.component";
 import { routeCrossFade } from './animations';
 import { filter } from 'rxjs/operators';
+import { ScrollToTopService } from './services/scroll-to-top.service';
 
 @Component({
   selector: 'app-root',
@@ -19,9 +20,13 @@ export class App implements OnInit, OnDestroy {
 
   private sub: ReturnType<typeof setTimeout> | null = null;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private scrollToTopService: ScrollToTopService
+  ) {}
 
   ngOnInit(): void {
+    this.scrollToTopService.init();
     this.routeAnimationKey = this.router.url;
     this.router.events
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -22,8 +22,9 @@ import { AuthService } from '../services/auth.service';
               </div>
             </div>
             <div class="account-actions">
-              <a routerLink="/checkout" class="account-btn">My Orders</a>
+              <a routerLink="/account/orders" class="account-btn">My Orders</a>
               <a routerLink="/products" class="account-btn outline">Continue Shopping</a>
+              <button type="button" class="account-btn logout-btn" (click)="logout()">Log Out</button>
             </div>
           } @else {
             <p class="account-guest">Please log in to view your account.</p>
@@ -140,9 +141,28 @@ import { AuthService } from '../services/auth.service';
         color: var(--text-muted);
         margin: 0 0 1rem 0;
       }
+      .logout-btn {
+        margin-top: 0.5rem;
+        background: transparent !important;
+        color: var(--text-muted);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        cursor: pointer;
+        font: inherit;
+      }
+      .logout-btn:hover {
+        color: #e8b4b4;
+        border-color: rgba(180, 80, 80, 0.5);
+        background: rgba(180, 80, 80, 0.08) !important;
+      }
     `,
   ],
 })
 export class Account {
   authService = inject(AuthService);
+  private router = inject(Router);
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
 }

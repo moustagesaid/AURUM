@@ -1,0 +1,50 @@
+<section class="orders-history-page" aria-label="Your order history">
+  <div class="orders-history-container">
+    <header class="orders-history-header">
+      <h1 class="orders-history-title">Order History</h1>
+      <p class="orders-history-subtitle">Your journey with AURUM</p>
+      <a routerLink="/account" class="orders-history-back">← Back to account</a>
+    </header>
+
+    @if (isLoading) {
+      <div class="orders-history-loading" aria-live="polite">
+        <div class="loading-shimmer"></div>
+        <p class="loading-text">Loading your history…</p>
+      </div>
+    } @else if (orders.length === 0) {
+      <div class="orders-empty" role="status">
+        <div class="orders-empty-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+        </div>
+        <h2 class="orders-empty-title">Your history is empty</h2>
+        <p class="orders-empty-message">
+          No orders have been placed with us yet. Every journey begins with a first scent—discover our collection and find yours.
+        </p>
+        <a routerLink="/products" class="orders-empty-cta">Discover the collection</a>
+      </div>
+    } @else {
+      <div class="orders-list">
+        <ul class="orders-list-inner" role="list">
+          @for (order of orders; track order.orderId) {
+            <li class="order-card">
+              <div class="order-card-header">
+                <span class="order-id">{{ order.orderId }}</span>
+                <time class="order-date" [attr.datetime]="order.orderDate">
+                  {{ formatDate(order.orderDate) }}
+                </time>
+              </div>
+              <div class="order-card-body">
+                <span class="order-total">{{ formatTotal(order.total) }}</span>
+                <span class="order-status">Confirmed</span>
+              </div>
+            </li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+</section>

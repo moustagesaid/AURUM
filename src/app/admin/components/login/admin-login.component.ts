@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './admin-login.component.html',
   styleUrl: './admin-login.component.css'
 })
-export class AdminLoginComponent {
+export class AdminLoginComponent implements OnInit {
 
   username: string = '';
   password: string = '';
@@ -22,6 +22,12 @@ export class AdminLoginComponent {
     private authService: AuthService,
     private router: Router
   ) { }
+
+  ngOnInit(): void {
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('adminSession')) {
+      this.router.navigate(['/admin/dashboard']);
+    }
+  }
 
   onLogin(): void {
     if (!this.username || !this.password) {

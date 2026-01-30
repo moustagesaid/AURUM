@@ -1,6 +1,8 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { CartService, CartItem } from '../services/cart.service';
+import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -19,7 +21,9 @@ export class CartModalComponent implements OnInit, OnDestroy {
   totalPrice: number = 0;
   private subscriptions: Subscription = new Subscription();
 
-  constructor(private cartService: CartService) {}
+  private cartService = inject(CartService);
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
   ngOnInit(): void {
     this.subscriptions.add(
@@ -55,9 +59,20 @@ export class CartModalComponent implements OnInit, OnDestroy {
     this.cartService.updateSize(productId, size);
   }
 
+  /** CONFIRM: if logged in → go to checkout; if not → ask to log in */
   proceedToCheckout(): void {
     this.close();
-    this.requestLogin.emit();
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/checkout']);
+    } else {
+      this.requestLogin.emit();
+    }
+  }
+
+  /** Continue Shopping: close modal and optionally go to products */
+  continueShopping(): void {
+    this.close();
+    this.router.navigate(['/products']);
   }
 
   onBackdropClick(event: Event): void {

@@ -20,6 +20,11 @@ export const routes: Routes = [
     component: Account
   },
   {
+    path: 'account/orders',
+    loadComponent: () =>
+      import('./orders-history/orders-history.component').then(m => m.OrdersHistoryComponent)
+  },
+  {
     path: 'login',
     component: Login
   },
@@ -54,5 +59,15 @@ export const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+  },
+  {
+    path: 'lost',
+    loadComponent: () =>
+      import('./not-found/not-found.component').then(m => m.NotFoundComponent)
+  },
+  {
+    path: '**',
+    redirectTo: 'lost',
+    pathMatch: 'full'
   }
 ];

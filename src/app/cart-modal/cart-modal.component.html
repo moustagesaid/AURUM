@@ -66,9 +66,14 @@
         <span class="total-label">SUBTOTAL</span>
         <span class="total-amount">${{ totalPrice.toFixed(2) }}</span>
       </div>
-      <button class="checkout-btn" (click)="proceedToCheckout()">
-        CONFIRM
-      </button>
+      <div class="footer-actions">
+        <button type="button" class="cart-btn secondary" (click)="continueShopping()">
+          Continue Shopping
+        </button>
+        <button type="button" class="checkout-btn" (click)="proceedToCheckout()">
+          CONFIRM
+        </button>
+      </div>
     </div>
   </div>
 </div>

@@ -1,10 +1,12 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Hero } from '../hero/hero';
 import { SignatureAccordionComponent } from '../signature-accordion/signature-accordion.component';
 import { OrderService, Order } from '../services/order.service';
+import { CartService } from '../services/cart.service';
+import { ToastService } from '../services/toast.service';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -25,6 +27,8 @@ export class Home implements AfterViewInit, OnDestroy {
 
   private scrollTriggers: ScrollTrigger[] = [];
   private heroTl: gsap.core.Timeline | null = null;
+  private cartService = inject(CartService);
+  private toastService = inject(ToastService);
 
   // Signature Collection with Olfactory Pyramid
   signatureCollection = [
@@ -247,6 +251,8 @@ export class Home implements AfterViewInit, OnDestroy {
   }
 
   addToCart(product: any) {
-    console.log('Added to cart:', product);
+    this.cartService.addToCart(product);
+    const name = product.name + (product.subName ? ' ' + product.subName : '');
+    this.toastService.show(`${name} added to your collection`);
   }
 }

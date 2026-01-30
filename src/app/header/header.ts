@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener, inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../services/cart.service';
@@ -28,7 +28,6 @@ export class Header implements OnInit, OnDestroy {
   cartItemCount = 0;
   isCartModalOpen = false;
   isLoginModalOpen = false;
-  isProfileOpen = false;
   private subscription = new Subscription();
 
   ngOnInit(): void {
@@ -41,14 +40,6 @@ export class Header implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-  }
-
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: Event): void {
-    const target = event.target as HTMLElement;
-    if (this.isProfileOpen && !target.closest('.profile-trigger-wrap')) {
-      this.isProfileOpen = false;
-    }
   }
 
   openCartModal(): void {
@@ -66,17 +57,5 @@ export class Header implements OnInit, OnDestroy {
 
   closeLoginModal(): void {
     this.isLoginModalOpen = false;
-  }
-
-  toggleProfileDropdown(): void {
-    this.isProfileOpen = !this.isProfileOpen;
-  }
-
-  closeProfileDropdown(): void {
-    this.isProfileOpen = false;
-  }
-
-  logout(): void {
-    this.authService.logout();
   }
 }
