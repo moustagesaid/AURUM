@@ -1,0 +1,42 @@
+<section class="signature-accordion" aria-label="The Sensory Accordion">
+  <div
+    #accordionContainer
+    class="accordion-container"
+    role="presentation"
+  >
+    @for (panel of panels; track panel.id; let i = $index) {
+      <div
+        #panel
+        class="accordion-panel"
+        [style.backgroundImage]="'url(' + panel.backgroundImage + ')'"
+        (mouseenter)="onPanelEnter(i)"
+        (mouseleave)="onPanelLeave()"
+        role="button"
+        [attr.aria-expanded]="activeIndex === i"
+        [attr.aria-label]="panel.title + ' – expand to read more'"
+        tabindex="0"
+        (keydown.enter)="onPanelEnter(i)"
+        (keydown.space)="onPanelEnter(i); $event.preventDefault()"
+      >
+        <div class="panel-overlay" aria-hidden="true"></div>
+        <div class="panel-glass">
+          <h2 class="panel-title-vertical" aria-hidden="true">
+            {{ panel.title }}
+          </h2>
+          <div class="panel-content" aria-hidden="true">
+            <h3 class="panel-title-horizontal">{{ panel.title }}</h3>
+            <p class="panel-description">{{ panel.description }}</p>
+            <a
+              [routerLink]="panel.path"
+              [queryParams]="panel.queryParams ?? null"
+              class="panel-cta"
+              (click)="$event.stopPropagation()"
+            >
+              Shop Now
+            </a>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</section>

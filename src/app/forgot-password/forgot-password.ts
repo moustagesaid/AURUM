@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
@@ -11,6 +11,10 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './forgot-password.css'
 })
 export class ForgotPassword implements OnInit {
+  @Input() modalMode = false;
+  @Output() backToLogin = new EventEmitter<void>();
+  @Output() submitSuccess = new EventEmitter<void>();
+
   form!: FormGroup;
   isSubmitted = false;
 
@@ -28,16 +32,26 @@ export class ForgotPassword implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       console.log('Forgot password form submitted:', this.form.value);
-      // Handle forgot password logic here
       this.isSubmitted = true;
 
-      // Simulate API call delay
-      setTimeout(() => {
-        // Redirect back to login after showing success message
-        this.router.navigate(['/login']);
-      }, 2000);
+      if (this.modalMode) {
+        setTimeout(() => {
+          this.submitSuccess.emit();
+        }, 2000);
+      } else {
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 2000);
+      }
     } else {
       this.markFormGroupTouched();
+    }
+  }
+
+  onBackToLoginClick(e: Event): void {
+    if (this.modalMode) {
+      e.preventDefault();
+      this.backToLogin.emit();
     }
   }
 

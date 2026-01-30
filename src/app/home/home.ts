@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Hero } from '../hero/hero';
+import { SignatureAccordionComponent } from '../signature-accordion/signature-accordion.component';
 import { OrderService, Order } from '../services/order.service';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -10,7 +11,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, Hero, FormsModule, RouterModule],
+  imports: [CommonModule, Hero, SignatureAccordionComponent, FormsModule, RouterModule],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })

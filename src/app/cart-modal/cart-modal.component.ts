@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 import { CartService, CartItem } from '../services/cart.service';
 import { Subscription } from 'rxjs';
 
@@ -14,15 +13,13 @@ import { Subscription } from 'rxjs';
 export class CartModalComponent implements OnInit, OnDestroy {
   @Input() isOpen: boolean = false;
   @Output() closeModal = new EventEmitter<void>();
+  @Output() requestLogin = new EventEmitter<void>();
 
   cartItems: CartItem[] = [];
   totalPrice: number = 0;
   private subscriptions: Subscription = new Subscription();
 
-  constructor(
-    private cartService: CartService,
-    private router: Router
-  ) {}
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.subscriptions.add(
@@ -60,7 +57,7 @@ export class CartModalComponent implements OnInit, OnDestroy {
 
   proceedToCheckout(): void {
     this.close();
-    this.router.navigate(['/checkout']);
+    this.requestLogin.emit();
   }
 
   onBackdropClick(event: Event): void {

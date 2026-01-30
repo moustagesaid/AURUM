@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +12,14 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './signup.css'
 })
 export class Signup implements OnInit {
+  private authService = inject(AuthService);
+
+  @Input() modalMode = false;
+  @Output() signupSuccess = new EventEmitter<void>();
+  @Output() backToLogin = new EventEmitter<void>();
+
   form!: FormGroup;
+  signupError = '';
 
   constructor(
     private fb: FormBuilder,
@@ -46,13 +54,28 @@ export class Signup implements OnInit {
   }
 
   onSubmit() {
+    this.signupError = '';
     if (this.form.valid) {
-      console.log('Signup form submitted:', this.form.value);
-      // Handle signup logic here
-      // For now, redirect to login
-      this.router.navigate(['/login']);
+      const { fullName, email, password } = this.form.value;
+      const ok = this.authService.register(email!, password!, fullName!);
+      if (ok) {
+        if (this.modalMode) {
+          this.signupSuccess.emit();
+        } else {
+          this.router.navigate(['/login']);
+        }
+      } else {
+        this.signupError = 'Registration failed. Please try again.';
+      }
     } else {
       this.markFormGroupTouched();
+    }
+  }
+
+  onBackToLoginClick(e: Event): void {
+    if (this.modalMode) {
+      e.preventDefault();
+      this.backToLogin.emit();
     }
   }
 

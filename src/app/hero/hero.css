@@ -23,29 +23,88 @@
   z-index: 0;
 }
 
-/* Hero title – split-text mask for letter reveal */
+/* Hero title block – upper-third position, editorial layout */
+.hero-title-block {
+  position: absolute;
+  top: 28%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+  max-width: min(92vw, 720px);
+  padding: 0 1.5rem;
+}
+
 .hero-title-wrap {
   position: relative;
-  z-index: 2;
   overflow: hidden;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
 }
 
 .hero-title {
   font-family: 'Cinzel', serif;
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-size: clamp(3rem, 9vw, 5.25rem);
   font-weight: 400;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.32em;
   color: #f8f5ef;
   margin: 0;
   display: flex;
   justify-content: center;
-  gap: 0.02em;
+  align-items: center;
+  gap: 0.04em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 .hero-title-letter {
   display: inline-block;
   /* Initial state for GSAP: y offset so letters slide up from behind mask */
+}
+
+/* Decorative gold line under wordmark */
+.hero-title-line {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.9), transparent);
+  margin: 1.25rem auto 0.85rem;
+  border: none;
+}
+
+.hero-tagline {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.7rem, 1.8vw, 0.85rem);
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(248, 245, 239, 0.85);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .hero-title-block {
+    top: 26%;
+    padding: 0 1rem;
+  }
+  .hero-title {
+    letter-spacing: 0.22em;
+  }
+  .hero-tagline {
+    letter-spacing: 0.28em;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title-block {
+    top: 24%;
+  }
+  .hero-title {
+    letter-spacing: 0.18em;
+  }
+  .hero-title-line {
+    width: 60px;
+    margin: 1rem auto 0.65rem;
+  }
 }
 
 /* Bottom actions row: FOR WOMEN | SHOP NOW | FOR MEN */

@@ -1,5 +1,4 @@
-<section class="signup-page">
-  <!-- Centered Signup Form -->
+<ng-template #cardBlock>
   <div class="form-section">
     <div class="signup-card">
       <div class="card-header">
@@ -8,6 +7,7 @@
       </div>
 
       <form class="signup-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <p class="form-error" *ngIf="signupError">{{ signupError }}</p>
         <div class="form-group">
           <label class="form-label" for="fullName">Full Name</label>
           <input
@@ -88,10 +88,20 @@
         <div class="form-footer">
           <div class="form-divider">
             <span class="divider-text">Already have an account?</span>
-            <a class="form-link primary" [routerLink]="['/login']">Log In</a>
+            <a class="form-link primary" [routerLink]="['/login']" (click)="onBackToLoginClick($event)">Log In</a>
           </div>
         </div>
       </form>
     </div>
   </div>
-</section>
+</ng-template>
+
+@if (modalMode) {
+  <div class="signup-modal-inner">
+    <ng-container *ngTemplateOutlet="cardBlock"></ng-container>
+  </div>
+} @else {
+  <section class="signup-page">
+    <ng-container *ngTemplateOutlet="cardBlock"></ng-container>
+  </section>
+}

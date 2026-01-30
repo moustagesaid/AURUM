@@ -1,3 +1,32 @@
+/* ========== Homepage: seamless section flow (no gaps, luxury continuity) ========== */
+:host {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.brand-band {
+  margin: 0;
+}
+
+.aurum-signature-packaging.gifting-section {
+  margin: 0;
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.why-choose-us {
+  margin: 0;
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.customer-reviews {
+  margin: 0;
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.footer {
+  margin: 0;
+}
 
 /* Section Header */
 .section-header {

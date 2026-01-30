@@ -1,0 +1,175 @@
+/* The Sensory Accordion – full-height, three vertical panels */
+
+:host {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.signature-accordion {
+  min-height: 80vh;
+  width: 100%;
+  overflow: hidden;
+  /* Match hero/brand-band dark tone for seamless scroll */
+  background-color: #252525;
+  /* Subtle gold separator: connects to hero above, matches brand-band below */
+  border-top: 1px solid rgba(212, 175, 55, 0.12);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+}
+
+.accordion-container {
+  display: flex;
+  width: 100%;
+  min-height: 80vh;
+  overflow: hidden;
+}
+
+.accordion-panel {
+  flex: 1 1 0;
+  min-width: 0;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-right: 1px solid rgba(200, 164, 79, 0.4);
+  cursor: pointer;
+}
+
+.accordion-panel:last-child {
+  border-right: none;
+}
+
+/* Dark overlay on image */
+.panel-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  pointer-events: none;
+}
+
+/* Glassmorphism content layer */
+.panel-glass {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: rgba(20, 20, 22, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  pointer-events: none;
+}
+
+.panel-glass > * {
+  pointer-events: auto;
+}
+
+/* Vertical title (collapsed state) */
+.panel-title-vertical {
+  position: absolute;
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  color: #e0e0e0;
+  white-space: nowrap;
+  transform: rotate(-90deg);
+  transform-origin: center center;
+  text-rendering: optimizeLegibility;
+}
+
+/* Horizontal content (expanded state) */
+.panel-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 320px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.accordion-panel[aria-expanded="true"] .panel-content {
+  pointer-events: auto;
+}
+
+.panel-title-horizontal {
+  margin: 0 0 1rem 0;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  color: #e0e0e0;
+}
+
+.panel-description {
+  margin: 0 0 1.5rem 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  line-height: 1.6;
+  color: rgba(224, 224, 224, 0.9);
+}
+
+.panel-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.75rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #1a1a1a;
+  background: #c8a44f;
+  border: 1px solid rgba(200, 164, 79, 0.6);
+  border-radius: 2px;
+  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.panel-cta:hover {
+  background: #e0b858;
+  color: #0f0f0f;
+  box-shadow: 0 4px 20px rgba(200, 164, 79, 0.35);
+}
+
+/* Focus for accessibility */
+.accordion-panel:focus-visible {
+  outline: 2px solid #c8a44f;
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .accordion-container {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .accordion-panel {
+    min-height: 33vh;
+    border-right: none;
+    border-bottom: 1px solid rgba(200, 164, 79, 0.4);
+  }
+
+  .accordion-panel:last-child {
+    border-bottom: none;
+  }
+
+  .panel-title-vertical {
+    transform: none;
+    position: relative;
+  }
+
+  .panel-content {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
