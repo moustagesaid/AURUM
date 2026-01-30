@@ -64,11 +64,6 @@ export class OrderConfirmationComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  trackOrder(): void {
-    // For now, just show an alert. In a real app, this would navigate to order tracking
-    alert(`Order tracking for ${this.orderDetails?.orderId} will be available soon!`);
-  }
-
   getEstimatedDelivery(): string {
     return '2-4 Business Days';
   }
