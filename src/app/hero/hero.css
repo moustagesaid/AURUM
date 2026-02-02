@@ -57,10 +57,6 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.hero-title-letter {
-  display: inline-block;
-  /* Initial state for GSAP: y offset so letters slide up from behind mask */
-}
 
 /* Decorative gold line under wordmark */
 .hero-title-line {

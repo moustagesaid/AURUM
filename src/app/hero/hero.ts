@@ -13,9 +13,6 @@ import { ThemeService } from '../services/theme.service';
 export class Hero {
   private themeService = inject(ThemeService);
 
-  /** Letters for split-text title reveal (GSAP in parent) */
-  readonly heroTitleLetters: string[] = 'AURUM'.split('');
-
   // Background images (use existing assets; swap as needed)
   readonly defaultBg = 'url("assets/herosection.png")';
   readonly lightBg = 'url("assets/lighthero.png")';
