@@ -392,10 +392,11 @@
   min-height: 520px;
   padding: 4rem 0;
   background-color: #1a1a1c;
-  background-image: url('../../assets/lyrapack.png');
+  background-image: url('../../assets/bg3section.png');
   background-size: cover;
-  background-position: left center;
+  background-position: center center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -1096,17 +1097,63 @@
     justify-content: flex-end;
     min-height: 85vh;
     padding: 2rem 0 3rem;
-    background-position: top center;
+    background-position: center center;
     background-size: cover;
+    background-attachment: fixed;
+  }
+
+  /* Tablet styles - ensure gift box visibility */
+  @media (max-width: 1024px) {
+    .aurum-signature-packaging.gifting-section {
+      background-position: center center;
+      background-size: cover;
+      min-height: 75vh;
+    }
+  }
+
+  /* Mobile styles - optimize for gift box display */
+  @media (max-width: 768px) {
+    .aurum-signature-packaging.gifting-section {
+      background-position: center center;
+      background-size: cover;
+      background-attachment: scroll;
+      min-height: 70vh;
+      padding: 3rem 0 4rem;
+    }
+  }
+
+  /* Small mobile - ensure gift box is fully visible */
+  @media (max-width: 480px) {
+    .aurum-signature-packaging.gifting-section {
+      background-position: center center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      min-height: 65vh;
+      padding: 2rem 0 3rem;
+    }
   }
 
   .gifting-gradient-overlay {
     background: linear-gradient(
       to bottom,
       transparent 0%,
-      rgba(20, 20, 22, 0.5) 50%,
+      rgba(20, 20, 22, 0.3) 40%,
+      rgba(20, 20, 22, 0.6) 70%,
       #141416 100%
     );
+  }
+
+  /* Ensure overlay doesn't obscure gift box on small screens */
+  @media (max-width: 768px) {
+    .gifting-gradient-overlay {
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(20, 20, 22, 0.2) 30%,
+        rgba(20, 20, 22, 0.5) 60%,
+        #141416 100%
+      );
+    }
   }
 
   .gifting-inner {
