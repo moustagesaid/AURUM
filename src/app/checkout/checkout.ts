@@ -7,6 +7,9 @@ import { OrderDataService } from '../services/order-data.service';
 import { OrderHistoryService } from '../services/order-history.service';
 import { Subscription } from 'rxjs';
 
+// 1. Import the socket client
+import { io, Socket } from 'socket.io-client';
+
 @Component({
   selector: 'app-checkout',
   standalone: true,
@@ -19,6 +22,9 @@ export class Checkout implements OnInit, OnDestroy {
   cartItems: CartItem[] = [];
   totalPrice: number = 0;
   private subscriptions: Subscription = new Subscription();
+  
+  // 2. Initialize the socket property
+  private socket!: Socket;
 
   constructor(
     private fb: FormBuilder,
@@ -40,6 +46,9 @@ export class Checkout implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // 3. Connect to your Bridge Server (Port 3000)
+    this.socket = io('http://localhost:3000');
+
     this.subscriptions.add(
       this.cartService.cartItems$.subscribe(items => {
         this.cartItems = items;
@@ -55,22 +64,23 @@ export class Checkout implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+    // 4. Disconnect when leaving the page
+    if (this.socket) {
+      this.socket.disconnect();
+    }
   }
 
   onSubmit(): void {
     if (this.checkoutForm.valid) {
       this.submitOrder();
     } else {
-      // Mark all fields as touched to show validation errors
       this.checkoutForm.markAllAsTouched();
     }
   }
 
   private submitOrder(): void {
-    // Generate order ID
     const orderId = this.orderDataService.generateOrderId();
 
-    // Create order data
     const orderData = {
       customerDetails: this.checkoutForm.value,
       items: this.cartItems,
@@ -82,14 +92,18 @@ export class Checkout implements OnInit, OnDestroy {
 
     console.log('Order placed:', orderData);
 
-    // Save order data to service
+    // 5. THE BRIDGE: Send the order signal to the Admin Dashboard
+    // This triggers the 'new_order_notification' in your Admin app
+    this.socket.emit('place_order', orderData);
+
+    // Save order data locally
     this.orderDataService.setLastOrder(orderData);
     this.orderHistoryService.addOrder(orderData);
 
     // Clear the cart
     this.cartService.clearCart();
 
-    // Navigate to order confirmation page
+    // Navigate to order confirmation
     this.router.navigate(['/order-confirmed']);
   }
 
@@ -97,27 +111,13 @@ export class Checkout implements OnInit, OnDestroy {
     return this.cartItems.reduce((sum, item) => sum + item.quantity, 0);
   }
 
-  // Helper methods for form validation
   getFieldError(fieldName: string): string {
     const field = this.checkoutForm.get(fieldName);
     if (field?.errors && field.touched) {
-      if (field.errors['required']) {
-        return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} is required`;
-      }
-      if (field.errors['email']) {
-        return 'Please enter a valid email address';
-      }
-      if (field.errors['minlength']) {
-        return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} must be at least ${field.errors['minlength'].requiredLength} characters`;
-      }
-      if (field.errors['pattern']) {
-        if (fieldName === 'phone') {
-          return 'Please enter a valid phone number';
-        }
-        if (fieldName === 'postalCode') {
-          return 'Please enter a valid postal code';
-        }
-      }
+      if (field.errors['required']) return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} is required`;
+      if (field.errors['email']) return 'Please enter a valid email address';
+      if (field.errors['minlength']) return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} must be at least ${field.errors['minlength'].requiredLength} characters`;
+      if (field.errors['pattern']) return `Invalid ${fieldName} format`;
     }
     return '';
   }

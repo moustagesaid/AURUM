@@ -80,4 +80,14 @@ export class AuthService {
     this._user.set(null);
     this.persist(null);
   }
+
+  setUser(user: any): void {
+    const mappedUser: User = {
+      id: user.id || `user-${Date.now()}`,
+      email: user.email || user.username,
+      fullName: user.name || user.fullName || '',
+    };
+    this._user.set(mappedUser);
+    this.persist(mappedUser);
+  }
 }

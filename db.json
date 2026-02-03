@@ -1,73 +1,223 @@
 {
-  "users": [
-    {
-      "id": 1,
-      "username": "admin",
-      "password": "admin123",
-      "role": "admin",
-      "name": "Super Admin"
-    }
-  ],
-  "products": [
-    {
-      "id": 1,
-      "name": "AURUM",
-      "description": "An opulent blend of rich oud, golden amber, and rare spices.",
-      "price": 120,
-      "image": "assets/images/aurum-bottle.jpg",
-      "stock": 50
-    },
-    {
-      "id": 2,
-      "name": "NOCTURNE",
-      "description": "A mysterious fusion of dark florals, smooth vanilla, and warm musk.",
-      "price": 110,
-      "image": "assets/images/nocturne-bottle.jpg",
-      "stock": 35
-    },
-    {
-      "name": "Moustage",
-      "price": 123,
-      "image": "said",
-      "id": 3
-    }
-  ],
   "orders": [
     {
-      "id": 1,
-      "customerName": "Sophia L.",
-      "total": 120,
-      "status": "Pending",
-      "date": "2025-01-20"
+      "customerDetails": {
+        "firstName": "Said",
+        "lastName": "Moustage",
+        "email": "slimanetic33@gmail.com",
+        "phone": "706866164",
+        "address": "Douar Asseln Ighrem Nougdal Ouarzazate",
+        "city": "Ouarzazate",
+        "postalCode": "45000",
+        "country": "Morocco"
+      },
+      "items": [
+        {
+          "id": 4,
+          "name": "AURUM",
+          "subName": "NOVA",
+          "price": 159.99,
+          "basePrice": 159.99,
+          "image": "/assets/nova.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        }
+      ],
+      "total": 159.99,
+      "orderId": "AUR-2026-5232",
+      "orderDate": "2026-02-03T14:40:33.027Z",
+      "paymentMethod": "COD",
+      "id": 1
     },
     {
-      "id": 2,
-      "customerName": "James C.",
-      "total": 230,
-      "status": "Shipped",
-      "date": "2025-01-18"
+      "customerDetails": {
+        "firstName": "Said",
+        "lastName": "Moustage",
+        "email": "slimanetic33@gmail.com",
+        "phone": "706866164",
+        "address": "Douar Asseln Ighrem Nougdal Ouarzazate",
+        "city": "Ouarzazate",
+        "postalCode": "45000",
+        "country": "Morocco"
+      },
+      "items": [
+        {
+          "id": 3,
+          "name": "AURUM",
+          "subName": "MODA",
+          "price": 139.99,
+          "basePrice": 139.99,
+          "image": "/assets/moda.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        }
+      ],
+      "total": 139.99,
+      "orderId": "AUR-2026-4742",
+      "orderDate": "2026-02-03T14:41:35.932Z",
+      "paymentMethod": "COD",
+      "id": 2
     },
     {
-      "customerName": "Guest Customer",
-      "total": 120,
-      "date": "2026-01-22",
-      "status": "Pending",
+      "customerDetails": {
+        "firstName": "Said",
+        "lastName": "Moustage",
+        "email": "slimanetic33@gmail.com",
+        "phone": "706866164",
+        "address": "Douar Asseln Ighrem Nougdal Ouarzazate",
+        "city": "Ouarzazate",
+        "postalCode": "45000",
+        "country": "Morocco"
+      },
+      "items": [
+        {
+          "id": 3,
+          "name": "AURUM",
+          "subName": "MODA",
+          "price": 139.99,
+          "basePrice": 139.99,
+          "image": "/assets/moda.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        }
+      ],
+      "total": 139.99,
+      "orderId": "AUR-2026-7677",
+      "orderDate": "2026-02-03T14:42:00.427Z",
+      "paymentMethod": "COD",
       "id": 3
     },
     {
-      "customerName": "Guest Customer",
-      "total": 120,
-      "date": "2026-01-22",
-      "status": "Pending",
+      "customerDetails": {
+        "firstName": "Said",
+        "lastName": "Moustage",
+        "email": "slimanetic33@gmail.com",
+        "phone": "706866164",
+        "address": "Douar Asseln Ighrem Nougdal Ouarzazate",
+        "city": "Ouarzazate",
+        "postalCode": "45000",
+        "country": "Morocco"
+      },
+      "items": [
+        {
+          "id": 3,
+          "name": "AURUM",
+          "subName": "MODA",
+          "price": 139.99,
+          "basePrice": 139.99,
+          "image": "/assets/moda.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        }
+      ],
+      "total": 139.99,
+      "orderId": "AUR-2026-7566",
+      "orderDate": "2026-02-03T14:44:04.346Z",
+      "paymentMethod": "COD",
       "id": 4
+    },
+    {
+      "customerDetails": {
+        "firstName": "Said",
+        "lastName": "Moustage",
+        "email": "slimanetic33@gmail.com",
+        "phone": "706866164",
+        "address": "Douar Asseln Ighrem Nougdal Ouarzazate",
+        "city": "Ouarzazate",
+        "postalCode": "45000",
+        "country": "Morocco"
+      },
+      "items": [
+        {
+          "id": 2,
+          "name": "AURUM",
+          "subName": "LYRA",
+          "price": 149.99,
+          "basePrice": 149.99,
+          "image": "/assets/lyra.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        }
+      ],
+      "total": 149.99,
+      "orderId": "AUR-2026-2551",
+      "orderDate": "2026-02-03T14:47:28.484Z",
+      "paymentMethod": "COD",
+      "id": 5
+    },
+    {
+      "customerDetails": {
+        "firstName": "Said",
+        "lastName": "Moustage",
+        "email": "slimanetic33@gmail.com",
+        "phone": "706866164",
+        "address": "Douar Asseln Ighrem Nougdal Ouarzazate",
+        "city": "Ouarzazate",
+        "postalCode": "45000",
+        "country": "Morocco"
+      },
+      "items": [
+        {
+          "id": 2,
+          "name": "AURUM",
+          "subName": "LYRA",
+          "price": 149.99,
+          "basePrice": 149.99,
+          "image": "/assets/lyra.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        }
+      ],
+      "total": 149.99,
+      "orderId": "AUR-2026-2020",
+      "orderDate": "2026-02-03T14:48:14.187Z",
+      "paymentMethod": "COD",
+      "id": 6
+    },
+    {
+      "customerDetails": {
+        "firstName": "Said",
+        "lastName": "Moustage",
+        "email": "slimanetic33@gmail.com",
+        "phone": "706866164",
+        "address": "Douar Asseln Ighrem Nougdal Ouarzazate",
+        "city": "Ouarzazate",
+        "postalCode": "45000",
+        "country": "Morocco"
+      },
+      "items": [
+        {
+          "id": 2,
+          "name": "AURUM",
+          "subName": "LYRA",
+          "price": 149.99,
+          "basePrice": 149.99,
+          "image": "/assets/lyra.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        }
+      ],
+      "total": 149.99,
+      "orderId": "AUR-2026-5291",
+      "orderDate": "2026-02-03T14:56:44.154Z",
+      "paymentMethod": "COD",
+      "id": 7
     }
   ],
-  "reviews": [
+  "users": [
     {
-      "id": 1,
-      "name": "Elena M.",
-      "rating": 5,
-      "comment": "The gold detail is exquisite. Perfect gift for myself! Highly recommend."
+      "id": "admin-1",
+      "name": "Admin User",
+      "username": "admin@aurum.com",
+      "password": "password123",
+      "role": "admin"
     }
   ]
 }
