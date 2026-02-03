@@ -10,6 +10,7 @@ import { ToastService } from '../services/toast.service';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+gsap.registerPlugin(ScrollTrigger);
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -120,6 +121,7 @@ export class Home implements AfterViewInit, OnDestroy {
     this.initHeroEntrance();
     this.initGlassCardsScrollTrigger();
     this.initParallax();
+    this.initGiftingSignature();
     this.initBackgroundTransition();
   }
 
@@ -219,6 +221,52 @@ export class Home implements AfterViewInit, OnDestroy {
       },
     });
     this.scrollTriggers.push(st);
+  }
+
+  /** Gifting section: AURUM signature follows gift box with scroll-linked motion */
+  private initGiftingSignature(): void {
+    const host = this.elementRef.nativeElement;
+    const giftingSection = host.querySelector('.aurum-signature-packaging.gifting-section') as HTMLElement | null;
+    if (!giftingSection) return;
+
+    const signatureWrap = giftingSection.querySelector('.gifting-signature-wrap') as HTMLElement | null;
+    if (!signatureWrap) return;
+
+    // Initial subtle offset so it sits just above the gift box area
+    gsap.set(signatureWrap, {
+      y: 30,
+      opacity: 0,
+      scale: 0.96,
+    });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: giftingSection,
+        start: 'top 80%',
+        end: 'bottom top',
+        scrub: 1,
+      },
+    });
+
+    // Elegant reveal and slight drift upwards as you scroll through the section
+    tl.to(signatureWrap, {
+      y: -10,
+      opacity: 1,
+      scale: 1,
+      ease: 'power2.out',
+    }).to(
+      signatureWrap,
+      {
+        y: -40,
+        opacity: 0.95,
+        ease: 'power1.out',
+      },
+      0.4
+    );
+
+    if (tl.scrollTrigger) {
+      this.scrollTriggers.push(tl.scrollTrigger as ScrollTrigger);
+    }
   }
 
   /** Placeholder for smooth background color transition (dark <-> light sections) */

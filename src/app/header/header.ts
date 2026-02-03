@@ -5,7 +5,7 @@ import { CartService } from '../services/cart.service';
 import { AuthService } from '../services/auth.service';
 import { CartModalComponent } from '../cart-modal/cart-modal.component';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
-import { ThemeToggleComponent } from '../theme-toggle.component';
+import { SearchModalComponent } from '../search-modal/search-modal.component';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
     CommonModule,
     CartModalComponent,
     LoginModalComponent,
-    ThemeToggleComponent,
+    SearchModalComponent,
   ],
   templateUrl: './header.html',
   styleUrl: './header.css',
@@ -28,6 +28,7 @@ export class Header implements OnInit, OnDestroy {
   cartItemCount = 0;
   isCartModalOpen = false;
   isLoginModalOpen = false;
+  isSearchModalOpen = false;
   private subscription = new Subscription();
 
   ngOnInit(): void {
@@ -57,5 +58,13 @@ export class Header implements OnInit, OnDestroy {
 
   closeLoginModal(): void {
     this.isLoginModalOpen = false;
+  }
+
+  openSearchModal(): void {
+    this.isSearchModalOpen = true;
+  }
+
+  closeSearchModal(): void {
+    this.isSearchModalOpen = false;
   }
 }

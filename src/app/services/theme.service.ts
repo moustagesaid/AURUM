@@ -19,11 +19,8 @@ export class ThemeService {
   constructor(rendererFactory: RendererFactory2) {
     this.renderer = rendererFactory.createRenderer(null, null);
 
-    // Load theme from localStorage on initialization
-    const savedTheme = localStorage.getItem('aurum-theme') as Theme;
-    if (savedTheme && (savedTheme === 'dark' || savedTheme === 'light')) {
-      this._currentTheme.set(savedTheme);
-    }
+    // Always use dark mode - remove light mode support
+    this._currentTheme.set('dark');
 
     // Apply theme on initialization
     this.applyTheme();
@@ -31,10 +28,11 @@ export class ThemeService {
 
   /**
    * Toggle between dark and light themes
+   * DISABLED: Light mode removed - always dark mode
    */
   toggleTheme(): void {
-    const newTheme = this._currentTheme() === 'dark' ? 'light' : 'dark';
-    this._currentTheme.set(newTheme);
+    // Light mode removed - always stay in dark mode
+    this._currentTheme.set('dark');
     this.applyTheme();
     this.saveTheme();
   }

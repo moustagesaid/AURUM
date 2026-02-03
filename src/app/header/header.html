@@ -21,10 +21,9 @@
 
   <!-- Right Section: Icons -->
   <div class="nav-right">
-    <app-theme-toggle></app-theme-toggle>
-    <a routerLink="/products" class="icon-link">
+    <button type="button" class="icon-link icon-btn" (click)="openSearchModal()" aria-label="Search">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-    </a>
+    </button>
 
     <!-- Logged out: login icon (opens modal) -->
     @if (!authService.isLoggedIn()) {
@@ -66,3 +65,9 @@
   [isOpen]="isLoginModalOpen"
   (closeModal)="closeLoginModal()">
 </app-login-modal>
+
+<!-- Search Modal -->
+<app-search-modal
+  [isOpen]="isSearchModalOpen"
+  (closeModal)="closeSearchModal()">
+</app-search-modal>

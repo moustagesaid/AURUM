@@ -48,11 +48,74 @@
   -webkit-backdrop-filter: blur(15px);
   border-radius: 20px;
   border: 1px solid rgba(212, 175, 55, 0.2);
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.3),
     inset 0 0 60px rgba(212, 175, 55, 0.05),
     0 0 40px rgba(212, 175, 55, 0.1);
   height: fit-content;
+}
+
+/* Social Media Links in Contact */
+.contact-social-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.contact-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  color: var(--accent-gold);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.contact-social-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contact-social-link:hover {
+  color: var(--accent-gold-light);
+  transform: translateY(-4px) scale(1.12);
+  box-shadow:
+    0 12px 28px rgba(212, 175, 55, 0.4),
+    0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+.contact-social-link:hover::before {
+  opacity: 1;
+}
+
+.contact-social-link:active {
+  transform: translateY(-2px) scale(1.06);
+}
+
+.contact-social-link svg {
+  position: relative;
+  z-index: 1;
+  stroke: currentColor;
+  stroke-width: 2;
+  transition: stroke-width 0.3s ease;
+}
+
+.contact-social-link:hover svg {
+  stroke-width: 2.2;
 }
 
 .info-item {
@@ -425,25 +488,41 @@
   .contact-section {
     padding: 60px 20px;
   }
-  
+
   .contact-form-card {
     padding: 40px 30px;
   }
-  
+
   .section-title {
     font-size: 36px;
   }
-  
+
   .intro-text {
     font-size: 14px;
   }
-  
+
   .contact-info-panel {
     padding: 30px 20px;
   }
-  
+
   .info-item {
     min-width: 150px;
+  }
+
+  .contact-social-links {
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+  }
+
+  .contact-social-link {
+    width: 44px;
+    height: 44px;
+  }
+
+  .contact-social-link svg {
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -451,23 +530,39 @@
   .contact-section {
     padding: 40px 15px;
   }
-  
+
   .contact-form-card {
     padding: 30px 20px;
   }
-  
+
   .section-title {
     font-size: 28px;
     letter-spacing: 0.1em;
   }
-  
+
   .intro-text {
     font-size: 13px;
   }
-  
+
   .submit-button {
     width: 100%;
     min-width: auto;
+  }
+
+  .contact-social-links {
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+  }
+
+  .contact-social-link {
+    width: 40px;
+    height: 40px;
+  }
+
+  .contact-social-link svg {
+    width: 18px;
+    height: 18px;
   }
 
   .success-modal {
