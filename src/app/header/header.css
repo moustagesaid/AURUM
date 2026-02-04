@@ -163,8 +163,15 @@
 }
 
 .nav-right a.icon-link:hover,
-.nav-right button.icon-link:hover {
-  color: var(--accent-gold-light);
+.nav-right button.icon-link:hover,
+.nav-right a.icon-link:focus,
+.nav-right button.icon-link:focus {
+  background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-light)); /* Same gold gradient as nav-link */
+  color: var(--bg-color); /* Theme-aware text color for contrast */
+  box-shadow: 0 0 15px rgba(191, 158, 96, 0.4); /* Subtle glow */
+  transform: scale(1.05); /* Slight scale for tactile feel */
+  border-radius: 8px; /* Rounded corners for better gradient effect */
+  padding: 0.5rem; /* Add padding for better gradient visibility */
 }
 
 /* Golden Pill Hover Effect */
@@ -326,9 +333,14 @@
   color: var(--accent-gold); /* Theme-aware gold color for cart icon */
 }
 
-.cart-icon-container:hover {
-  transform: scale(1.1);
-  color: var(--accent-gold-light); /* Theme-aware lighter gold on hover */
+.cart-icon-container:hover,
+.cart-icon-container:focus {
+  background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-light)); /* Same gold gradient as nav-link */
+  color: var(--bg-color); /* Theme-aware text color for contrast */
+  box-shadow: 0 0 15px rgba(191, 158, 96, 0.4); /* Subtle glow */
+  transform: scale(1.05); /* Slight scale for tactile feel */
+  border-radius: 8px; /* Rounded corners for better gradient effect */
+  padding: 0.5rem; /* Add padding for better gradient visibility */
 }
 
 .cart-icon-container:active {

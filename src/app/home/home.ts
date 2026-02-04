@@ -25,6 +25,7 @@ export class Home implements AfterViewInit, OnDestroy {
   indicatorHidden = false;
 
   @ViewChild('videoPlayer', { static: false }) videoPlayer!: ElementRef<HTMLVideoElement>;
+  @ViewChild('giftingVideo', { static: false }) giftingVideo!: ElementRef<HTMLVideoElement>;
 
   private scrollTriggers: ScrollTrigger[] = [];
   private heroTl: gsap.core.Timeline | null = null;
@@ -123,6 +124,7 @@ export class Home implements AfterViewInit, OnDestroy {
     this.initParallax();
     this.initGiftingSignature();
     this.initBackgroundTransition();
+    this.initGiftingVideoPlayback();
   }
 
   ngOnDestroy(): void {
@@ -272,6 +274,43 @@ export class Home implements AfterViewInit, OnDestroy {
   /** Placeholder for smooth background color transition (dark <-> light sections) */
   private initBackgroundTransition(): void {
     // Sections use their own backgrounds; add a body/wrapper transition here if needed
+  }
+
+  /** Gifting section video: play when visible, pause when not */
+  private initGiftingVideoPlayback(): void {
+    const giftingSection = this.elementRef.nativeElement.querySelector('.aurum-signature-packaging.gifting-section') as HTMLElement | null;
+    if (!giftingSection || !this.giftingVideo) return;
+
+    const videoEl = this.giftingVideo.nativeElement;
+
+    const st = ScrollTrigger.create({
+      trigger: giftingSection,
+      start: 'top bottom',
+      end: 'bottom top',
+      scroller: window,
+      onEnter: () => {
+        // Play video when entering the section
+        videoEl.play().catch(() => {
+          // Handle autoplay restrictions
+        });
+      },
+      onLeave: () => {
+        // Pause video when leaving the section
+        videoEl.pause();
+      },
+      onEnterBack: () => {
+        // Play video when scrolling back into the section
+        videoEl.play().catch(() => {
+          // Handle autoplay restrictions
+        });
+      },
+      onLeaveBack: () => {
+        // Pause video when scrolling back out of the section
+        videoEl.pause();
+      }
+    });
+
+    this.scrollTriggers.push(st);
   }
 
   // Video control methods
