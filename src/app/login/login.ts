@@ -93,9 +93,7 @@ export class Login {
       e.preventDefault();
       this.openForgotPassword.emit();
     }
-  }
-
-  onSignupClick(e: Event): void {
+  }  onSignupClick(e: Event): void {
     if (this.modalMode) {
       e.preventDefault();
       this.openSignup.emit();

@@ -1,9 +1,12 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, signal, computed, inject } from '@angular/core';
+import { io, Socket } from 'socket.io-client';
 
 export interface User {
   id: string;
   email: string;
   fullName: string;
+  role?: string;
+  avatar?: string;
 }
 
 const STORAGE_KEY = 'aurum-user';
@@ -11,14 +14,17 @@ const STORAGE_KEY = 'aurum-user';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private _user = signal<User | null>(null);
+  private socket: Socket; // 1. Add Socket property
 
   readonly user = this._user.asReadonly();
   readonly isLoggedIn = computed(() => this._user() !== null);
+  
   readonly displayName = computed(() => {
     const u = this._user();
     if (!u) return '';
     return u.fullName?.trim() || u.email?.split('@')[0] || 'Account';
   });
+
   readonly initials = computed(() => {
     const u = this._user();
     if (!u) return '?';
@@ -32,6 +38,8 @@ export class AuthService {
 
   constructor() {
     this.loadFromStorage();
+    // 2. Connect to the Bridge Server
+    this.socket = io('http://localhost:3000');
   }
 
   private loadFromStorage(): void {
@@ -40,11 +48,7 @@ export class AuthService {
       if (raw) {
         const data = JSON.parse(raw) as User;
         if (data?.email) {
-          this._user.set({
-            id: data.id || `user-${Date.now()}`,
-            email: data.email,
-            fullName: data.fullName ?? '',
-          });
+          this._user.set(data);
         }
       }
     } catch {
@@ -60,6 +64,7 @@ export class AuthService {
     }
   }
 
+  // Use this for simple login verification
   login(email: string, password: string, fullName?: string): boolean {
     const name = fullName?.trim() || email.split('@')[0] || 'Guest';
     const user: User = {
@@ -72,8 +77,27 @@ export class AuthService {
     return true;
   }
 
+  // 3. UPDATED REGISTER: Now notifies the Admin Dashboard live
   register(email: string, password: string, fullName: string): boolean {
-    return this.login(email, password, fullName);
+    const newUser = {
+      id: `user-${Date.now()}`,
+      username: email.trim().toLowerCase(), // Admin uses 'username' field
+      email: email.trim().toLowerCase(),
+      name: fullName.trim(),
+      fullName: fullName.trim(),
+      password: password, // In real life, don't send raw passwords!
+      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`,
+      role: 'customer'
+    };
+
+    // Save to local Frontend state
+    this.setUser(newUser);
+
+    // THE BRIDGE: Emit event to server.js
+    // This makes the user appear in the Admin project automatically
+    this.socket.emit('new_user_registered', newUser);
+
+    return true;
   }
 
   logout(): void {
@@ -86,6 +110,8 @@ export class AuthService {
       id: user.id || `user-${Date.now()}`,
       email: user.email || user.username,
       fullName: user.name || user.fullName || '',
+      avatar: user.avatar,
+      role: user.role || 'customer'
     };
     this._user.set(mappedUser);
     this.persist(mappedUser);
