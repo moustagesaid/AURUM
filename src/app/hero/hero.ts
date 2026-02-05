@@ -14,10 +14,14 @@ export class Hero {
   private themeService = inject(ThemeService);
 
   // Background images (use existing assets; swap as needed)
-  readonly defaultBg = 'url("assets/herosection.png")';
+  readonly defaultBg = 'url("assets/heros.png")';
   readonly lightBg = 'url("assets/lighthero.png")';
   readonly menBg = 'url("assets/menhome.png")';
+<<<<<<< HEAD
   readonly womenBg = 'url("assets/womenherobg.png")';
+=======
+  readonly womenBg = 'url("assets/bgwomen.png")';
+>>>>>>> 563f5d67f9103d97e4ab6dd1c9f0874b3bd24475
 
   /** Which hero variant is active (default uses theme to pick dark/light bg) */
   private section = signal<'default' | 'men' | 'women'>('default');

@@ -9,6 +9,114 @@
   margin: 0;
 }
 
+/* ===== LUXURY SECTION TRANSITIONS ===== */
+
+/* Option A: Gold Mist Gradient Fade */
+/* Apply to the hero section for a subtle fade-to-black */
+.section-gold-mist::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(26, 26, 28, 0.3) 30%,
+    rgba(26, 26, 28, 0.7) 70%,
+    var(--dark-bg) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Option B: Refined Golden Border with Glow */
+/* Apply to create an elegant separation line */
+.section-gold-border::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: var(--gold-accent);
+  box-shadow:
+    0 0 10px rgba(212, 175, 55, 0.3),
+    0 0 20px rgba(212, 175, 55, 0.2),
+    0 0 30px rgba(212, 175, 55, 0.1);
+  z-index: 2;
+}
+
+/* Option C: Overlap Effect with Backdrop Blur */
+/* Apply to the bottom section for overlap effect */
+.section-overlap {
+  position: relative;
+  margin-top: -60px; /* Negative margin creates overlap */
+  z-index: 3;
+}
+
+.section-overlap::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(26, 26, 28, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: -1;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* ===== GAP ELIMINATION FIXES ===== */
+
+/* Force seamless connection - negative margin approach */
+.seamless-connection {
+  margin-top: -1px; /* Compensates for anti-aliasing gap */
+}
+
+/* Box shadow blend approach */
+.shadow-blend {
+  box-shadow: 0 -2px 4px 0 var(--dark-bg);
+}
+
+/* Transform approach for sub-pixel alignment */
+.subpixel-align {
+  transform: translateY(-0.5px);
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+  .section-gold-mist::after {
+    height: 60px;
+  }
+
+  .section-gold-border::after {
+    width: 80%;
+  }
+
+  .section-overlap {
+    margin-top: -40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-gold-mist::after {
+    height: 40px;
+  }
+
+  .section-gold-border::after {
+    width: 90%;
+  }
+
+  .section-overlap {
+    margin-top: -30px;
+  }
+}
+
 .aurum-signature-packaging.gifting-section {
   margin: 0;
   border-top: 1px solid rgba(212, 175, 55, 0.15);

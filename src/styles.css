@@ -23,6 +23,12 @@
   /* Shadows */
   --shadow-card: 0 4px 20px rgba(191, 158, 96, 0.1);
 
+  /* Section Transition Variables */
+  --gold-accent: #d4af37;
+  --dark-bg: #1a1a1d;
+  --section-transition-height: 80px;
+  --gold-glow: 0 0 10px rgba(212, 175, 55, 0.3), 0 0 20px rgba(212, 175, 55, 0.2), 0 0 30px rgba(212, 175, 55, 0.1);
+
   /* Legacy variables for backward compatibility */
   --theme-gold-gradient: linear-gradient(135deg, #bf9e60 0%, #e3c689 100%);
   --theme-bg-dark: #1a1a1d;
