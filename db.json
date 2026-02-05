@@ -20,9 +20,202 @@
       "status": "Active",
       "joinedDate": "2026-02-04T09:28:59.075Z",
       "totalSpent": 0
+    },
+    {
+      "id": "user-1770285874463",
+      "username": "saidmoustage2003@gmail.com",
+      "email": "saidmoustage2003@gmail.com",
+      "name": "said moustage",
+      "fullName": "said moustage",
+      "password": "123456qwerty",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=saidmoustage2003@gmail.com",
+      "role": "customer",
+      "status": "Active",
+      "joinedDate": "2026-02-05T10:04:34.504Z",
+      "totalSpent": 0
     }
   ],
   "products": [
+    {
+      "id": "p1",
+      "name": "AURUM",
+      "subName": "MIRA",
+      "price": 129.99,
+      "imageUrl": "/assets/mira.png",
+      "category": "FOR WOMEN",
+      "stock": 50,
+      "status": "Active"
+    },
+    {
+      "id": "p2",
+      "name": "AURUM",
+      "subName": "LYRA",
+      "price": 149.99,
+      "imageUrl": "/assets/lyra.png",
+      "category": "FOR WOMEN",
+      "stock": 50,
+      "status": "Active"
+    },
+    {
+      "id": "p3",
+      "name": "AURUM",
+      "subName": "MODA",
+      "price": 139.99,
+      "imageUrl": "/assets/moda.png",
+      "category": "FOR WOMEN",
+      "stock": 50,
+      "status": "Active"
+    },
+    {
+      "id": "p4",
+      "name": "AURUM",
+      "subName": "NOVA",
+      "price": 159.99,
+      "imageUrl": "/assets/nova.png",
+      "category": "FOR WOMEN",
+      "stock": 50,
+      "status": "Active"
+    },
+    {
+      "id": "p5",
+      "name": "AURUM",
+      "subName": "SOLIS",
+      "price": 159.99,
+      "imageUrl": "/assets/Solis.png",
+      "category": "FOR WOMEN",
+      "stock": 50,
+      "status": "Active"
+    },
+    {
+      "id": "p6",
+      "name": "OPULENCE",
+      "subName": "Blossom",
+      "price": 159.99,
+      "imageUrl": "/assets/women6.png",
+      "category": "FOR WOMEN",
+      "stock": 50,
+      "status": "Active"
+    },
+    {
+      "id": "p7",
+      "name": "AURUM",
+      "subName": "Back-end",
+      "price": 159.99,
+      "imageUrl": "/assets/f3.png",
+      "category": "FOR MEN",
+      "stock": 50,
+      "status": "Active"
+    },
+    {
+      "id": "p8",
+      "name": "AURUM",
+      "subName": "Front-end",
+      "price": 159.99,
+      "imageUrl": "/assets/f2.png",
+      "category": "FOR MEN",
+      "stock": 50,
+      "status": "Active"
+    },
+    {
+      "id": "p9",
+      "name": "AURUM",
+      "subName": "Foundation",
+      "price": 159.99,
+      "imageUrl": "/assets/f1.png",
+      "category": "FOR MEN",
+      "stock": 50,
+      "status": "Active"
+    },
+    {
+      "id": "p10",
+      "name": "AURUM",
+      "subName": "Celebration",
+      "price": 159.99,
+      "imageUrl": "/assets/f4.png",
+      "category": "FOR MEN",
+      "stock": 50,
+      "status": "Active"
+    },
+    {
+      "id": "p11",
+      "name": "AURUM",
+      "subName": "AXIS",
+      "price": 129.99,
+      "imageUrl": "/assets/aurum axis.png",
+      "category": "FOR MEN",
+      "stock": 50,
+      "status": "Active"
+    },
+    {
+      "id": "p12",
+      "name": "AURUM",
+      "subName": "VANT",
+      "price": 149.99,
+      "imageUrl": "/assets/aurum vant.png",
+      "category": "FOR MEN",
+      "stock": 50,
+      "status": "Active"
+    },
+    {
+      "id": "p13",
+      "name": "AURUM",
+      "subName": "CORE",
+      "price": 139.99,
+      "imageUrl": "/assets/aurum core.png",
+      "category": "FOR MEN",
+      "stock": 50,
+      "status": "Active"
+    },
+    {
+      "id": "p14",
+      "name": "AURUM",
+      "subName": "LUXE",
+      "price": 159.99,
+      "imageUrl": "/assets/aurumluxe.png",
+      "category": "FOR MEN",
+      "stock": 50,
+      "status": "Active"
+    },
+    {
+      "id": "p15",
+      "name": "AURUM",
+      "subName": "Ferrum",
+      "price": 159.99,
+      "imageUrl": "/assets/AURUM Ferrum.png",
+      "category": "FOR MEN",
+      "stock": 50,
+      "status": "Active"
+    },
+    {
+      "id": "p16",
+      "name": "AURUM",
+      "subName": "Titanium",
+      "price": 159.99,
+      "imageUrl": "/assets/AURUM Titanium.png",
+      "category": "FOR MEN",
+      "stock": 50,
+      "status": "Active"
+    },
+    {
+      "id": "p17",
+      "name": "AURUM",
+      "subName": "Cuprum",
+      "price": 159.99,
+      "imageUrl": "/assets/AURUM Cuprum.png",
+      "category": "FOR MEN",
+      "stock": 50,
+      "status": "Active"
+    },
+    {
+      "id": "p18",
+      "name": "HIS & HERS",
+      "subName": "Collection",
+      "price": 249.99,
+      "imageUrl": "/assets/products/couples-collection.jpg",
+      "category": "OUR PACKS",
+      "stock": 50,
+      "status": "Active"
+    },
     {
       "id": "p1",
       "name": "AURUM",
@@ -114,13 +307,13 @@
       "status": "Active"
     },
     {
-      "name": "keritosama",
-      "category": "FOR MEN",
-      "price": 3,
-      "stock": 3,
-      "status": "Low Stock",
-      "imageUrl": "https://picsum.photos/seed/0.007938360226929952/100/100",
-      "id": "rj_Gb_-"
+      "name": "Moustage",
+      "category": "FOR WOMEN",
+      "price": 11,
+      "stock": 23,
+      "status": "Active",
+      "imageUrl": "https://picsum.photos/seed/Moustage/300/300",
+      "id": "bm79Zfo"
     }
   ]
 }
