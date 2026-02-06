@@ -1,0 +1,113 @@
+<!-- Hero Section -->
+<section class="faq-hero">
+  <div class="hero-content">
+    <h1 class="hero-title">Frequently Asked Questions</h1>
+    <p class="hero-subtitle">Your questions, our expertise. Find answers to everything AURUM.</p>
+
+    <!-- Luxury Search Bar -->
+    <div class="search-container">
+      <div class="search-wrapper">
+        <input
+          type="text"
+          [(ngModel)]="searchQuery"
+          (input)="onSearchChange()"
+          placeholder="Search questions..."
+          class="search-input"
+          autocomplete="off"
+        >
+        <div class="search-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 21L16.5 16.5M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="#C8A44F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <button
+          *ngIf="searchQuery"
+          (click)="clearSearch()"
+          class="clear-button"
+          type="button"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="#C8A44F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Categories -->
+<section class="faq-content">
+  <div class="container">
+
+    <!-- No Results Message -->
+    <div *ngIf="filteredCategories.length === 0 && searchQuery" class="no-results">
+      <div class="no-results-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 21L16.5 16.5M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="#C8A44F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>No questions found</h3>
+      <p>Try adjusting your search terms or browse our categories below.</p>
+      <button (click)="clearSearch()" class="clear-search-btn">Clear Search</button>
+    </div>
+
+    <!-- Categories -->
+    <div class="categories-grid" *ngIf="filteredCategories.length > 0">
+      <div
+        *ngFor="let category of filteredCategories; trackBy: trackByCategory"
+        class="category-card"
+      >
+        <div class="category-header">
+          <div class="category-icon">{{ category.icon }}</div>
+          <h2 class="category-title">{{ category.name }}</h2>
+          <div class="category-count">{{ category.items.length }} question{{ category.items.length !== 1 ? 's' : '' }}</div>
+        </div>
+
+        <div class="faq-list">
+          <div
+            *ngFor="let item of category.items; trackBy: trackByItem"
+            class="faq-item"
+          >
+            <button
+              (click)="toggleAccordion(category.id, item.id)"
+              class="faq-question"
+              [class.active]="item.isOpen"
+              [attr.aria-expanded]="item.isOpen"
+              [attr.aria-controls]="'answer-' + item.id"
+            >
+              <span class="question-text">{{ item.question }}</span>
+              <div class="chevron-icon" [@chevronRotate]="item.isOpen ? 'expanded' : 'collapsed'">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </button>
+
+            <div
+              class="faq-answer"
+              [id]="'answer-' + item.id"
+              [@accordionCollapse]="item.isOpen ? 'expanded' : 'collapsed'"
+            >
+              <div class="answer-content">
+                <p>{{ item.answer }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact CTA -->
+    <div class="contact-cta" *ngIf="!searchQuery">
+      <div class="cta-content">
+        <h3>Still have questions?</h3>
+        <p>Our luxury concierge team is here to assist you personally.</p>
+        <a [routerLink]="['/contact']" class="cta-button">
+          <span>Contact Us</span>
+          <span class="cta-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

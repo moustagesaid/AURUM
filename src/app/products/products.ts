@@ -180,15 +180,22 @@ export class Products implements OnInit {
       category: 'men'
     },
     
-    // Couples Product
+    // Packs Products
     {
       id: 9,
-      name: 'HIS & HERS',
-      subName: 'Collection',
-      price: 249.99,
-      image: '/assets/products/couples-collection.jpg',
-      category: 'couples',
-      badge: 'SAVE 10%'
+      name: 'MEN\'S PACK',
+      subName: 'Essential Collection',
+      price: 149.99,
+      image: '/assets/products/mens-pack.jpg',
+      category: 'couples'
+    },
+    {
+      id: 10,
+      name: 'WOMEN\'S PACK',
+      subName: 'Luxury Collection',
+      price: 149.99,
+      image: '/assets/products/womens-pack.jpg',
+      category: 'couples'
     }
   ];
 
@@ -197,8 +204,8 @@ export class Products implements OnInit {
     return this.products.filter(product => product.category === this.selectedCategory);
   }
 
-  get couplesProduct(): Product | undefined {
-    return this.filteredProducts.find(product => product.category === 'couples');
+  get couplesProducts(): Product[] {
+    return this.filteredProducts.filter(product => product.category === 'couples');
   }
 
   addToCart(product: Product): void {
