@@ -7,6 +7,9 @@ import { OrderDataService } from '../services/order-data.service';
 import { OrderHistoryService } from '../services/order-history.service';
 import { Subscription } from 'rxjs';
 
+// 1. Import Socket.io
+import { io } from 'socket.io-client';
+
 @Component({
   selector: 'app-checkout',
   standalone: true,
@@ -19,6 +22,9 @@ export class Checkout implements OnInit, OnDestroy {
   cartItems: CartItem[] = [];
   totalPrice: number = 0;
   private subscriptions: Subscription = new Subscription();
+  
+  // 2. Define the socket variable
+  private socket: any; 
 
   constructor(
     private fb: FormBuilder,
@@ -27,6 +33,9 @@ export class Checkout implements OnInit, OnDestroy {
     private orderHistoryService: OrderHistoryService,
     private router: Router
   ) {
+    // 3. Initialize the connection to your Bridge Server
+    this.socket = io('http://localhost:3000');
+
     this.checkoutForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2)]],
       lastName: ['', [Validators.required, Validators.minLength(2)]],
@@ -55,6 +64,11 @@ export class Checkout implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+    
+    // 4. Clean up: Disconnect socket when user leaves to prevent memory leaks
+    if (this.socket) {
+      this.socket.disconnect();
+    }
   }
 
   onSubmit(): void {
@@ -81,6 +95,10 @@ export class Checkout implements OnInit, OnDestroy {
     };
 
     console.log('Order placed:', orderData);
+
+    // 5. Send the order to the Admin Dashboard via Socket.io
+    // This matches the event name we set up in the Node.js bridge server
+    this.socket.emit('place_order', orderData);
 
     // Save order data to service
     this.orderDataService.setLastOrder(orderData);
