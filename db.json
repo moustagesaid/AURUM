@@ -1,5 +1,58 @@
 {
-  "orders": [],
+  "orders": [
+    {
+      "id": "1635",
+      "customerDetails": {
+        "firstName": "Youssef",
+        "lastName": "Hanin",
+        "email": "echoplus9119@gmail.com",
+        "phone": "+212639467125",
+        "address": "sazazeazeaze",
+        "city": "Phoenix",
+        "postalCode": "45000",
+        "country": "Morocco"
+      },
+      "items": [
+        {
+          "id": "p1",
+          "name": "AURUM",
+          "subName": "MIRA",
+          "price": 129.99,
+          "basePrice": 129.99,
+          "image": "/assets/mira.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        },
+        {
+          "id": "p2",
+          "name": "AURUM",
+          "subName": "LYRA",
+          "price": 149.99,
+          "basePrice": 149.99,
+          "image": "/assets/lyra.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        },
+        {
+          "id": "p3",
+          "name": "AURUM",
+          "subName": "MODA",
+          "price": 139.99,
+          "basePrice": 139.99,
+          "image": "/assets/moda.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        }
+      ],
+      "total": 419.97,
+      "orderId": "AUR-2026-1017",
+      "orderDate": "2026-02-06T09:37:00.179Z",
+      "paymentMethod": "COD"
+    }
+  ],
   "users": [
     {
       "id": "admin-1",
@@ -32,6 +85,19 @@
       "role": "customer",
       "status": "Active",
       "joinedDate": "2026-02-05T10:04:34.504Z",
+      "totalSpent": 0
+    },
+    {
+      "id": "user-1770370605094",
+      "username": "youssefhanin717@gmail.com",
+      "email": "youssefhanin717@gmail.com",
+      "name": "youssef",
+      "fullName": "youssef",
+      "password": "123456789",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=youssefhanin717@gmail.com",
+      "role": "customer",
+      "status": "Active",
+      "joinedDate": "2026-02-06T09:36:45.095Z",
       "totalSpent": 0
     }
   ],
