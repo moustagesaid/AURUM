@@ -17,7 +17,7 @@ export class Hero {
   readonly defaultBg = 'url("assets/heros.png")';
   readonly lightBg = 'url("assets/lighthero.png")';
   readonly menBg = 'url("assets/menhome.png")';
-  readonly womenBg = 'url("assets/womenherobg.png")';
+  readonly womenBg = 'url("assets/bgwomen3.png")';
 
   /** Which hero variant is active (default uses theme to pick dark/light bg) */
   private section = signal<'default' | 'men' | 'women'>('default');
