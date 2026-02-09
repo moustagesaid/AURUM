@@ -35,7 +35,10 @@ export class FaqComponent implements OnInit {
     {
       id: 'boutique',
       name: 'The Boutique',
-      icon: '🏪',
+      icon: `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 21V8L12 3L21 8V21H15V13H9V21H3Z" stroke="#C8A44F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M7 21V13H11V21" stroke="#C8A44F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`,
       items: [
         {
           id: 1,
@@ -66,7 +69,11 @@ export class FaqComponent implements OnInit {
     {
       id: 'shipping',
       name: 'Shipping & Delivery',
-      icon: '🚚',
+      icon: `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 17V7H7V17M3 17H7M3 17V19H21V17M21 17H17M21 17V7H17M17 7V17M17 7H13V12H17M13 17V12M13 17H7" stroke="#C8A44F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="6" cy="18" r="2" stroke="#C8A44F" stroke-width="2"/>
+        <circle cx="18" cy="18" r="2" stroke="#C8A44F" stroke-width="2"/>
+      </svg>`,
       items: [
         {
           id: 5,
@@ -97,7 +104,12 @@ export class FaqComponent implements OnInit {
     {
       id: 'gifting',
       name: 'Gifting Service',
-      icon: '🎁',
+      icon: `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 7H4C2.89543 7 2 7.89543 2 9V19C2 20.1046 2.89543 21 4 21H20C21.1046 21 22 20.1046 22 19V9C22 7.89543 21.1046 7 20 7Z" stroke="#C8A44F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 12V21M2 12H22M12 7V3C12 2.44772 12.4477 2 13 2H16C16.5523 2 17 2.44772 17 3V7" stroke="#C8A44F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9 12L7 10L5 12L7 14L9 12Z" fill="#C8A44F"/>
+        <path d="M19 12L17 10L15 12L17 14L19 12Z" fill="#C8A44F"/>
+      </svg>`,
       items: [
         {
           id: 9,
@@ -128,7 +140,11 @@ export class FaqComponent implements OnInit {
     {
       id: 'care',
       name: 'Care & Preservation',
-      icon: '✨',
+      icon: `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L3 7V17L12 22L21 17V7L12 2Z" stroke="#C8A44F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9 12L11 14L15 10" stroke="#C8A44F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 2V22M3 7L12 12L21 7" stroke="#C8A44F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`,
       items: [
         {
           id: 13,
@@ -209,5 +225,29 @@ export class FaqComponent implements OnInit {
 
   trackByItem(index: number, item: FaqItem): number {
     return item.id;
+  }
+
+  getSmallIcon(categoryId: string): string {
+    const smallIcons: { [key: string]: string } = {
+      'boutique': `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 21V8L12 3L21 8V21H15V13H9V21H3Z" stroke="#C8A44F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`,
+      'shipping': `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 17V7H7V17M3 17H7M3 17V19H21V17M21 17H17M21 17V7H17M17 7V17M17 7H13V12H17M13 17V12M13 17H7" stroke="#C8A44F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="6" cy="18" r="1.5" stroke="#C8A44F" stroke-width="2"/>
+        <circle cx="18" cy="18" r="1.5" stroke="#C8A44F" stroke-width="2"/>
+      </svg>`,
+      'gifting': `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 7H4C2.89543 7 2 7.89543 2 9V19C2 20.1046 2.89543 21 4 21H20C21.1046 21 22 20.1046 22 19V9C22 7.89543 21.1046 7 20 7Z" stroke="#C8A44F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 7V3C12 2.44772 12.4477 2 13 2H16C16.5523 2 17 2.44772 17 3V7" stroke="#C8A44F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9 12L7 10L5 12L7 14L9 12Z" fill="#C8A44F"/>
+        <path d="M19 12L17 10L15 12L17 14L19 12Z" fill="#C8A44F"/>
+      </svg>`,
+      'care': `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L3 7V17L12 22L21 17V7L12 2Z" stroke="#C8A44F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9 12L11 14L15 10" stroke="#C8A44F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`
+    };
+    return smallIcons[categoryId] || '';
   }
 }

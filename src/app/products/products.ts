@@ -185,7 +185,7 @@ export class Products implements OnInit {
       id: 9,
       name: 'MEN\'S PACK',
       subName: 'Essential Collection',
-      price: 149.99,
+      price: 459.99,
       image: '/assets/mpack1.png',
       category: 'couples'
     },
@@ -193,7 +193,7 @@ export class Products implements OnInit {
       id: 10,
       name: 'WOMEN\'S PACK',
       subName: 'Luxury Collection',
-      price: 149.99,
+      price: 399.99,
       image: '/assets/wpack1.png',
       category: 'couples'
     }

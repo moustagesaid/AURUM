@@ -23,6 +23,10 @@
   background-image:
     url('/assets/bgwomen2.png');
 }
+.products-container.couples {
+  background-image:
+    url('/assets/bgpack2.png');
+}
 
 /* Category Selector */
 .category-selector {
