@@ -10,6 +10,7 @@ import { ForgotPassword } from './forgot-password/forgot-password';
 import { Products } from './products/products';
 import { Checkout } from './checkout/checkout';
 import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
+import { Stores } from './stores/stores';
 
 export const routes: Routes = [
   {
@@ -40,6 +41,10 @@ export const routes: Routes = [
   {
     path: 'contact',
     component: Contact
+  },
+  {
+    path: 'stores',
+    component: Stores
   },
   {
     path: 'faq',

@@ -1,0 +1,327 @@
+/* Stores Container */
+.stores-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+  padding: 80px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Hero Section */
+.stores-hero {
+  text-align: center;
+  margin-bottom: 60px;
+  max-width: 800px;
+}
+
+.stores-title {
+  font-family: 'Cinzel', serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #E5D2A8;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin: 0 0 16px 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.stores-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  color: #BDBDBD;
+  margin: 0;
+  letter-spacing: 0.1em;
+}
+
+/* Content Layout */
+.stores-content {
+  width: 100%;
+  max-width: 1400px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* Store Info */
+.store-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.store-card {
+  background: rgba(90, 90, 92, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(200, 164, 79, 0.2);
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.store-name {
+  font-family: 'Cinzel', serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #E5D2A8;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin: 0 0 8px 0;
+}
+
+.store-location {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: #BDBDBD;
+  margin: 0 0 30px 0;
+  letter-spacing: 0.05em;
+}
+
+.store-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: #BDBDBD;
+  line-height: 1.5;
+}
+
+.detail-icon {
+  font-size: 20px;
+  min-width: 25px;
+  text-align: center;
+}
+
+/* Store Description Section */
+.store-description-section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.store-description-card {
+  background: rgba(90, 90, 92, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(200, 164, 79, 0.2);
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.description-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.description-title {
+  font-family: 'Cinzel', serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #E5D2A8;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.description-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: #BDBDBD;
+  line-height: 1.6;
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+.store-image-container {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.store-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.store-image:hover {
+  transform: scale(1.02);
+}
+
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  padding: 20px;
+}
+
+.image-caption {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #E5D2A8;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+  text-align: center;
+}
+
+/* Map Container */
+.map-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.map-title {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #E5D2A8;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
+.map-wrapper {
+  background: rgba(90, 90, 92, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(200, 164, 79, 0.2);
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .stores-container {
+    padding: 60px 30px;
+  }
+
+  .stores-title {
+    font-size: 36px;
+  }
+
+  .store-description-card {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 30px;
+  }
+
+  .description-title {
+    font-size: 28px;
+  }
+
+  .store-card {
+    padding: 30px;
+  }
+
+  .store-name {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .stores-container {
+    padding: 40px 20px;
+  }
+
+  .stores-title {
+    font-size: 28px;
+    letter-spacing: 0.15em;
+  }
+
+  .stores-subtitle {
+    font-size: 16px;
+  }
+
+  .store-description-card {
+    padding: 25px;
+  }
+
+  .description-title {
+    font-size: 24px;
+  }
+
+  .store-card {
+    padding: 25px;
+  }
+
+  .store-name {
+    font-size: 24px;
+  }
+
+  .map-title {
+    font-size: 24px;
+  }
+
+  .store-image {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stores-hero {
+    margin-bottom: 40px;
+  }
+
+  .stores-title {
+    font-size: 24px;
+  }
+
+  .store-description-card {
+    padding: 20px;
+  }
+
+  .description-title {
+    font-size: 20px;
+  }
+
+  .store-card {
+    padding: 20px;
+  }
+
+  .store-name {
+    font-size: 20px;
+  }
+
+  .detail-item {
+    font-size: 14px;
+  }
+
+  .map-wrapper {
+    padding: 15px;
+  }
+
+  .store-image {
+    height: 200px;
+  }
+
+  .image-caption {
+    font-size: 16px;
+  }
+}
