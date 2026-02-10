@@ -143,16 +143,7 @@ import { AuthService } from '../services/auth.service';
       }
       .logout-btn {
         margin-top: 0.5rem;
-        background: transparent !important;
-        color: var(--text-muted);
-        border: 1px solid rgba(212, 175, 55, 0.3);
         cursor: pointer;
-        font: inherit;
-      }
-      .logout-btn:hover {
-        color: #e8b4b4;
-        border-color: rgba(180, 80, 80, 0.5);
-        background: rgba(180, 80, 80, 0.08) !important;
       }
     `,
   ],

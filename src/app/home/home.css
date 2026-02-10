@@ -1203,18 +1203,51 @@
 
 .social-icons {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
+  align-items: center;
 }
 
 .social-icon {
   color: #BDBDBD;
-  font-size: 1.2rem;
-  transition: color 0.3s ease;
+  font-size: 1.4rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
+  position: relative;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(200, 164, 79, 0.05);
+  border: 1px solid rgba(200, 164, 79, 0.1);
 }
 
 .social-icon:hover {
-  color: #C8A44F;
+  color: #E5D2A8;
+  background: rgba(200, 164, 79, 0.15);
+  border-color: rgba(200, 164, 79, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(200, 164, 79, 0.3);
+}
+
+.social-icon::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, rgba(200, 164, 79, 0.2), rgba(229, 210, 168, 0.1), rgba(200, 164, 79, 0.2));
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.social-icon:hover::before {
+  opacity: 1;
 }
 
 /* Responsive Design */
@@ -1301,6 +1334,16 @@
   .footer-bottom {
     flex-direction: column;
     gap: 1rem;
+  }
+
+  .social-icons {
+    gap: 1.2rem;
+  }
+
+  .social-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
   }
 
   /* Gifting section responsive – image on top, card stacked below */
@@ -1493,6 +1536,16 @@
 
   .play-text {
     font-size: 1rem;
+  }
+
+  .social-icons {
+    gap: 1rem;
+  }
+
+  .social-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 1.1rem;
   }
 
 }

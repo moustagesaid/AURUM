@@ -371,15 +371,6 @@
       "imageUrl": "/assets/products/couples-collection.jpg",
       "stock": 100,
       "status": "Active"
-    },
-    {
-      "name": "Moustage",
-      "category": "FOR WOMEN",
-      "price": 11,
-      "stock": 23,
-      "status": "Active",
-      "imageUrl": "https://picsum.photos/seed/Moustage/300/300",
-      "id": "bm79Zfo"
     }
   ]
 }

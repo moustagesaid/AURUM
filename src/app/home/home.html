@@ -46,7 +46,7 @@
       <p class="gifting-body">
         Every bottle is wrapped in hand-pressed silk paper and sealed with 24k gold wax. An unforgettable unboxing experience.
       </p>
-      <a [routerLink]="['/products']" class="btn-outline">
+      <a [routerLink]="['/products']" [queryParams]="{ category: 'couples' }" class="btn-outline">
         <span>Discover Our Gifting Service</span>
         <span class="btn-arrow" aria-hidden="true">→</span>
       </a>
@@ -166,8 +166,6 @@
           <ul>
             <li><a [routerLink]="['/about']">Our Story</a></li>
             <li><a [routerLink]="['/craftsmanship']">Craftsmanship</a></li>
-            <li><a [routerLink]="['/ingredients']">Rare Ingredients</a></li>
-            <li><a [routerLink]="['/sustainability']">Sustainability</a></li>
           </ul>
         </div>
 
@@ -177,18 +175,16 @@
             <li><a [routerLink]="['/contact']">Get In Touch</a></li>
             <li><a [routerLink]="['/stores']">Find A Store</a></li>
             <li><a [routerLink]="['/faq']">FAQ</a></li>
-            <li><a [routerLink]="['/shipping']">Shipping Info</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2025 Aurum. All rights reserved.</p>
+        <p>&copy; 2026 Aurum. All rights reserved.</p>
         <div class="social-icons">
-          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-pinterest-p"></i></a>
+          <a href="#" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon" title="TikTok"><i class="fab fa-tiktok"></i></a>
         </div>
       </div>
     </div>
