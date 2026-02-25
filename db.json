@@ -51,6 +51,337 @@
       "orderId": "AUR-2026-1017",
       "orderDate": "2026-02-06T09:37:00.179Z",
       "paymentMethod": "COD"
+    },
+    {
+      "id": "2bf8",
+      "customerDetails": {
+        "firstName": "Youssef",
+        "lastName": "HANIN",
+        "email": "echoplus9119@gmail.com",
+        "phone": "+212639467125",
+        "address": "sazazeazeaze",
+        "city": "Oviedo",
+        "postalCode": "45000",
+        "country": "Morocco"
+      },
+      "items": [
+        {
+          "id": "p3",
+          "name": "AURUM",
+          "subName": "MODA",
+          "price": 139.99,
+          "basePrice": 139.99,
+          "image": "/assets/moda.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        },
+        {
+          "id": "p4",
+          "name": "AURUM",
+          "subName": "NOVA",
+          "price": 159.99,
+          "basePrice": 159.99,
+          "image": "/assets/nova.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        },
+        {
+          "id": "p2",
+          "name": "AURUM",
+          "subName": "LYRA",
+          "price": 149.99,
+          "basePrice": 149.99,
+          "image": "/assets/lyra.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        }
+      ],
+      "total": 449.97,
+      "orderId": "AUR-2026-8494",
+      "orderDate": "2026-02-10T08:59:49.040Z",
+      "paymentMethod": "COD"
+    },
+    {
+      "id": "1e53",
+      "customerDetails": {
+        "firstName": "YOUSSEF",
+        "lastName": "HANIN",
+        "email": "youssefhanin717@gmail.com",
+        "phone": "+212639467125",
+        "address": "sazazeazeaze",
+        "city": "Phoenix",
+        "postalCode": "45000",
+        "country": "Morocco"
+      },
+      "items": [
+        {
+          "id": "p2",
+          "name": "AURUM",
+          "subName": "LYRA",
+          "price": 149.99,
+          "basePrice": 149.99,
+          "image": "/assets/lyra.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        },
+        {
+          "id": "p3",
+          "name": "AURUM",
+          "subName": "MODA",
+          "price": 139.99,
+          "basePrice": 139.99,
+          "image": "/assets/moda.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        },
+        {
+          "id": "p4",
+          "name": "AURUM",
+          "subName": "NOVA",
+          "price": 159.99,
+          "basePrice": 159.99,
+          "image": "/assets/nova.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        }
+      ],
+      "total": 449.97,
+      "orderId": "AUR-2026-8814",
+      "orderDate": "2026-02-10T09:01:52.665Z",
+      "paymentMethod": "COD"
+    },
+    {
+      "id": "f222",
+      "customerDetails": {
+        "firstName": "MO",
+        "lastName": "HA",
+        "email": "usefwidadi1@gmail.com",
+        "phone": "+212639467125",
+        "address": "sazazeazeaze",
+        "city": "Phoenix",
+        "postalCode": "45000",
+        "country": "Morocco"
+      },
+      "items": [
+        {
+          "id": "p3",
+          "name": "AURUM",
+          "subName": "MODA",
+          "price": 139.99,
+          "basePrice": 139.99,
+          "image": "/assets/moda.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        },
+        {
+          "id": "p9",
+          "name": "HIS & HERS",
+          "subName": "Collection",
+          "price": 249.99,
+          "basePrice": 249.99,
+          "image": "/assets/products/couples-collection.jpg",
+          "category": "couples",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        }
+      ],
+      "total": 389.98,
+      "orderId": "AUR-2026-1609",
+      "orderDate": "2026-02-10T09:45:28.141Z",
+      "paymentMethod": "COD"
+    },
+    {
+      "id": "f73c",
+      "customerDetails": {
+        "firstName": "TY",
+        "lastName": "NB",
+        "email": "echolink9119@gmail.com",
+        "phone": "639467125",
+        "address": "sazazeazeaze",
+        "city": "Phoenix",
+        "postalCode": "45000",
+        "country": "Morocco"
+      },
+      "items": [
+        {
+          "id": "p2",
+          "name": "AURUM",
+          "subName": "LYRA",
+          "price": 149.99,
+          "basePrice": 149.99,
+          "image": "/assets/lyra.png",
+          "category": "women",
+          "quantity": 2,
+          "selectedSize": "100ml"
+        },
+        {
+          "id": "p1",
+          "name": "AURUM",
+          "subName": "MIRA",
+          "price": 129.99,
+          "basePrice": 129.99,
+          "image": "/assets/mira.png",
+          "category": "women",
+          "quantity": 2,
+          "selectedSize": "100ml"
+        },
+        {
+          "id": "p3",
+          "name": "AURUM",
+          "subName": "MODA",
+          "price": 139.99,
+          "basePrice": 139.99,
+          "image": "/assets/moda.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        },
+        {
+          "id": "p4",
+          "name": "AURUM",
+          "subName": "NOVA",
+          "price": 159.99,
+          "basePrice": 159.99,
+          "image": "/assets/nova.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        },
+        {
+          "id": "p5",
+          "name": "AURUM",
+          "subName": "SOLIS",
+          "price": 159.99,
+          "basePrice": 159.99,
+          "image": "/assets/Solis.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        },
+        {
+          "id": "p6",
+          "name": "OPULENCE",
+          "subName": "Blossom",
+          "price": 159.99,
+          "basePrice": 159.99,
+          "image": "/assets/women6.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        }
+      ],
+      "total": 1179.92,
+      "orderId": "AUR-2026-2891",
+      "orderDate": "2026-02-10T09:47:25.805Z",
+      "paymentMethod": "COD"
+    },
+    {
+      "id": "e662",
+      "customerDetails": {
+        "firstName": "Youssef",
+        "lastName": "HANIN",
+        "email": "echoplus9119@gmail.com",
+        "phone": "555555555",
+        "address": "sazazeazeaze",
+        "city": "Oviedo",
+        "postalCode": "45000",
+        "country": "Morocco"
+      },
+      "items": [
+        {
+          "id": "p1",
+          "name": "AURUM",
+          "subName": "MIRA",
+          "price": 129.99,
+          "basePrice": 129.99,
+          "image": "/assets/mira.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        }
+      ],
+      "total": 129.99,
+      "orderId": "AUR-2026-9413",
+      "orderDate": "2026-02-10T09:51:50.239Z",
+      "paymentMethod": "COD"
+    },
+    {
+      "id": "f650",
+      "customerDetails": {
+        "firstName": "Youusef",
+        "lastName": "HA",
+        "email": "AbdelazizeBelkoura@gmail.com",
+        "phone": "+212639467125",
+        "address": "sazazeazeaze",
+        "city": "zazt",
+        "postalCode": "45000",
+        "country": "Morocco"
+      },
+      "items": [
+        {
+          "id": "p1",
+          "name": "AURUM",
+          "subName": "MIRA",
+          "price": 129.99,
+          "basePrice": 129.99,
+          "image": "/assets/mira.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        }
+      ],
+      "total": 129.99,
+      "orderId": "AUR-2026-5697",
+      "orderDate": "2026-02-11T10:20:45.197Z",
+      "paymentMethod": "COD"
+    },
+    {
+      "id": "3e3c",
+      "customerDetails": {
+        "firstName": "Youusef",
+        "lastName": "Hanin",
+        "email": "admin@gmail.com",
+        "phone": "+212639467125",
+        "address": "sazazeazeaze",
+        "city": "zazt",
+        "postalCode": "45000",
+        "country": "Morocco"
+      },
+      "items": [
+        {
+          "id": "p2",
+          "name": "AURUM",
+          "subName": "LYRA",
+          "price": 74.995,
+          "basePrice": 149.99,
+          "image": "/assets/lyra.png",
+          "category": "women",
+          "quantity": 2,
+          "selectedSize": "50ml"
+        },
+        {
+          "id": "p3",
+          "name": "AURUM",
+          "subName": "MODA",
+          "price": 139.99,
+          "basePrice": 139.99,
+          "image": "/assets/moda.png",
+          "category": "women",
+          "quantity": 1,
+          "selectedSize": "100ml"
+        }
+      ],
+      "total": 289.98,
+      "orderId": "AUR-2026-1668",
+      "orderDate": "2026-02-11T11:13:16.383Z",
+      "paymentMethod": "COD"
     }
   ],
   "users": [
@@ -99,6 +430,45 @@
       "status": "Active",
       "joinedDate": "2026-02-06T09:36:45.095Z",
       "totalSpent": 0
+    },
+    {
+      "id": "user-1770713974330",
+      "username": "said@gmail.com",
+      "email": "said@gmail.com",
+      "name": "said",
+      "fullName": "said",
+      "password": "12345678",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=said@gmail.com",
+      "role": "customer",
+      "status": "Active",
+      "joinedDate": "2026-02-10T08:59:34.335Z",
+      "totalSpent": 0
+    },
+    {
+      "id": "user-1770716574697",
+      "username": "mo@gmail.com",
+      "email": "mo@gmail.com",
+      "name": "MO",
+      "fullName": "MO",
+      "password": "12345678",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=MO@gmail.com",
+      "role": "customer",
+      "status": "Active",
+      "joinedDate": "2026-02-10T09:42:54.699Z",
+      "totalSpent": 0
+    },
+    {
+      "id": "user-1770805093781",
+      "username": "abdelazizebelkoura@gmail.com",
+      "email": "abdelazizebelkoura@gmail.com",
+      "name": "Abdelazize Belkoura",
+      "fullName": "Abdelazize Belkoura",
+      "password": "123456789",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=AbdelazizeBelkoura@gmail.com",
+      "role": "customer",
+      "status": "Active",
+      "joinedDate": "2026-02-11T10:18:13.784Z",
+      "totalSpent": 0
     }
   ],
   "products": [
@@ -110,7 +480,7 @@
       "imageUrl": "/assets/mira.png",
       "category": "FOR WOMEN",
       "stock": 50,
-      "status": "Active"
+      "status": "Low Stock"
     },
     {
       "id": "p2",
@@ -280,7 +650,7 @@
       "imageUrl": "/assets/products/couples-collection.jpg",
       "category": "OUR PACKS",
       "stock": 50,
-      "status": "Active"
+      "status": "Low Stock"
     },
     {
       "id": "p1",
@@ -371,6 +741,15 @@
       "imageUrl": "/assets/products/couples-collection.jpg",
       "stock": 100,
       "status": "Active"
+    },
+    {
+      "id": "42e0",
+      "name": "Youssef Hanin",
+      "category": "FOR WOMEN",
+      "price": 100,
+      "stock": 5,
+      "status": "Low Stock",
+      "imageUrl": "https://picsum.photos/seed/YoussefHanin/300/300"
     }
   ]
 }
